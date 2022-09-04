@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="<?= urlProject(FOLDER_BASE . "/src/components/Footer/style.css") ?>">
+<link rel="stylesheet" href="<?= urlProject(FOLDER_BASE . "/src/components/Footer/styles.css") ?>">
 
 <footer id="footer">
   <div class="footerTop">
@@ -7,7 +7,7 @@
         <div>
           <h3 class="footerTitle">Sobre nós</h3>
 
-          <img width="85px" height="70px" src="<?= urlProject(FOLDER_BASE . BASE_IMG . "/JPA.jpg") ?>" alt="">
+          <img width="220px" height="70px" src="<?= urlProject(FOLDER_BASE . BASE_IMG . "/TvOne.png") ?>" alt="">
 
         </div>
 
@@ -17,9 +17,8 @@
         <p>Estamos aceitando novas parcerias <b> agora.</b></p>
 
         <div>
-          <p>Envie-nos um e-mail: <span>geral@pungoandongo.com </span></p>
-          <p>Contato: <span>+244 924 010 200</span></p>
-          <p>Contato: <span>+244 924 010 021</span></p>
+          <p>Envie-nos um e-mail: <span>elmirophotograph@gmail.com</span></p>
+          <p>Contato: <span>+244 941 236 262</span></p>
         </div>
       </div>
 
@@ -65,46 +64,7 @@
 
       </div>
 
-      <div class="comment">
-        <h3 class="footerTitle">Novos comentários</h3>
 
-        <div class="commentary">
-          <div class="imageContainer">
-            <img src="<?= urlProject(FOLDER_BASE . BASE_IMG . "/img450x300.webp") ?>" alt="">
-          </div>
-
-          <div class="commentaryContent">
-            <span>Raimundo Kilende</span>
-
-            <p>Samsung anuncia Galaxy Buds Pro, a maioria dos fones de ouvido premium até agora</p>
-          </div>
-        </div>
-
-        <div class="commentary">
-          <div class="imageContainer">
-            <img src="<?= urlProject(FOLDER_BASE . BASE_IMG . "/img450x300.webp") ?>" alt="">
-          </div>
-
-          <div class="commentaryContent">
-            <span>Rafael Pilartes</span>
-
-            <p>Samsung anuncia Galaxy Buds Pro, a maioria dos fones de ouvido premium até agora</p>
-          </div>
-        </div>
-
-        <div class="commentary">
-          <div class="imageContainer">
-            <img src="<?= urlProject(FOLDER_BASE . BASE_IMG . "/img450x300.webp") ?>" alt="">
-          </div>
-
-          <div class="commentaryContent">
-            <span>Rafael Pilartes</span>
-
-            <p>Samsung anuncia Galaxy Buds Pro, a maioria dos fones de ouvido premium até agora</p>
-          </div>
-        </div>
-
-      </div>
     </div>
   </div>
 

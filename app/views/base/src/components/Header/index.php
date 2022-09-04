@@ -1,4 +1,4 @@
-  <link rel="stylesheet" href="<?= urlProject(FOLDER_BASE . "/src/components/Header/styles.css") ?>">
+  <link rel="stylesheet" href="<?= urlProject(FOLDER_BASE . "/src/components/Header/style.css") ?>">
 
   <header id="header">
     <div class="headerPrimary">
@@ -20,14 +20,11 @@
 
       <div class="logoHeaderContainer">
         <a href="<?= urlProject() ?>">
-          <h1> <?= SITE ?></h1>
+          <img src="<?= urlProject(FOLDER_BASE . BASE_IMG . "/TvOne.png") ?>" alt="">
         </a>
       </div>
 
       <div class="loginContainer">
-        <button class="buttonLogin">
-          Inscreva-se
-        </button>
         <button class="buttonRegister">
           <i class="fa-regular fa-circle-user"></i>
           Conectar-se
@@ -85,7 +82,19 @@
             <a href="<?= urlProject("news/1") ?>">Noticía</a>
           </li>
           <li>
-            <a href="<?= urlProject("news/search/category/Política/1") ?>">Política</a>
+          <li>
+            <a href="<?= urlProject("news/search/category/Economia/1") ?>">Economia</a>
+          </li>
+          <li>
+            <a href="<?= urlProject("news/search/category/Especialidade/1") ?>">Especialidade</a>
+          </li>
+          <li>
+            <a href="<?= urlProject("news/search/category/Internacional/1") ?>">Internacional</a>
+          </li>
+          <li>
+            <a href="<?= urlProject("news/search/category/Lazer/1") ?>">Lazer</a>
+          </li>
+          <a href="<?= urlProject("news/search/category/Política/1") ?>">Política</a>
           </li>
           <li>
             <a href="<?= urlProject("news/search/category/Actualidade/1") ?>">Actualidade</a>
@@ -97,19 +106,7 @@
             <a href="<?= urlProject("news/search/category/Cultura/1") ?>">Cultura</a>
           </li>
           <li>
-            <a href="<?= urlProject("news/search/category/Especialidade/1") ?>">Especialidade</a>
-          </li>
-          <li>
-            <a href="<?= urlProject("news/search/category/Economia/1") ?>">Economia</a>
-          </li>
-          <li>
-            <a href="<?= urlProject("news/search/category/Internacional/1") ?>">Internacional</a>
-          </li>
-          <li>
-            <a href="<?= urlProject("news/search/category/Lazer/1") ?>">Lazer</a>
-          </li>
-          <li>
-            <a href="<?= urlProject("news/search/category/Desporto/1") ?>">Desporto</a>
+            <a href="<?= urlProject("news/search/category/Desporto/1") ?>">Videos</a>
           </li>
           <li>
             <a href="<?= urlProject("contacts") ?>">Contacto</a>

@@ -79,7 +79,7 @@ if (isset($_POST['create_news'])) {
   $description_news = $_POST['description_news'];
   $epigraph_news = $_POST['epigraph_news'];
   $author_epigraph_news = $_POST['author_epigraph_news'];
-  $image_news =  'http://http://jornalpungoandongo.ao/app/_imagesDb/' . $newName;
+  $image_news =  'http://localhost/web-tv_one-php/app/_imagesDb/' . $newName;
   $description_image_news = $_POST['description_image_news'];
   $photography_news = $_POST['photography_news'];
   $reading_time_news = $_POST['reading_time_news'];
@@ -111,9 +111,9 @@ if (isset($_POST['create_news'])) {
     $date_create,
     $date_update
   ))) {
-    header('Location: http://jornalpungoandongo.ao/news');
+    header('Location: http://localhost/web-tv_one-php/news');
   } else {
-    header('Location: http://jornalpungoandongo.ao/');
+    header('Location: http://localhost/web-tv_one-php/');
   };
 };
 
@@ -126,9 +126,9 @@ if (isset($_POST['delete_news'])) {
   $sql = $pdo->prepare("DELETE FROM news WHERE id=?");
 
   if ($sql->execute(array($id))) {
-    header('Location: http://jornalpungoandongo.ao/news');
+    header('Location: http://localhost/web-tv_one-php/news');
   } else {
-    header('Location: http://jornalpungoandongo.ao/');
+    header('Location: http://localhost/web-tv_one-php/');
   };
 };
 
@@ -208,7 +208,7 @@ if (isset($_POST['update_news'])) {
   $description_news = $_POST['description_news'];
   $epigraph_news = $_POST['epigraph_news'];
   $author_epigraph_news = $_POST['author_epigraph_news'];
-  $image_news =  'http://http://jornalpungoandongo.ao/app/_imagesDb/' . $newName;
+  $image_news =  'http://localhost/web-tv_one-php/app/_imagesDb/' . $newName;
   $description_image_news = $_POST['description_image_news'];
   $photography_news = $_POST['photography_news'];
   $reading_time_news = $_POST['reading_time_news'];
@@ -240,8 +240,8 @@ if (isset($_POST['update_news'])) {
     $date_update,
     $id
   ))) {
-    header('Location: http://jornalpungoandongo.ao/news');
+    header('Location: http://localhost/web-tv_one-php/news');
   } else {
-    header('Location: http://jornalpungoandongo.ao/');
+    header('Location: http://localhost/web-tv_one-php/');
   };
 };

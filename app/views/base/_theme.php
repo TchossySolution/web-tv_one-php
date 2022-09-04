@@ -7,11 +7,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- Favicons -->
-  <link href="<?= urlProject(FOLDER_BASE . "/src/assets/icons/JPA_favicon.jpg") ?>" rel="icon" />
-  <link href="<?= urlProject(FOLDER_BASE . "/src/assets/icons/JPA_favicon.jpg") ?>" rel="apple-touch-icon" />
+  <link href="<?= urlProject(FOLDER_BASE . "/src/assets/icons/TVONE_favicon.jpg") ?>" rel="icon" />
+  <link href="<?= urlProject(FOLDER_BASE . "/src/assets/icons/TVONE_favicon.jpg") ?>" rel="apple-touch-icon" />
 
   <!-- STYLES -->
-  <link rel="stylesheet" href="<?= urlProject(FOLDER_BASE . "/src/public/styles/globalStyles.css") ?>">
+  <link rel="stylesheet" href="<?= urlProject(FOLDER_BASE . "/src/public/styles/globalStyle.css") ?>">
 
   <!-- FONTES -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -35,6 +35,13 @@
 </head>
 
 <body>
+  <?php
+  if ($this->section('publicity')) :
+    echo $this->section('publicity');
+  endif;
+  ?>
+
+
   <?php
   if ($this->section('removeHeader')) :
     echo $this->section('removeHeader');

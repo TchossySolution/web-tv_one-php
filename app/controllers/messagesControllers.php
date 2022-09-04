@@ -47,9 +47,9 @@ if (isset($_POST['send_messages'])) {
   $sql = $pdo->prepare("INSERT INTO messages values(null,?,?,?,?,?)");
 
   if ($sql->execute(array($name_ms, $email_ms, $message_ms, $date_create, $date_update))) {
-    header('Location: http://jornalpungoandongo.ao/contacts');
+    header('Location: http://localhost/web-tv_one-php/contacts');
   } else {
-    header('Location: http://jornalpungoandongo.ao/');
+    header('Location: http://localhost/web-tv_one-php/');
   };
 };
 
@@ -61,8 +61,8 @@ if (isset($_POST['delete_messages'])) {
   $sql = $pdo->prepare("DELETE FROM messages WHERE id=?");
 
   if ($sql->execute(array($id))) {
-    header('Location: http://jornalpungoandongo.ao/messages');
+    header('Location: http://localhost/web-tv_one-php/messages');
   } else {
-    header('Location: http://jornalpungoandongo.ao/messages');
+    header('Location: http://localhost/web-tv_one-php/messages');
   };
 };

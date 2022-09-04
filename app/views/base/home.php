@@ -16,10 +16,6 @@ $publiciteis_1_3->execute();
 $publiciteis_4_6 = $pdo->prepare("SELECT * FROM publicity ORDER BY id DESC limit 4, 3 ");
 $publiciteis_4_6->execute();
 
-// Publicidades
-$publicity_news = $pdo->prepare("SELECT * FROM news where publicity_news='sim' ORDER BY id DESC limit 0, 3 ");
-$publicity_news->execute();
-
 // Escolhas dos editores
 $choose_editors = $pdo->prepare("SELECT * FROM news where choose_editors_news='sim' ORDER BY id DESC limit 0, 4 ");
 $choose_editors->execute();
@@ -32,7 +28,7 @@ $lastNews->execute();
 // Noticias em destaque
 $emphasis_news1 = $pdo->prepare("SELECT * FROM news where emphasis_news='sim' ORDER BY id DESC limit 1, 1 ");
 $emphasis_news1->execute();
-$emphasis_newsList = $pdo->prepare("SELECT * FROM news where emphasis_news='sim' ORDER BY id DESC limit 2, 6 ");
+$emphasis_newsList = $pdo->prepare("SELECT * FROM news where emphasis_news='sim' ORDER BY id DESC limit 2, 2 ");
 $emphasis_newsList->execute();
 
 // Mais noticias sessão 1
@@ -193,7 +189,6 @@ $rightNewsList3->execute();
 .choosesEditors .choosesContainer {
   display: flex;
   flex-direction: row;
-  align-items: center;
   gap: 1.5rem;
   flex-wrap: wrap;
 }
@@ -563,7 +558,7 @@ $rightNewsList3->execute();
 /* NOTICE EMPHASES */
 .emphasesNotice {
   width: 100%;
-  background-color: #111111;
+  /* background-color: #111111; */
   padding: 3rem 0;
 
   display: flex;
@@ -586,8 +581,6 @@ $rightNewsList3->execute();
 .emphasesNotice .emphases {
   position: relative;
   width: 100%;
-  max-width: 38rem;
-  flex: 1;
   display: flex;
   overflow: hidden;
 }
@@ -654,16 +647,23 @@ $rightNewsList3->execute();
 /* NOTICE EMPHASES right */
 
 .emphasesNotice .emphasesNoticeAllContainer .otherEmphases {
-  flex: 1;
   display: flex;
   justify-content: space-around;
-  flex-direction: row;
-  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+.emphasesNotice .emphasesNoticeAllContainer .otherEmphases a {
+  width: 100%;
+  max-width: 27rem;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .emphasesNotice .emphasesNoticeAllContainer .otherEmphases .notice {
   width: 100%;
-  max-width: 21rem;
+  max-width: 27rem;
 
   display: flex;
   flex-direction: column;
@@ -701,7 +701,7 @@ $rightNewsList3->execute();
 
 .emphasesNotice .emphasesNoticeAllContainer .otherEmphases .notice .noticeContent h1 {
   font-size: 0.8rem;
-  color: #f3f3f3;
+  color: #111111;
   font-weight: 700;
   transition: 0.4s ease;
 }
@@ -718,7 +718,7 @@ $rightNewsList3->execute();
 
 .emphasesNotice .emphasesNoticeAllContainer .otherEmphases .notice .noticeContent .noticeInfo p {
   font-size: 0.7rem;
-  color: #f3f3f3;
+  color: #111111;
 }
 
 /* more NOTICES */
@@ -1414,77 +1414,8 @@ $rightNewsList3->execute();
 </style>
 
 <main class="homeContainer">
-  <!-- swiper section starts  -->
-  <section class="swiper">
-    <!-- Additional required wrapper -->
-    <div class="swiper-wrapper">
-      <!-- Slides -->
-      <?php foreach ($publicity_news as $data) : ?>
-      <div class="swiper-slide">
-        <section class="slide" id="slide">
-          <div class="imgBackground" style="background-image: url(<?= $data['image_news'] ?>)">
-            <div>
-              <div class="slideInfo" data-anime="scale">
-                <h1 id="h1home"><?= $data['title_news'] ?></h1>
-                <p id="p1home">
-                  <?= $data['resume_news'] ?>
-                </p>
-                <button id="btn1home" class="btnHome">
-                  <a href="<?= urlProject(BASE_DETAILSNEWS . "/" . $data['id']) ?>">Saber mais</a>
-                </button>
-              </div>
-            </div>
-          </div>
-        </section>
-      </div>
-      <?php endforeach ?>
-    </div>
-    <!-- If we need pagination -->
-    <div class="swiper-pagination"></div>
 
-    <!-- If we need navigation buttons -->
-    <!-- <div class="swiper-button-prev"></div>
-          <div class="swiper-button-next"></div> -->
-
-    <!-- If we need scrollbar -->
-    <div class="swiper-scrollbar"></div>
-  </section>
-
-  <section class="choosesEditors">
-    <div class="container">
-      <h1> <span style="color: red;">Escolha</span> dos editores </h1>
-
-      <div class="choosesContainer">
-        <?php
-        $author_id = $data['author_id'];
-        $author_name;
-
-        $get_author = $pdo->prepare("SELECT * FROM author where id=$author_id");
-        $get_author->execute();
-
-        foreach ($get_author as $author) :
-          $author_name = $author['name_author'];
-        endforeach;
-
-        foreach ($choose_editors as $data) :
-        ?>
-        <a href="<?= urlProject(BASE_DETAILSNEWS . "/" . $data['id']) ?>">
-          <div class="choose">
-            <div class='containerImage'>
-              <img src="<?= $data['image_news'] ?>" alt="">
-            </div>
-
-            <div class="textContainer">
-              <p><?= $data['title_news'] ?></p>
-              <span> <i class="fa-solid fa-calendar-days"></i> <?= $data['date_create'] ?></span>
-            </div>
-          </div>
-        </a>
-        <?php endforeach ?>
-      </div>
-    </div>
-  </section>
-
+  <?php $this->start('publicity'); ?>
 
   <section class="publicitySwiper">
     <!-- Additional required wrapper -->
@@ -1504,15 +1435,126 @@ $rightNewsList3->execute();
       </div>
       <?php endforeach ?>
     </div>
-    <!-- If we need pagination -->
-    <div class="swiper-pagination-publicitySwiper"></div>
 
-    <!-- If we need navigation buttons -->
-    <!-- <div class="swiper-button-prev"></div>
-          <div class="swiper-button-next"></div> -->
+  </section>
 
-    <!-- If we need scrollbar -->
-    <div class="swiper-scrollbar"></div>
+  <?php $this->end(); ?>
+
+
+
+  <section class="choosesEditors">
+    <div class="container">
+      <div class="choosesContainer">
+        <?php
+        foreach ($choose_editors as $data) :
+
+
+          $author_id = $data['author_id'];
+          $author_name;
+
+          $get_author = $pdo->prepare("SELECT * FROM author where id=?");
+          $get_author->execute(array($author_id));
+
+          foreach ($get_author as $author) :
+            $author_name = $author['name_author'];
+          endforeach;
+        ?>
+        <a href="<?= urlProject(BASE_DETAILSNEWS . "/" . $data['id']) ?>">
+          <div class="choose">
+            <div class='containerImage'>
+              <img src="<?= $data['image_news'] ?>" alt="">
+            </div>
+
+            <div class="textContainer">
+              <p><?= $data['title_news'] ?></p>
+              <span> <i class="fa-solid fa-calendar-days"></i> <?= $data['date_create'] ?></span>
+            </div>
+          </div>
+        </a>
+        <?php endforeach ?>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="emphasesNotice">
+    <div class="container">
+      <div class="titleSectionContainer">
+        <h1> <span>Em Destaque</span> </h1>
+      </div>
+
+      <div class="emphasesNoticeAllContainer">
+        <?php
+
+        foreach ($emphasis_news1 as $data) :
+          $author_id = $data['author_id'];
+          $author_name;
+
+          $get_author = $pdo->prepare("SELECT * FROM author where id=$author_id");
+          $get_author->execute();
+
+          foreach ($get_author as $author) :
+            $author_name = $author['name_author'];
+          endforeach;
+
+        ?>
+        <div class="emphases">
+          <div class="imageContainer">
+            <img src=" <?= $data['image_news'] ?> " alt="">
+          </div>
+
+          <div class="noticeContent">
+            <a href="<?= urlProject(BASE_DETAILSNEWS . "/" . $data['id']) ?>">
+              <h1> <?= $data['title_news'] ?> </h1>
+
+              <div class="noticeInfo">
+                <p><i class="fa-solid fa-user"></i> <strong> <?= $author_name ?> </strong> - <span> <i
+                      class="fa-solid fa-calendar-days"></i> <?= $data['date_create'] ?> </span></p>
+                <p><i class="fa-regular fa-comment-dots"></i> 3</p>
+              </div>
+            </a>
+          </div>
+        </div>
+        <?php endforeach ?>
+
+        <div class="otherEmphases">
+          <?php
+          $author_id = $data['author_id'];
+          $author_name;
+
+          $get_author = $pdo->prepare("SELECT * FROM author where id=$author_id");
+          $get_author->execute();
+
+          foreach ($get_author as $author) :
+            $author_name = $author['name_author'];
+          endforeach;
+
+          foreach ($emphasis_newsList as $data) :
+
+          ?>
+          <a href="<?= urlProject(BASE_DETAILSNEWS . "/" . $data['id']) ?>">
+            <div class="notice">
+              <div class="imageContainer">
+                <img src="<?= $data['image_news'] ?>" alt="">
+              </div>
+
+              <div class="noticeContent">
+                <h1><?= $data['title_news'] ?></h1>
+
+                <div class="noticeInfo">
+                  <p><i class="fa-solid fa-user"></i> <strong><?= $author_name ?></strong> - <span><i
+                        class="fa-solid fa-calendar-days"></i> <?= $data['date_create'] ?></span></p>
+                  <p><i class="fa-regular fa-comment-dots"></i> 3</p>
+                </div>
+
+              </div>
+            </div>
+          </a>
+          <?php endforeach ?>
+        </div>
+
+      </div>
+    </div>
   </section>
 
   <section class="lastNotices">
@@ -1526,6 +1568,7 @@ $rightNewsList3->execute();
 
           <?php
           foreach ($lastNews as $data) :
+
             $author_id = $data['author_id'];
             $author_name;
 
@@ -1637,86 +1680,6 @@ $rightNewsList3->execute();
     </div>
   </section>
 
-  <section class="emphasesNotice">
-    <div class="container">
-      <div class="titleSectionContainer">
-        <h1> <span>Em Destaque</span> </h1>
-      </div>
-
-      <div class="emphasesNoticeAllContainer">
-        <?php
-        $author_id = $data['author_id'];
-        $author_name;
-
-        $get_author = $pdo->prepare("SELECT * FROM author where id=$author_id");
-        $get_author->execute();
-
-        foreach ($get_author as $author) :
-          $author_name = $author['name_author'];
-        endforeach;
-
-        foreach ($emphasis_news1 as $data) :
-
-        ?>
-        <div class="emphases">
-          <div class="imageContainer">
-            <img src=" <?= $data['image_news'] ?> " alt="">
-          </div>
-
-          <div class="noticeContent">
-            <a href="<?= urlProject(BASE_DETAILSNEWS . "/" . $data['id']) ?>">
-              <h1> <?= $data['title_news'] ?> </h1>
-
-              <div class="noticeInfo">
-                <p><i class="fa-solid fa-user"></i> <strong> <?= $author_name ?> </strong> - <span> <i
-                      class="fa-solid fa-calendar-days"></i> <?= $data['date_create'] ?> </span></p>
-                <p><i class="fa-regular fa-comment-dots"></i> 3</p>
-              </div>
-            </a>
-          </div>
-        </div>
-        <?php endforeach ?>
-
-        <div class="otherEmphases">
-          <?php
-          $author_id = $data['author_id'];
-          $author_name;
-
-          $get_author = $pdo->prepare("SELECT * FROM author where id=$author_id");
-          $get_author->execute();
-
-          foreach ($get_author as $author) :
-            $author_name = $author['name_author'];
-          endforeach;
-
-          foreach ($emphasis_newsList as $data) :
-
-          ?>
-          <a href="<?= urlProject(BASE_DETAILSNEWS . "/" . $data['id']) ?>">
-            <div class="notice">
-              <div class="imageContainer">
-                <img src="<?= $data['image_news'] ?>" alt="">
-              </div>
-
-              <div class="noticeContent">
-                <h1><?= $data['title_news'] ?></h1>
-
-                <div class="noticeInfo">
-                  <p><i class="fa-solid fa-user"></i> <strong><?= $author_name ?></strong> - <span><i
-                        class="fa-solid fa-calendar-days"></i> <?= $data['date_create'] ?></span></p>
-                  <p><i class="fa-regular fa-comment-dots"></i> 3</p>
-                </div>
-
-              </div>
-            </div>
-          </a>
-          <?php endforeach ?>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
   <section class="moreNotices">
     <div class="container">
       <div class="moreNoticesAllContainer">
@@ -1799,86 +1762,6 @@ $rightNewsList3->execute();
             </div>
           </div>
 
-          <div class="publicityLittle">
-            <div class='containerImage'>
-              <img src="https://www.unitel.st/img/slide/bs1896x617px-BigNet.jpg" alt="">
-            </div>
-          </div>
-
-
-          <div class="contentMoreNotice">
-            <?php
-            $author_id = $data['author_id'];
-            $author_name;
-
-            $get_author = $pdo->prepare("SELECT * FROM author where id=$author_id");
-            $get_author->execute();
-
-            foreach ($get_author as $author) :
-              $author_name = $author['name_author'];
-            endforeach;
-
-            foreach ($moreNews2 as $data) :
-            ?>
-            <a href="<?= urlProject(BASE_DETAILSNEWS . "/" . $data['id']) ?>">
-              <div class="notice">
-                <div class="imageContainer">
-                  <img src="<?= $data['image_news'] ?>" alt="">
-                </div>
-
-                <div class="noticeContent">
-                  <h1><?= $data['title_news'] ?></h1>
-
-                  <div class="noticeInfo">
-                    <p><i class="fa-solid fa-user"></i> <strong><?= $author_name ?></strong> - <span><i
-                          class="fa-solid fa-calendar-days"></i> <?= $data['date_create'] ?></span></p>
-                    <p><i class="fa-regular fa-comment-dots"></i> 3</p>
-                  </div>
-
-                  <p><?= $data['resume_news'] ?></p>
-                </div>
-              </div>
-            </a>
-            <?php endforeach ?>
-
-            <div class="noticeResume">
-              <?php
-              $author_id = $data['author_id'];
-              $author_name;
-
-              $get_author = $pdo->prepare("SELECT * FROM author where id=$author_id");
-              $get_author->execute();
-
-              foreach ($get_author as $author) :
-                $author_name = $author['name_author'];
-              endforeach;
-              foreach ($moreNewsList2 as $data) :
-
-              ?>
-              <a href="<?= urlProject(BASE_DETAILSNEWS . "/" . $data['id']) ?>">
-                <div class="notice">
-                  <div class="imageContainer">
-                    <img src="<?= $data['image_news'] ?>" alt="">
-                  </div>
-
-                  <div class="noticeContent">
-                    <h1><?= $data['title_news'] ?></h1>
-
-                    <div class="noticeInfo">
-                      <p><?= $data['resume_news'] ?></p>
-                    </div>
-
-                    <div class="noticeInfo">
-                      <p><i class="fa-solid fa-calendar-days"></i> <?= $data['date_create'] ?></p>
-                    </div>
-
-                  </div>
-                </div>
-              </a>
-              <?php endforeach ?>
-
-            </div>
-          </div>
         </div>
 
         <div class="otherNotices">
@@ -1930,9 +1813,6 @@ $rightNewsList3->execute();
     </div>
   </section>
 
-  <!-- 
-  <section class="publicitySwiper">
-    <!-- Additional required wrapper -->
   <div class="swiper-wrapper">
     <!-- Slides -->
     <?php foreach ($publiciteis_4_6 as $data) : ?>
@@ -1949,16 +1829,6 @@ $rightNewsList3->execute();
     </div>
     <?php endforeach ?>
   </div>
-  <!-- If we need pagination -->
-  <div class="swiper-pagination-publicitySwiper"></div>
-
-  <!-- If we need navigation buttons -->
-  <!-- <div class="swiper-button-prev"></div>
-          <div class="swiper-button-next"></div> -->
-
-  <!-- If we need scrollbar -->
-  <div class="swiper-scrollbar"></div>
-  </section> -->
 
   <section class="noticesRelevant">
     <div class="container">
@@ -2105,6 +1975,12 @@ $rightNewsList3->execute();
       </div>
     </div>
   </section>
+
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
 </main>
 
 

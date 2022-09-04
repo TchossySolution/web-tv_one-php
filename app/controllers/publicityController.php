@@ -71,11 +71,11 @@ if (isset($_POST['create_publicity'])) {
     }
   }
 
-  $image_publicity =  'http://localhost/web-pungo-andongo-php/app/_imagesDb/publicity/' . $newName;
+  $image_publicity =  'http://localhost/web-tv_one-php/app/_imagesDb/publicity/' . $newName;
   $description_publicity = $_POST['description_publicity'];
   $link_publicity = $_POST['link_publicity'];
   $date_create = $completeDate;
-  $date_expire =   $_POST['date_expire'];
+  $date_expire =   $completeDate;
 
   $sql = $pdo->prepare("INSERT INTO publicity values(null,?,?,?,?,?)");
 
@@ -86,9 +86,9 @@ if (isset($_POST['create_publicity'])) {
     $date_create,
     $date_expire
   ))) {
-    header('Location: http://jornalpungoandongo.ao/publicity');
+    header('Location: http://localhost/web-tv_one-php/dashboard/publicity');
   } else {
-    header('Location: http://jornalpungoandongo.ao/');
+    header('Location: http://localhost/web-tv_one-php/dashboard/');
   };
 };
 
@@ -100,9 +100,9 @@ if (isset($_POST['delete_publicity'])) {
   $sql = $pdo->prepare("DELETE FROM publicity WHERE id=?");
 
   if ($sql->execute(array($id))) {
-    header('Location: http://jornalpungoandongo.ao/authors');
+    header('Location: http://localhost/web-tv_one-php/dashboard/authors');
   } else {
-    header('Location: http://jornalpungoandongo.ao/authors');
+    header('Location: http://localhost/web-tv_one-php/dashboard/authors');
   };
 };
 
@@ -174,7 +174,7 @@ if (isset($_POST['update_publicity'])) {
     }
   }
 
-  $image_publicity =  'http://localhost/web-pungo-andongo-php/app/_imagesDb/publicity/' . $newName;
+  $image_publicity =  'http://localhost/web-tv_one-php/app/_imagesDb/publicity/' . $newName;
   $description_publicity = $_POST['description_publicity'];
   $link_publicity = $_POST['link_publicity'];
   $date_expire =   $_POST['date_expire'];
@@ -183,8 +183,8 @@ if (isset($_POST['update_publicity'])) {
   $sql = $pdo->prepare("UPDATE publicity SET image_publicity=?, description_publicity=?,  link_publicity=?, date_expire=? WHERE id=?");
 
   if ($sql->execute(array($image_publicity, $description_publicity, $link_publicity, $date_expire, $id))) {
-    header('Location: http://jornalpungoandongo.ao/authors');
+    header('Location: http://localhost/web-tv_one-php/dashboard/authors');
   } else {
-    header('Location: http://jornalpungoandongo.ao/authors');
+    header('Location: http://localhost/web-tv_one-php/dashboard/authors');
   };
 };
