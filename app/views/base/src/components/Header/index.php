@@ -1,22 +1,7 @@
-  <link rel="stylesheet" href="<?= urlProject(FOLDER_BASE . "/src/components/Header/style.css") ?>">
+  <link rel="stylesheet" href="<?= urlProject(FOLDER_BASE . "/src/components/Header/styles.css") ?>">
 
   <header id="header">
     <div class="headerPrimary">
-      <div class="socialMediaContainer">
-        <button class="buttonSocialMedia">
-          <i class="fa-brands fa-facebook-f"></i>
-        </button>
-
-        <button class="buttonSocialMedia">
-          <a href="https://www.instagram.com/jornalpungoandongo/">
-            <i class="fa-brands fa-instagram"></i>
-          </a>
-        </button>
-
-        <button class="buttonSocialMedia">
-          <i class="fa-brands fa-twitter"></i>
-        </button>
-      </div>
 
       <div class="logoHeaderContainer">
         <a href="<?= urlProject() ?>">
@@ -76,34 +61,21 @@
       <nav class="navContainer">
         <ul>
           <li>
-            <a href="<?= urlProject() ?>">Casa</a>
+            <a href="<?= urlProject() ?>">TV ONE</a>
           </li>
           <li>
-            <a href="<?= urlProject("news/1") ?>">Noticía</a>
+            <a href="<?= urlProject("news/1") ?>">Entretimento</a>
           </li>
           <li>
-          <li>
-            <a href="<?= urlProject("news/search/category/Economia/1") ?>">Economia</a>
+            <a href="<?= urlProject("news/search/category/Economia/1") ?>">Notícias</a>
           </li>
           <li>
-            <a href="<?= urlProject("news/search/category/Especialidade/1") ?>">Especialidade</a>
+            <a href="<?= urlProject("news/search/category/Internacional/1") ?>">Lifestyle</a>
+          </li>
+          <a href="<?= urlProject("news/search/category/Política/1") ?>">Desporto</a>
           </li>
           <li>
-            <a href="<?= urlProject("news/search/category/Internacional/1") ?>">Internacional</a>
-          </li>
-          <li>
-            <a href="<?= urlProject("news/search/category/Lazer/1") ?>">Lazer</a>
-          </li>
-          <a href="<?= urlProject("news/search/category/Política/1") ?>">Política</a>
-          </li>
-          <li>
-            <a href="<?= urlProject("news/search/category/Actualidade/1") ?>">Actualidade</a>
-          </li>
-          <li>
-            <a href="<?= urlProject("news/search/category/Sociedade/1") ?>">Sociedade</a>
-          </li>
-          <li>
-            <a href="<?= urlProject("news/search/category/Cultura/1") ?>">Cultura</a>
+            <a href="<?= urlProject("news/search/category/Actualidade/1") ?>">Globo</a>
           </li>
           <li>
             <a href="<?= urlProject("news/search/category/Desporto/1") ?>">Videos</a>
@@ -115,6 +87,22 @@
       </nav>
 
       <div class="searchAndDarkContainer">
+        <div class="socialMediaContainer">
+          <button class="buttonSocialMedia">
+            <i class="fa-brands fa-facebook-f"></i>
+          </button>
+
+          <button class="buttonSocialMedia">
+            <a href="https://www.instagram.com/jornalpungoandongo/">
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+          </button>
+
+          <button class="buttonSocialMedia">
+            <i class="fa-brands fa-twitter"></i>
+          </button>
+        </div>
+
         <button style="opacity: 0;">
           <i class="fa-solid fa-sun"></i>
         </button>

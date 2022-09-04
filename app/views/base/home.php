@@ -1498,23 +1498,25 @@ $rightNewsList3->execute();
           endforeach;
 
         ?>
-        <div class="emphases">
-          <div class="imageContainer">
-            <img src=" <?= $data['image_news'] ?> " alt="">
-          </div>
+        <a href="<?= urlProject(BASE_DETAILSNEWS . "/" . $data['id']) ?>">
+          <div class="emphases">
+            <div class="imageContainer">
+              <img src=" <?= $data['image_news'] ?> " alt="">
+            </div>
 
-          <div class="noticeContent">
-            <a href="<?= urlProject(BASE_DETAILSNEWS . "/" . $data['id']) ?>">
-              <h1> <?= $data['title_news'] ?> </h1>
+            <div class="noticeContent">
+              <a href="<?= urlProject(BASE_DETAILSNEWS . "/" . $data['id']) ?>">
+                <h1> <?= $data['title_news'] ?> </h1>
 
-              <div class="noticeInfo">
-                <p><i class="fa-solid fa-user"></i> <strong> <?= $author_name ?> </strong> - <span> <i
-                      class="fa-solid fa-calendar-days"></i> <?= $data['date_create'] ?> </span></p>
-                <p><i class="fa-regular fa-comment-dots"></i> 3</p>
-              </div>
-            </a>
+                <div class="noticeInfo">
+                  <p><i class="fa-solid fa-user"></i> <strong> <?= $author_name ?> </strong> - <span> <i
+                        class="fa-solid fa-calendar-days"></i> <?= $data['date_create'] ?> </span></p>
+                  <p><i class="fa-regular fa-comment-dots"></i> 3</p>
+                </div>
+              </a>
+            </div>
           </div>
-        </div>
+        </a>
         <?php endforeach ?>
 
         <div class="otherEmphases">
@@ -1604,7 +1606,7 @@ $rightNewsList3->execute();
 
         <div class="otherNotices">
           <div class="categoryTItleSectionContainer">
-            <h1>Discussões política</h1>
+            <h1>Destaques</h1>
           </div>
 
           <div class="noticeInEmphasis">
@@ -1621,25 +1623,27 @@ $rightNewsList3->execute();
               endforeach;
 
             ?>
-            <div class="notice">
-              <div class="imageContainer">
-                <img src="<?= $data['image_news'] ?>" alt="">
-              </div>
-
-              <div class="noticeContent">
-                <h1><?= $data['title_news'] ?></h1>
-
-                <div class="noticeInfo">
-                  <p><i class="fa-solid fa-user"></i> <strong><?= $author_name ?></strong> -
-                    <span><?= $data['date_create'] ?></span>
-                  </p>
-                  <p><i class="fa-regular fa-comment-dots"></i> 3</p>
+            <a href="<?= urlProject(BASE_DETAILSNEWS . "/" . $data['id']) ?>">
+              <div class="notice">
+                <div class="imageContainer">
+                  <img src="<?= $data['image_news'] ?>" alt="">
                 </div>
 
-                <p><?= $data['resume_news'] ?></p>
+                <div class="noticeContent">
+                  <h1><?= $data['title_news'] ?></h1>
+
+                  <div class="noticeInfo">
+                    <p><i class="fa-solid fa-user"></i> <strong><?= $author_name ?></strong> -
+                      <span><?= $data['date_create'] ?></span>
+                    </p>
+                    <p><i class="fa-regular fa-comment-dots"></i> 3</p>
+                  </div>
+
+                  <p><?= $data['resume_news'] ?></p>
+                </div>
               </div>
-            </div>
-            <?php endforeach ?>
+              <a href="<?= urlProject(BASE_DETAILSNEWS . "/" . $data['id']) ?>">
+                <?php endforeach ?>
           </div>
 
           <div class="noticeResume">
@@ -1656,21 +1660,23 @@ $rightNewsList3->execute();
               endforeach;
 
             ?>
-            <div class="notice">
-              <div class="imageContainer">
-                <img src="<?= $data['image_news'] ?>" alt="">
-              </div>
-
-              <div class="noticeContent">
-                <h1><?= $data['title_news'] ?></h1>
-
-                <div class="noticeInfo">
-                  <p><?= $data['date_create'] ?></p>
+            <a href="<?= urlProject(BASE_DETAILSNEWS . "/" . $data['id']) ?>">
+              <div class="notice">
+                <div class="imageContainer">
+                  <img src="<?= $data['image_news'] ?>" alt="">
                 </div>
 
+                <div class="noticeContent">
+                  <h1><?= $data['title_news'] ?></h1>
+
+                  <div class="noticeInfo">
+                    <p><?= $data['date_create'] ?></p>
+                  </div>
+
+                </div>
               </div>
-            </div>
-            <?php endforeach ?>
+              <a href="<?= urlProject(BASE_DETAILSNEWS . "/" . $data['id']) ?>">
+                <?php endforeach ?>
 
           </div>
 
@@ -1783,27 +1789,29 @@ $rightNewsList3->execute();
               endforeach;
 
             ?>
-            <div class="notice">
-              <div class="imageContainer">
-                <img src="<?= $data['image_news'] ?>" alt="">
-              </div>
-
-              <div class="noticeContent">
-                <strong> <?= $data['id'] ?> </strong>
-
-                <div class="noticeContent_left">
-                  <h1><?= $data['title_news'] ?></h1>
-
-                  <div class="noticeInfo">
-                    <p><i class="fa-solid fa-user"></i> <strong><?= $author_name ?></strong> -
-                      <span><?= $data['date_create'] ?></span>
-                    </p>
-                    <p><i class="fa-regular fa-comment-dots"></i> 3</p>
-                  </div>
+            <a href="<?= urlProject(BASE_DETAILSNEWS . "/" . $data['id']) ?>">
+              <div class="notice">
+                <div class="imageContainer">
+                  <img src="<?= $data['image_news'] ?>" alt="">
                 </div>
 
+                <div class="noticeContent">
+                  <strong> <?= $data['id'] ?> </strong>
+
+                  <div class="noticeContent_left">
+                    <h1><?= $data['title_news'] ?></h1>
+
+                    <div class="noticeInfo">
+                      <p><i class="fa-solid fa-user"></i> <strong><?= $author_name ?></strong> -
+                        <span><?= $data['date_create'] ?></span>
+                      </p>
+                      <p><i class="fa-regular fa-comment-dots"></i> 3</p>
+                    </div>
+                  </div>
+
+                </div>
               </div>
-            </div>
+            </a>
             <?php endforeach ?>
 
           </div>
@@ -1897,24 +1905,26 @@ $rightNewsList3->execute();
               endforeach;
 
             ?>
-            <div class="notice">
-              <div class="imageContainer">
-                <img src="<?= $data['image_news'] ?>" alt="">
-              </div>
-
-              <div class="noticeContent">
-                <h1><?= $data['title_news'] ?></h1>
-
-                <div class="noticeInfo">
-                  <p><i class="fa-solid fa-user"></i> <strong><?= $author_name ?></strong> -
-                    <span><?= $data['date_create'] ?></span>
-                  </p>
-                  <p><i class="fa-regular fa-comment-dots"></i> 3</p>
+            <a href="<?= urlProject(BASE_DETAILSNEWS . "/" . $data['id']) ?>">
+              <div class="notice">
+                <div class="imageContainer">
+                  <img src="<?= $data['image_news'] ?>" alt="">
                 </div>
 
-                <p><?= $data['resume_news'] ?></p>
+                <div class="noticeContent">
+                  <h1><?= $data['title_news'] ?></h1>
+
+                  <div class="noticeInfo">
+                    <p><i class="fa-solid fa-user"></i> <strong><?= $author_name ?></strong> -
+                      <span><?= $data['date_create'] ?></span>
+                    </p>
+                    <p><i class="fa-regular fa-comment-dots"></i> 3</p>
+                  </div>
+
+                  <p><?= $data['resume_news'] ?></p>
+                </div>
               </div>
-            </div>
+            </a>
             <?php endforeach ?>
           </div>
 
@@ -1932,20 +1942,22 @@ $rightNewsList3->execute();
               endforeach;
 
             ?>
-            <div class="notice">
-              <div class="imageContainer">
-                <img src="<?= $data['image_news'] ?>" alt="">
-              </div>
-
-              <div class="noticeContent">
-                <h1><?= $data['title_news'] ?></h1>
-
-                <div class="noticeInfo">
-                  <p><?= $data['date_create'] ?></p>
+            <a href="<?= urlProject(BASE_DETAILSNEWS . "/" . $data['id']) ?>">
+              <div class="notice">
+                <div class="imageContainer">
+                  <img src="<?= $data['image_news'] ?>" alt="">
                 </div>
 
+                <div class="noticeContent">
+                  <h1><?= $data['title_news'] ?></h1>
+
+                  <div class="noticeInfo">
+                    <p><?= $data['date_create'] ?></p>
+                  </div>
+
+                </div>
               </div>
-            </div>
+            </a>
             <?php endforeach ?>
           </div>
 

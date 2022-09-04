@@ -93,9 +93,11 @@
                  <i class="fa-regular fa-envelope"></i>
                </div>
                <p>
-                 geral@pungoandongo.com
+                 elmirophotograph@gmail.com
                </p>
              </div>
+           </div>
+           <div class="infoContainer">
 
              <div class="info">
                <div class="iconContainer">
@@ -103,7 +105,7 @@
                </div>
 
                <p>
-                 +244 956 498 606
+                 +244 941 236 262
                </p>
              </div>
 
@@ -112,7 +114,7 @@
                  <i class="fa-solid fa-link"></i>
                </div>
                <p>
-                 www.pungoandongo.ao
+                 www.tvone.ao
                </p>
              </div>
            </div>
