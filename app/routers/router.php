@@ -2,41 +2,45 @@
 
 use CoffeeCode\Router\Router;
 
-function router(){
+function router()
+{
 
   $router = new Router(URL_BASE);
 
-  $router -> namespace("App\controllers");
-  
-// ROTA DE BASE
-  $router -> group(null);
+  $router->namespace("App\controllers");
+
+  // ROTA DE BASE
+  $router->group(null);
   // 1º parâmetro: Rota | 2º parâmetro: controller (o que será executado)
   // No controller: 1º parâmetro: o arquivo (onde tem a função) (ex.: Base) |  2º parâmetro: função (ex.: home)
-  $router -> get("/", "Base:home");
-  $router -> get("/about", "Base:about");
-  $router -> get("/contacts", "Base:contacts");
-  
-// ROTA DE NEWS
-  $router -> group("/news");
-  $router -> get("/", "Base:news");
-  $router -> get("/{page}", "Base:news");
-  $router -> get("/detailsNews/{news_id}", "Base:details");
-  $router -> get("/categories/{category_id}", "Base:category");
-  
-  
-// ROTA DA DASHBOARD
-  $router -> group("/dashboard");
-  $router -> get("/", "Dash:home");
- 
-    
-// ROTA DE ERROS
-  $router -> group("/ops");
-  $router -> get("/{errocode}", "Base:error");
-  
-  
-  $router -> dispatch();
-  
-  if ($router->error()) {
-    $router->redirect("/ops/{$router->error()}");
-  }
+  $router->get("/", "Base:home");
+  $router->get("/about", "Base:about");
+  $router->get("/contacts", "Base:contacts");
+
+  // ROTA DE NEWS
+  $router->group("/news");
+  $router->get("/{page}", "Base:news");
+  $router->get("/detailsNews/{news_id}", "Base:details");
+  $router->get("/search/for/{search}/{page}", "Base:search");
+  $router->get("/search/category/{category_name}/{page}", "Base:category");
+  $router->get("/search/author/{author_name}/{page}", "Base:author");
+
+  // ROTA DA DASHBOARD
+  $router->group("/dashboard");
+  $router->get("/", "Dash:login");
+  $router->get("/users", "Dash:users");
+  $router->get("/news", "Dash:news");
+  $router->get("/publicity", "Dash:publicity");
+  $router->get("/categories", "Dash:categories");
+  $router->get("/categories{function}", "Dash:categories");
+  $router->get("/authors", "Dash:authors");
+  $router->get("/messages", "Dash:messages");
+  $router->get("/newsLetters", "Dash:newsLetters");
+
+  // ROTA DE ERROS
+  $router->group("/ops");
+  $router->get("/{errocode}", "Base:error");
+
+
+  $router->dispatch();
 }

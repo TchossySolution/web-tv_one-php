@@ -1,20 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,200;0,400;0,500;0,600;0,700;0,800;0,900;1,100&display=swap');
-
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap');
-
-@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@100;200;300;400;500;600;700;800;900&display=swap');
-
 :root {
-  --main-color: #174c97;
-  --secund-color: #fe1a1a;
-  --txt-title: #001d46;
-  --txt-descriptions: #374c75;
+  --main-color: #017dc7;
+  --secund-color: #ffd300;
+  --txt-title: #131313;
+  --txt-normal: #525252;
   --bg-primary: #fafafa;
   --bg-secund: #f7f7f8;
+
+  --normal-size: 0.8rem;
 }
 
 * {
-  font-family: 'Lato', sans-serif;
+  font-family: 'Roboto', sans-serif;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -38,12 +34,25 @@ html::-webkit-scrollbar-track {
 }
 
 html::-webkit-scrollbar-thumb {
-  background: var(--secund-color);
+  background: var(--main-color);
   border-radius: 5rem;
 }
 
 body {
   background: #fff;
+}
+body.stop-scrolling {
+  height: 100%;
+
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+h1 {
+  font-family: 'Public Sans', sans-serif;
+}
+
+a {
+  color: #fffcfc;
 }
 
 .bodyNoScroll {

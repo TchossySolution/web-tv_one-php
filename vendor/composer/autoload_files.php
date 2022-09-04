@@ -6,6 +6,6 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    '14ec2af20bb598aa087f3b2d042a3c18' => $baseDir . '/app/helpers/constants.php',
-    '1607138c74ed5f3cd39f33d2684ffefd' => $baseDir . '/app/routers/router.php',
+    '632f6ce70d765818e359b46117d68250' => $baseDir . '/app/helpers/constants.php',
+    '69ed6880ff72204bdf5e15a143b7994e' => $baseDir . '/app/routers/router.php',
 );
