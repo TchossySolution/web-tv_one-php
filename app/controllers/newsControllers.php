@@ -4,8 +4,6 @@ include_once('../db/config.php');
 
 if (isset($_POST['create_news'])) {
 
-  echo 'add_news';
-
   $size_max = 2097152; //2MB
   $accept  = array("jpg", "png", "jpeg");
   $extension  = pathinfo($_FILES['image_news']['name'], PATHINFO_EXTENSION);
@@ -46,7 +44,10 @@ if (isset($_POST['create_news'])) {
   // $dateNewComplete = "../_imageDB/date-$dateNew/";
 
   if ($_FILES['image_news']['size'] >= $size_max) {
-    echo "Arquivo excedeu o tamanho máximo de 2MB";
+    echo "Arquivo excedeu o tamanho máximo de 2MB<br>";
+    echo "<a href='http://jornalpungoandongo.ao/dashboard/news'> Voltar </a>";
+
+    exit();
   } else {
     if (in_array($extension, $accept)) {
       // echo "Permitido";
@@ -64,22 +65,28 @@ if (isset($_POST['create_news'])) {
       if (move_uploaded_file($tmp, $folder . $newName)) {
         echo "Upload realizado com sucesso!";
       } else {
-        echo "Erro: ao realizar Upload...";
+        echo "Erro: ao realizar Upload...<br>";
+        echo "<a href='http://jornalpungoandongo.ao/dashboard/news'> Voltar </a>";
+
+        exit();
       }
     } else {
-      echo "Erro: Extensão ($extension) não permitido";
+      echo "Erro: Extensão ($extension) não permitido <br>";
+      echo "<a href='http://jornalpungoandongo.ao/dashboard/news'> Voltar </a>";
+
+      exit();
     }
   }
 
 
   $title_news = $_POST['title_news'];
   $resume_news = $_POST['resume_news'];
-  $author_id =  filter_input(INPUT_POST, 'author_id');
-  $category_id =  filter_input(INPUT_POST, 'category_id');
+  $author_id =  $_POST['author_id'];
+  $category_id =  $_POST['category_id'];
   $description_news = $_POST['description_news'];
   $epigraph_news = $_POST['epigraph_news'];
   $author_epigraph_news = $_POST['author_epigraph_news'];
-  $image_news =  'http://localhost/web-tv_one-php/app/_imagesDb/' . $newName;
+  $image_news =  'http://http://jornalpungoandongo.ao/app/_imagesDb/' . $newName;
   $description_image_news = $_POST['description_image_news'];
   $photography_news = $_POST['photography_news'];
   $reading_time_news = $_POST['reading_time_news'];
@@ -111,9 +118,9 @@ if (isset($_POST['create_news'])) {
     $date_create,
     $date_update
   ))) {
-    header('Location: http://localhost/web-tv_one-php/news');
+    header('Location: http://jornalpungoandongo.ao/dashboard/news');
   } else {
-    header('Location: http://localhost/web-tv_one-php/');
+    header('Location: http://jornalpungoandongo.ao/dashboard/ops/nn');
   };
 };
 
@@ -126,9 +133,9 @@ if (isset($_POST['delete_news'])) {
   $sql = $pdo->prepare("DELETE FROM news WHERE id=?");
 
   if ($sql->execute(array($id))) {
-    header('Location: http://localhost/web-tv_one-php/news');
+    header('Location: Location: http://jornalpungoandongo.ao/dashboard/news');
   } else {
-    header('Location: http://localhost/web-tv_one-php/');
+    header('Location: Location: http://jornalpungoandongo.ao/dashboard/ops/nn');
   };
 };
 
@@ -176,7 +183,10 @@ if (isset($_POST['update_news'])) {
   // $dateNewComplete = "../_imageDB/date-$dateNew/";
 
   if ($_FILES['image_news']['size'] >= $size_max) {
-    echo "Arquivo excedeu o tamanho máximo de 2MB";
+    echo "Arquivo excedeu o tamanho máximo de 2MB <br>";
+    echo "<a href='http://jornalpungoandongo.ao/dashboard/news'> Voltar </a>";
+
+    exit();
   } else {
     if (in_array($extension, $accept)) {
       // echo "Permitido";
@@ -194,10 +204,16 @@ if (isset($_POST['update_news'])) {
       if (move_uploaded_file($tmp, $folder . $newName)) {
         echo "Upload realizado com sucesso!";
       } else {
-        echo "Erro: ao realizar Upload...";
+        echo "Erro: ao realizar Upload...<br>";
+        echo "<a href='http://jornalpungoandongo.ao/dashboard/news'> Voltar </a>";
+
+        exit();
       }
     } else {
-      echo "Erro: Extensão ($extension) não permitido";
+      echo "Erro: Extensão ($extension) não permitido<br>";
+      echo "<a href='http://jornalpungoandongo.ao/dashboard/news'> Voltar </a>";
+
+      exit();
     }
   }
 
@@ -208,7 +224,7 @@ if (isset($_POST['update_news'])) {
   $description_news = $_POST['description_news'];
   $epigraph_news = $_POST['epigraph_news'];
   $author_epigraph_news = $_POST['author_epigraph_news'];
-  $image_news =  'http://localhost/web-tv_one-php/app/_imagesDb/' . $newName;
+  $image_news =  'http://http://jornalpungoandongo.ao/app/_imagesDb/' . $newName;
   $description_image_news = $_POST['description_image_news'];
   $photography_news = $_POST['photography_news'];
   $reading_time_news = $_POST['reading_time_news'];
@@ -240,8 +256,8 @@ if (isset($_POST['update_news'])) {
     $date_update,
     $id
   ))) {
-    header('Location: http://localhost/web-tv_one-php/news');
+    header('Location: Location: http://jornalpungoandongo.ao/dashboard/news');
   } else {
-    header('Location: http://localhost/web-tv_one-php/');
+    header('Location: Location: http://jornalpungoandongo.ao/ops/nn');
   };
 };

@@ -4,7 +4,7 @@ include_once('../db/config.php');
 
 if (isset($_POST['create_publicity'])) {
 
-  echo 'add_publicity';
+  echo 'Criar Publicidade <br>';
 
   $size_max = 2097152; //2MB
   $accept  = array("jpg", "png", "jpeg");
@@ -46,7 +46,10 @@ if (isset($_POST['create_publicity'])) {
   // $dateNewComplete = "../_imageDB/date-$dateNew/";
 
   if ($_FILES['image_publicity']['size'] >= $size_max) {
-    echo "Arquivo excedeu o tamanho máximo de 2MB";
+    echo "Arquivo excedeu o tamanho máximo de 2MB <br>";
+    echo "<a href='http://jornalpungoandongo.ao/dashboard/news'> Voltar </a>";
+
+    exit();
   } else {
     if (in_array($extension, $accept)) {
       // echo "Permitido";
@@ -64,18 +67,24 @@ if (isset($_POST['create_publicity'])) {
       if (move_uploaded_file($tmp, $folder . $newName)) {
         echo "Upload realizado com sucesso!";
       } else {
-        echo "Erro: ao realizar Upload...";
+        echo "Erro: ao realizar Upload... <br>";
+        echo "<a href='http://jornalpungoandongo.ao/dashboard/news'> Voltar </a>";
+
+        exit();
       }
     } else {
-      echo "Erro: Extensão ($extension) não permitido";
+      echo "Erro: Extensão ($extension) não permitido <br>";
+      echo "<a href='http://jornalpungoandongo.ao/dashboard/news'> Voltar </a>";
+
+      exit();
     }
   }
 
-  $image_publicity =  'http://localhost/web-tv_one-php/app/_imagesDb/publicity/' . $newName;
+  $image_publicity =  'http://localhost/web-pungo-andongo-php/app/_imagesDb/publicity/' . $newName;
   $description_publicity = $_POST['description_publicity'];
   $link_publicity = $_POST['link_publicity'];
   $date_create = $completeDate;
-  $date_expire =   $completeDate;
+  $date_expire =   $_POST['date_expire'];
 
   $sql = $pdo->prepare("INSERT INTO publicity values(null,?,?,?,?,?)");
 
@@ -86,9 +95,9 @@ if (isset($_POST['create_publicity'])) {
     $date_create,
     $date_expire
   ))) {
-    header('Location: http://localhost/web-tv_one-php/dashboard/publicity');
+    header('Location: http://jornalpungoandongo.ao/publicity');
   } else {
-    header('Location: http://localhost/web-tv_one-php/dashboard/');
+    header('Location: http://jornalpungoandongo.ao/');
   };
 };
 
@@ -100,14 +109,14 @@ if (isset($_POST['delete_publicity'])) {
   $sql = $pdo->prepare("DELETE FROM publicity WHERE id=?");
 
   if ($sql->execute(array($id))) {
-    header('Location: http://localhost/web-tv_one-php/dashboard/authors');
+    header('Location: http://jornalpungoandongo.ao/authors');
   } else {
-    header('Location: http://localhost/web-tv_one-php/dashboard/authors');
+    header('Location: http://jornalpungoandongo.ao/authors');
   };
 };
 
 if (isset($_POST['update_publicity'])) {
-  echo 'update_publicity';
+  echo 'Atualizar Publicidade <br>';
 
   $size_max = 2097152; //2MB
   $accept  = array("jpg", "png", "jpeg");
@@ -149,7 +158,10 @@ if (isset($_POST['update_publicity'])) {
   // $dateNewComplete = "../_imageDB/date-$dateNew/";
 
   if ($_FILES['image_publicity']['size'] >= $size_max) {
-    echo "Arquivo excedeu o tamanho máximo de 2MB";
+    echo "Arquivo excedeu o tamanho máximo de 2MB <br>";
+    echo "<a href='http://jornalpungoandongo.ao/dashboard/publicity'> Voltar </a>";
+
+    exit();
   } else {
     if (in_array($extension, $accept)) {
       // echo "Permitido";
@@ -167,14 +179,20 @@ if (isset($_POST['update_publicity'])) {
       if (move_uploaded_file($tmp, $folder . $newName)) {
         echo "Upload realizado com sucesso!";
       } else {
-        echo "Erro: ao realizar Upload...";
+        echo "Erro: ao realizar Upload... <br>";
+        echo "<a href='http://jornalpungoandongo.ao/dashboard/publicity'> Voltar </a>";
+
+        exit();
       }
     } else {
-      echo "Erro: Extensão ($extension) não permitido";
+      echo "Erro: Extensão ($extension) não permitido <br>";
+      echo "<a href='http://jornalpungoandongo.ao/dashboard/publicity'> Voltar </a>";
+
+      exit();
     }
   }
 
-  $image_publicity =  'http://localhost/web-tv_one-php/app/_imagesDb/publicity/' . $newName;
+  $image_publicity =  'http://localhost/web-pungo-andongo-php/app/_imagesDb/publicity/' . $newName;
   $description_publicity = $_POST['description_publicity'];
   $link_publicity = $_POST['link_publicity'];
   $date_expire =   $_POST['date_expire'];
@@ -183,8 +201,8 @@ if (isset($_POST['update_publicity'])) {
   $sql = $pdo->prepare("UPDATE publicity SET image_publicity=?, description_publicity=?,  link_publicity=?, date_expire=? WHERE id=?");
 
   if ($sql->execute(array($image_publicity, $description_publicity, $link_publicity, $date_expire, $id))) {
-    header('Location: http://localhost/web-tv_one-php/dashboard/authors');
+    header('Location: http://jornalpungoandongo.ao/dashboard/publicity');
   } else {
-    header('Location: http://localhost/web-tv_one-php/dashboard/authors');
+    header('Location: http://jornalpungoandongo.ao/dashboard/ops/nn');
   };
 };

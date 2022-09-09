@@ -17,8 +17,8 @@
 /* Logo  */
 #header .headerPrimary .logoHeaderContainer {
   position: relative;
-  width: 13rem;
-  height: 3.5rem;
+  width: 10rem;
+  height: 2.8rem;
 }
 #header .headerPrimary .logoHeaderContainer img {
   position: absolute;

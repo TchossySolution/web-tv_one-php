@@ -146,42 +146,60 @@ $allCategories2->execute();
               <label for="publicity_news">É uma publicidade? </label>
               <select class="form-select" name="publicity_news" id="publicity_news">
                 <option value="">--- Escolha a opção ---</option>
-                <option value="sim">Sim é</option>
-                <option value="não">Não é!</option>
+                <option value="sim" <?php if ($data['publicity_news'] == "sim") {
+                                        echo 'selected';
+                                      } ?>>Sim é</option>
+                <option value="não" <?php if ($data['publicity_news'] == "não") {
+                                        echo 'selected';
+                                      } ?>>Não é!</option>
               </select>
               <br>
 
               <label for="choose_editors_news">Está noticia é uma escolha dos editores? </label>
               <select class="form-select" name="choose_editors_news" id="choose_editors_news">
                 <option value="">--- Escolha a opção ---</option>
-                <option value="sim">Sim é</option>
-                <option value="não">Não é!</option>
+                <option value="sim" <?php if ($data['choose_editors_news'] == "sim") {
+                                        echo 'selected';
+                                      } ?>>Sim é</option>
+                <option value="não" <?php if ($data['choose_editors_news'] == "não") {
+                                        echo 'selected';
+                                      } ?>>Não é!</option>
               </select>
               <br>
 
               <label for="emphasis_news">Está noticia está em destaque? </label>
               <select class="form-select" name="emphasis_news" id="emphasis_news">
                 <option value="">--- Escolha a opção ---</option>
-                <option value="sim">Sim é</option>
-                <option value="não">Não é!</option>
+                <option value="sim" <?php if ($data['emphasis_news'] == "sim") {
+                                        echo 'selected';
+                                      } ?>>Sim é</option>
+                <option value="não" <?php if ($data['emphasis_news'] == "não") {
+                                        echo 'selected';
+                                      } ?>>Não é!</option>
               </select>
               <br>
 
               <label for="relevant_news">Está noticia é relevante? </label>
               <select class="form-select" name="relevant_news" id="relevant_news">
                 <option value="">--- Escolha a opção ---</option>
-                <option value="sim">Sim é</option>
-                <option value="não">Não é!</option>
+                <option value="sim" <?php if ($data['relevant_news'] == "sim") {
+                                        echo 'selected';
+                                      } ?>>Sim é</option>
+                <option value="não" <?php if ($data['relevant_news'] == "não") {
+                                        echo 'selected';
+                                      } ?>>Não é!</option>
               </select>
               <br>
 
 
               <label for="author_id">Autores:</label>
               <select class="form-select" name="author_id" id="author_id">
-                <option value="" selected>--- Selecione a autor ---</option>
-                <?php foreach ($allAuthor as $data) : ?>
-                <option value="<?= $data['id']; ?>">
-                  <?= $data['name_author']; ?>
+                <option value="">--- Selecione a autor ---</option>
+                <?php foreach ($allAuthor as $dataAuthor) : ?>
+                <option value="<?= $dataAuthor['id']; ?>" <?php if ($dataAuthor['id'] == $data['author_id']) {
+                                                                echo 'selected';
+                                                              } ?>>
+                  <?= $dataAuthor['name_author']; ?>
                 </option>
                 <?php endforeach ?>
               </select>
@@ -190,9 +208,11 @@ $allCategories2->execute();
               <label for="category_id">Categorias:</label>
               <select class="form-select" name="category_id" id="category_id">
                 <option value="" selected>--- Selecione a categoria ---</option>
-                <?php foreach ($allCategories as $data) : ?>
-                <option value="<?= $data['id']; ?>">
-                  <?= $data['name_category']; ?>
+                <?php foreach ($allCategories as $dataCategories) : ?>
+                <option value="<?= $dataCategories['id']; ?>" <?php if ($dataCategories['id'] == $data['category_id']) {
+                                                                    echo 'selected';
+                                                                  } ?>>
+                  <?= $dataCategories['name_category']; ?>
                 </option>
                 <?php endforeach ?>
               </select>
@@ -200,7 +220,7 @@ $allCategories2->execute();
 
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                <button type="submit" class="btn btn-primary" name="update_news">Criar Noticia</button>
+                <button type="submit" class="btn btn-primary" name="update_news">Salvar alterações</button>
               </div>
             </div>
           </div>
@@ -233,7 +253,7 @@ $allCategories2->execute();
 
 
             <label for="author_id">Autores:</label>
-            <select class="form-select" name="category_id" id="category_id">
+            <select class="form-select" name="author_id" id="author_id">
               <option value="" selected>--- Selecione a categoria ---</option>
               <?php foreach ($allAuthor2 as $data) :
                 $author_id = $data['id'];

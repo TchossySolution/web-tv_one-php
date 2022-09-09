@@ -5,11 +5,11 @@
 
       <div class="logoHeaderContainer">
         <a href="<?= urlProject() ?>">
-          <img src="<?= urlProject(FOLDER_BASE . BASE_IMG . "/TvOne.png") ?>" alt="">
+          <img src="<?= urlProject(FOLDER_BASE . BASE_IMG . "/tvone2.png") ?>" alt="">
         </a>
       </div>
 
-      <div class="loginContainer">
+      <div class="loginContainer" style="opacity: 0;">
         <button class="buttonRegister">
           <i class="fa-regular fa-circle-user"></i>
           Conectar-se
@@ -64,21 +64,19 @@
             <a href="<?= urlProject() ?>">TV ONE</a>
           </li>
           <li>
-            <a href="<?= urlProject("news/1") ?>">Entretimento</a>
+            <a href="<?= urlProject("news/1") ?>">Notícias</a>
           </li>
           <li>
-            <a href="<?= urlProject("news/search/category/Economia/1") ?>">Notícias</a>
+            <a href="<?= urlProject("news/search/category/Entretimento/1") ?>">Entretimento</a>
           </li>
           <li>
-            <a href="<?= urlProject("news/search/category/Internacional/1") ?>">Lifestyle</a>
-          </li>
-          <a href="<?= urlProject("news/search/category/Política/1") ?>">Desporto</a>
+            <a href="<?= urlProject("news/search/category/Lifestyle/1") ?>">Lifestyle</a>
           </li>
           <li>
-            <a href="<?= urlProject("news/search/category/Actualidade/1") ?>">Globo</a>
+            <a href="<?= urlProject("news/search/category/Desporto/1") ?>">Desporto</a>
           </li>
           <li>
-            <a href="<?= urlProject("news/search/category/Desporto/1") ?>">Videos</a>
+            <a href="<?= urlProject("news/search/category/Globo/1") ?>">Globo</a>
           </li>
           <li>
             <a href="<?= urlProject("contacts") ?>">Contacto</a>
@@ -89,17 +87,27 @@
       <div class="searchAndDarkContainer">
         <div class="socialMediaContainer">
           <button class="buttonSocialMedia">
-            <i class="fa-brands fa-facebook-f"></i>
+            <a href="https://www.instagram.com/jornalpungoandongo/">
+              <i class="fa-brands fa-facebook-f"></i>
+            </a>
           </button>
 
           <button class="buttonSocialMedia">
-            <a href="https://www.instagram.com/jornalpungoandongo/">
+            <a href="https://twitter.com/TVoneao/">
               <i class="fa-brands fa-instagram"></i>
             </a>
           </button>
 
           <button class="buttonSocialMedia">
-            <i class="fa-brands fa-twitter"></i>
+            <a href="https://www.instagram.com/tvone.ao/">
+              <i class="fa-brands fa-twitter"></i>
+            </a>
+          </button>
+
+          <button class="buttonSocialMedia">
+            <a href="https://www.youtube.com/channel/UCzx544Egz4y_jQ7ggtdbDKw/">
+              <i class="fa-brands fa-youtube"></i>
+            </a>
           </button>
         </div>
 

@@ -13,34 +13,33 @@ $allNews->execute();
 // Publicidades
 $publiciteis_1_3 = $pdo->prepare("SELECT * FROM publicity ORDER BY id DESC limit 0, 3 ");
 $publiciteis_1_3->execute();
-$publiciteis_4_6 = $pdo->prepare("SELECT * FROM publicity ORDER BY id DESC limit 4, 3 ");
-$publiciteis_4_6->execute();
+$publiciteis_3_6 = $pdo->prepare("SELECT * FROM publicity ORDER BY id DESC limit 3, 3 ");
+$publiciteis_3_6->execute();
 
 // Escolhas dos editores
 $choose_editors = $pdo->prepare("SELECT * FROM news where choose_editors_news='sim' ORDER BY id DESC limit 0, 4 ");
 $choose_editors->execute();
 
 // Ultimas Noticias
-$lastNews = $pdo->prepare("SELECT * FROM news where description_news LIKE 'a%'
-  ORDER BY id DESC limit 0, 4  ");
+$lastNews = $pdo->prepare("SELECT * FROM news ORDER BY id DESC limit 0, 4 ");
 $lastNews->execute();
 
 // Noticias em destaque
 $emphasis_news1 = $pdo->prepare("SELECT * FROM news where emphasis_news='sim' ORDER BY id DESC limit 1, 1 ");
 $emphasis_news1->execute();
-$emphasis_newsList = $pdo->prepare("SELECT * FROM news where emphasis_news='sim' ORDER BY id DESC limit 2, 2 ");
+$emphasis_newsList = $pdo->prepare("SELECT * FROM news where emphasis_news='sim' ORDER BY id DESC limit 1, 2 ");
 $emphasis_newsList->execute();
 
 // Mais noticias sessão 1
 $moreNews1 = $pdo->prepare("SELECT * FROM news ORDER BY id DESC limit 6, 1 ");
 $moreNews1->execute();
-$moreNewsList1 = $pdo->prepare("SELECT * FROM news ORDER BY id DESC limit 7, 4 ");
+$moreNewsList1 = $pdo->prepare("SELECT * FROM news ORDER BY id DESC limit 6, 4 ");
 $moreNewsList1->execute();
 
 // Mais noticias sessão 2
-$moreNews2 = $pdo->prepare("SELECT * FROM news ORDER BY id DESC limit 11, 1 ");
+$moreNews2 = $pdo->prepare("SELECT * FROM news ORDER BY id DESC limit 10, 1 ");
 $moreNews2->execute();
-$moreNewsList2 = $pdo->prepare("SELECT * FROM news ORDER BY id DESC limit 12, 4 ");
+$moreNewsList2 = $pdo->prepare("SELECT * FROM news ORDER BY id DESC limit 11, 4 ");
 $moreNewsList2->execute();
 
 // Noticias Relevantes
@@ -62,7 +61,22 @@ $rightNews3 = $pdo->prepare("SELECT * FROM news WHERE category_id = '6' ORDER BY
 $rightNews3->execute();
 $rightNewsList3 = $pdo->prepare("SELECT * FROM news WHERE category_id = '6' ORDER BY id DESC limit 1, 4 ");
 $rightNewsList3->execute();
+
+
+// Video
+$videoInit = $pdo->prepare("SELECT * FROM videos_news ORDER BY id DESC limit 0, 1 ");
+$videoInit->execute();
+$video_list = $pdo->prepare("SELECT * FROM videos_news ORDER BY id DESC ");
+$video_list->execute();
+
+$bau = $pdo->prepare("SELECT * FROM news ORDER BY id DESC limit 17, 4 ");
+$bau->execute();
+
+$publiciteis_7_10 = $pdo->prepare("SELECT * FROM publicity ORDER BY id DESC limit 6, 3 ");
+$publiciteis_7_10->execute();
+
 ?>
+
 
 <style>
 /* SPINNER */
@@ -413,7 +427,7 @@ $rightNewsList3->execute();
 }
 
 .lastNotices .lastNoticesAllContainer .otherNotices .categoryTItleSectionContainer {
-  background-color: #121212;
+  background-color: var(--main-color);
   padding: 0.5rem;
 }
 
@@ -907,7 +921,7 @@ $rightNewsList3->execute();
 }
 
 .moreNotices .moreNoticesAllContainer .otherNotices .categoryTItleSectionContainer {
-  background-color: #121212;
+  background-color: var(--main-color);
   padding: 0.5rem;
 }
 
@@ -1104,7 +1118,7 @@ $rightNewsList3->execute();
 }
 
 .noticesRelevant .noticesRelevantAllContainer .otherNotices .categoryTItleSectionContainer {
-  background-color: #121212;
+  background-color: var(--main-color);
   padding: 0.5rem;
 }
 
@@ -1312,6 +1326,109 @@ $rightNewsList3->execute();
   line-height: 160%;
 }
 
+.videosList {
+  width: 100%;
+  padding: 2.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #121212;
+}
+
+.videosList .allContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.videosList .videoPlay {
+  width: 100%;
+  max-width: 780px;
+  height: 460px;
+}
+
+.videosList ul#playlist {
+  width: 100%;
+  max-width: 25rem;
+  height: 460px;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+}
+
+.videosList ul#playlist li {
+  list-style: none;
+
+}
+
+.videosList ul#playlist li>a {
+  color: #fff;
+  padding: 0.5rem 0.5rem;
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.videosList ul#playlist li a>.infoContainer {
+  display: flex;
+  flex-direction: column;
+  gap: .8rem;
+
+}
+
+.videosList ul#playlist li.active a {
+  color: blue;
+  background-color: #cfcfcf5b;
+  border-left: 0.4rem solid var(--main-color);
+}
+
+.videosList ul#playlist li .containerImage {
+  width: 8rem;
+  height: 4.8rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.videosList ul#playlist li .containerImage img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  object-fit: cover;
+
+  transition: 1s ease;
+}
+
+.videosList ul#playlist li>a>.infoContainer h4 {
+  font-size: 1rem;
+  color: #fff;
+  font-weight: 700;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  /* number of lines to show */
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.videosList ul#playlist li>a .infoContainer p {
+  font-size: 0.8rem;
+  color: #fff;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  /* number of lines to show */
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+
 @media (max-width: 844px) {
   .homeContainer .swiper .slide .slideInfo h1 {
     font-size: 3rem;
@@ -1417,7 +1534,7 @@ $rightNewsList3->execute();
 
   <?php $this->start('publicity'); ?>
 
-  <section class="publicitySwiper">
+  <section class="swiper">
     <!-- Additional required wrapper -->
     <div class="swiper-wrapper">
       <!-- Slides -->
@@ -1439,8 +1556,6 @@ $rightNewsList3->execute();
   </section>
 
   <?php $this->end(); ?>
-
-
 
   <section class="choosesEditors">
     <div class="container">
@@ -1476,7 +1591,6 @@ $rightNewsList3->execute();
     </div>
   </section>
 
-
   <section class="emphasesNotice">
     <div class="container">
       <div class="titleSectionContainer">
@@ -1511,7 +1625,7 @@ $rightNewsList3->execute();
                 <div class="noticeInfo">
                   <p><i class="fa-solid fa-user"></i> <strong> <?= $author_name ?> </strong> - <span> <i
                         class="fa-solid fa-calendar-days"></i> <?= $data['date_create'] ?> </span></p>
-                  <p><i class="fa-regular fa-comment-dots"></i> 3</p>
+
                 </div>
               </a>
             </div>
@@ -1546,7 +1660,7 @@ $rightNewsList3->execute();
                 <div class="noticeInfo">
                   <p><i class="fa-solid fa-user"></i> <strong><?= $author_name ?></strong> - <span><i
                         class="fa-solid fa-calendar-days"></i> <?= $data['date_create'] ?></span></p>
-                  <p><i class="fa-regular fa-comment-dots"></i> 3</p>
+
                 </div>
 
               </div>
@@ -1594,7 +1708,7 @@ $rightNewsList3->execute();
                 <div class="noticeInfo">
                   <p><i class="fa-solid fa-user"></i> <strong><?= $author_name ?></strong> - <span><i
                         class="fa-solid fa-calendar-days"></i> <?= $data['date_create'] ?></span></p>
-                  <p><i class="fa-regular fa-comment-dots"></i> 3</p>
+
                 </div>
 
                 <p><?= $data['resume_news'] ?></p>
@@ -1636,7 +1750,7 @@ $rightNewsList3->execute();
                     <p><i class="fa-solid fa-user"></i> <strong><?= $author_name ?></strong> -
                       <span><?= $data['date_create'] ?></span>
                     </p>
-                    <p><i class="fa-regular fa-comment-dots"></i> 3</p>
+
                   </div>
 
                   <p><?= $data['resume_news'] ?></p>
@@ -1721,7 +1835,7 @@ $rightNewsList3->execute();
                   <div class="noticeInfo">
                     <p><i class="fa-solid fa-user"></i> <strong><?= $author_name ?></strong> - <span><i
                           class="fa-solid fa-calendar-days"></i> <?= $data['date_create'] ?></span></p>
-                    <p><i class="fa-regular fa-comment-dots"></i> 3</p>
+
                   </div>
 
                   <p><?= $data['resume_news'] ?></p>
@@ -1805,7 +1919,7 @@ $rightNewsList3->execute();
                       <p><i class="fa-solid fa-user"></i> <strong><?= $author_name ?></strong> -
                         <span><?= $data['date_create'] ?></span>
                       </p>
-                      <p><i class="fa-regular fa-comment-dots"></i> 3</p>
+
                     </div>
                   </div>
 
@@ -1821,22 +1935,26 @@ $rightNewsList3->execute();
     </div>
   </section>
 
-  <div class="swiper-wrapper">
-    <!-- Slides -->
-    <?php foreach ($publiciteis_4_6 as $data) : ?>
-    <div class="swiper-slide">
-      <section class="slide" id="slide">
-        <section class="publicity">
-          <div class="container">
-            <div class='containerImage'>
-              <img src=" <?= $data['image_publicity'] ?>" alt="">
+
+  <section class="publicitySwiper">
+    <div class="swiper-wrapper">
+      <!-- Slides -->
+      <?php foreach ($publiciteis_3_6 as $data) : ?>
+      <div class="swiper-slide">
+        <section class="slide" id="slide">
+          <section class="publicity">
+            <div class="container">
+              <div class='containerImage'>
+                <img src=" <?= $data['image_publicity'] ?>" alt="">
+              </div>
             </div>
-          </div>
+          </section>
         </section>
-      </section>
+      </div>
+      <?php endforeach ?>
     </div>
-    <?php endforeach ?>
-  </div>
+  </section>
+
 
   <section class="noticesRelevant">
     <div class="container">
@@ -1874,7 +1992,7 @@ $rightNewsList3->execute();
                   <div class="noticeInfo">
                     <p><i class="fa-solid fa-user"></i> <strong><?= $author_name ?></strong> - <span><i
                           class="fa-solid fa-calendar-days"></i> <?= $data['date_create'] ?></span></p>
-                    <p><i class="fa-regular fa-comment-dots"></i> 3</p>
+
                   </div>
 
                   <p> <?= $data['resume_news'] ?></p>
@@ -1918,7 +2036,7 @@ $rightNewsList3->execute();
                     <p><i class="fa-solid fa-user"></i> <strong><?= $author_name ?></strong> -
                       <span><?= $data['date_create'] ?></span>
                     </p>
-                    <p><i class="fa-regular fa-comment-dots"></i> 3</p>
+
                   </div>
 
                   <p><?= $data['resume_news'] ?></p>
@@ -1962,10 +2080,10 @@ $rightNewsList3->execute();
           </div>
 
           <form method="post" action="<?= urlProject(CONTROLLERS . "/newslettersControllers.php") ?>" class="subscribe">
-            <h1>Assine as atualizações</h1>
+            <h1>Deixe o seu email</h1>
 
             <p>
-              Receba as últimas atualizações do Jornal Pungo Angongo.
+              E receba notificações com as ultimas atualizações da Tv One.
             </p>
 
             <div class="inputContainer">
@@ -1988,6 +2106,107 @@ $rightNewsList3->execute();
     </div>
   </section>
 
+  <section class="videosList">
+    <div class="container">
+      <div class="titleSectionContainer">
+        <h1> <span>Videos</span> </h1>
+      </div>
+      <br>
+      <br>
+
+      <div class="allContainer">
+        <?php
+        foreach ($videoInit as $data) :
+          $videoURL = $data['link_video'];
+          $convertedURL = str_replace("watch?v=", "embed/", $videoURL);
+        ?>
+        <iframe id="video" class="embed-responsive-item videoPlay" src="<?= $convertedURL; ?>?playsinline=1&rel=0"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen></iframe>
+        <?php endforeach ?>
+
+
+        <ul id="playlist" style="list-style: none;">
+          <?php
+          foreach ($video_list as $data) :
+          ?>
+          <li>
+            <a href="<?= $data['link_video']; ?>">
+              <div class='containerImage'>
+                <img src="<?= $data['cover_video'] ?>" alt="">
+              </div>
+              <div class="infoContainer">
+                <h4><?= $data['title_video'] ?></h4>
+                <p><?= $data['time_video'] ?> <br> <span><?= $data['date_create'] ?></span> </p>
+              </div>
+            </a>
+          </li>
+          <?php endforeach ?>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="publicitySwiper">
+    <!-- Additional required wrapper -->
+    <div class="swiper-wrapper">
+      <!-- Slides -->
+      <?php foreach ($publiciteis_7_10 as $data) : ?>
+      <div class="swiper-slide">
+        <section class="slide" id="slide">
+          <section class="publicity">
+            <div class="container">
+              <div class='containerImage'>
+                <img src=" <?= $data['image_publicity'] ?>" alt="">
+              </div>
+            </div>
+          </section>
+        </section>
+      </div>
+      <?php endforeach ?>
+    </div>
+
+  </section>
+
+  <section class="choosesEditors">
+    <div class="container">
+      <div class="titleSectionContainer">
+        <h1> <span>Baú</span> </h1>
+      </div>
+
+      <div class="choosesContainer">
+        <?php
+        foreach ($bau as $data) :
+
+
+          $author_id = $data['author_id'];
+          $author_name;
+
+          $get_author = $pdo->prepare("SELECT * FROM author where id=?");
+          $get_author->execute(array($author_id));
+
+          foreach ($get_author as $author) :
+            $author_name = $author['name_author'];
+          endforeach;
+        ?>
+        <a href="<?= urlProject(BASE_DETAILSNEWS . "/" . $data['id']) ?>">
+          <div class="choose">
+            <div class='containerImage'>
+              <img src="<?= $data['image_news'] ?>" alt="">
+            </div>
+
+            <div class="textContainer">
+              <p><?= $data['title_news'] ?></p>
+              <span> <i class="fa-solid fa-calendar-days"></i> <?= $data['date_create'] ?></span>
+            </div>
+          </div>
+        </a>
+        <?php endforeach ?>
+      </div>
+    </div>
+  </section>
+
   <br>
   <br>
   <br>
@@ -1995,6 +2214,48 @@ $rightNewsList3->execute();
   <br>
 </main>
 
+<script type="text/javascript">
+var corrente = 0;
+var video = $("#video");
+var playlist = $("#playlist");
+var tracks = playlist.find("li a");
+var len = tracks.length - 1;
+
+var playlist = $("#playlist");
+var tracks = playlist.find("li a");
+
+playlist.find("a").click(function(e) {
+  e.preventDefault();
+
+  link = $(this);
+  corrente = link.parent().index();
+  run(link, video[0])
+
+})
+
+video[0].addEventListener("ended", function(e) {
+  corrente++;
+  if (corrente = len) {
+    corrente = 0;
+    link = playlist.find("a")[0];
+  } else {
+    link = playlist.find("a")[corrente]
+  }
+  run($(link), video[0])
+
+})
+
+function run(link, player) {
+  let getURL = link.attr("href");
+  let newURL = getURL.replace("watch?v=", "embed/");
+  $('iframe').attr("src", newURL)
+
+  par = link.parent();
+  par.addClass("active").siblings().removeClass("active");
+  player.load();
+  player.play();
+}
+</script>
 
 <script type="text/javascript" src="<?= urlProject(FOLDER_BASE . BASE_JS . "/homeScripts.js") ?>">
 </script>

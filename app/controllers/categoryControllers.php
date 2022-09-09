@@ -45,7 +45,9 @@ if (isset($_POST['create_category'])) {
   $sql = $pdo->prepare("INSERT INTO categories values(null,?,?,?)");
 
   if ($sql->execute(array($name_category, $date_create, $date_update))) {
-    header('Location: http://localhost/web-tv_one-php/categories');
+    header('Location: http://jornalpungoandongo.ao/dashboard/categories');
+  } else {
+    header('Location: http://jornalpungoandongo.ao/ops/nn');
   };
 };
 
@@ -57,9 +59,9 @@ if (isset($_POST['delete_category'])) {
   $sql = $pdo->prepare("DELETE FROM categories WHERE id=?");
 
   if ($sql->execute(array($id))) {
-    header('Location: http://localhost/web-tv_one-php/authors');
+    header('Location: http://jornalpungoandongo.ao/dashboard/categories');
   } else {
-    header('Location: http://localhost/web-tv_one-php/authors');
+    header('Location: http://jornalpungoandongo.ao/ops/nn');
   };
 };
 
@@ -105,8 +107,8 @@ if (isset($_POST['update_category'])) {
   $sql = $pdo->prepare("UPDATE categories SET name_category=?, date_update=? WHERE id=?");
 
   if ($sql->execute(array($name_category, $date_update, $id))) {
-    header('Location: http://localhost/web-tv_one-php/authors');
+    header('Location: http://jornalpungoandongo.ao/dashboard/categories');
   } else {
-    header('Location: http://localhost/web-tv_one-php/authors');
+    header('Location: http://jornalpungoandongo.ao/ops/nn');
   };
 };

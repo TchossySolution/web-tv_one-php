@@ -5,9 +5,9 @@
     <div class="container">
       <div class="about">
         <div>
-          <h3 class="footerTitle">Sobre nós</h3>
+          <h3 class="footerTitle">Sobre a TvOne</h3>
 
-          <img width="220px" height="70px" src="<?= urlProject(FOLDER_BASE . BASE_IMG . "/TvOne.png") ?>" alt="">
+          <img width="220px" height="70px" src="<?= urlProject(FOLDER_BASE . BASE_IMG . "/tvone1.png") ?>" alt="">
 
         </div>
 
@@ -17,50 +17,65 @@
         <p>Estamos aceitando novas parcerias <b> agora.</b></p>
 
         <div>
-          <p>Envie-nos um e-mail: <span>elmirophotograph@gmail.com</span></p>
-          <p>Contato: <span>+244 941 236 262</span></p>
+          <p>Envie-nos um e-mail: <span>geral@tvone.com</span></p>
+          <p>Contato: <span>+244 934 292 121</span></p>
         </div>
       </div>
 
       <div class="choose">
-        <h3 class="footerTitle">Nossas escolhas</h3>
+        <h3 class="footerTitle">Noticias recorrentes</h3>
 
-        <div class="notice">
-          <div class="imageContainer">
-            <img src="<?= urlProject(FOLDER_BASE . BASE_IMG . "/img450x300.webp") ?>" alt="">
+
+        <?php foreach ($footerNewsList1 as $data) :
+          $author_id = $data['author_id'];
+          $author_name;
+
+          $get_author = $pdo->prepare("SELECT * FROM author where id=$author_id");
+          $get_author->execute();
+
+          foreach ($get_author as $author) :
+            $author_name = $author['name_author'];
+          endforeach;
+        ?>
+        <a href="<?= urlProject(BASE_DETAILSNEWS . "/" . $data['id']) ?>">
+          <div class="notice">
+            <div class="imageContainer">
+              <img src="<?= $data['image_news']; ?>" alt="">
+            </div>
+
+            <div class="noticeContent">
+              <p><?= $author_name; ?></p>
+
+              <span><?= $data['date_create']; ?></span>
+            </div>
           </div>
+        </a>
+        <?php endforeach ?>
 
-          <div class="noticeContent">
-            <p>Lembrar! Maus hábitos que causam um grande impacto no seu estilo de vida</p>
+      </div>
 
-            <span>13 de janeiro de 2022</span>
+      <div class="comment">
+        <h3 class="footerTitle">Novos comentários</h3>
+
+        <?php foreach ($footerNewsList2 as $data) :
+          $author_id = $data['author_id'];
+          $author_name;
+
+          $get_author = $pdo->prepare("SELECT * FROM author where id=$author_id");
+          $get_author->execute();
+
+          foreach ($get_author as $author) :
+            $author_name = $author['name_author'];
+          endforeach;
+        ?>
+        <div class="commentary">
+          <div class="commentaryContent">
+            <span> <?= $author_name ?> </span>
+
+            <p> <?= $data['resume_news'] ?> </p>
           </div>
         </div>
-
-        <div class="notice">
-          <div class="imageContainer">
-            <img src="<?= urlProject(FOLDER_BASE . BASE_IMG . "/img450x300.webp") ?>" alt="">
-          </div>
-
-          <div class="noticeContent">
-            <p>Lembrar! Maus hábitos que causam um grande impacto no seu estilo de vida</p>
-
-            <span>13 de janeiro de 2022</span>
-          </div>
-        </div>
-
-
-        <div class="notice">
-          <div class="imageContainer">
-            <img src="<?= urlProject(FOLDER_BASE . BASE_IMG . "/img450x300.webp") ?>" alt="">
-          </div>
-
-          <div class="noticeContent">
-            <p>Lembrar! Maus hábitos que causam um grande impacto no seu estilo de vida</p>
-
-            <span>13 de janeiro de 2022</span>
-          </div>
-        </div>
+        <?php endforeach ?>
 
       </div>
 
@@ -72,17 +87,27 @@
     <div class="container">
       <div class="socialMediaContainer">
         <button class="buttonSocialMedia">
-          <i class="fa-brands fa-facebook-f"></i>
+          <a href="https://www.instagram.com/jornalpungoandongo/">
+            <i class="fa-brands fa-facebook-f"></i>
+          </a>
         </button>
 
         <button class="buttonSocialMedia">
-          <a href="https://www.instagram.com/jornalpungoandongo/">
+          <a href="https://twitter.com/TVoneao/">
             <i class="fa-brands fa-instagram"></i>
           </a>
         </button>
 
         <button class="buttonSocialMedia">
-          <i class="fa-brands fa-twitter"></i>
+          <a href="https://www.instagram.com/tvone.ao/">
+            <i class="fa-brands fa-twitter"></i>
+          </a>
+        </button>
+
+        <button class="buttonSocialMedia">
+          <a href="https://www.youtube.com/channel/UCzx544Egz4y_jQ7ggtdbDKw/">
+            <i class="fa-brands fa-youtube"></i>
+          </a>
         </button>
       </div>
 
@@ -92,25 +117,20 @@
             <a href="<?= urlProject() ?>">Casa</a>
           </li>
           <li>
-            <a href="<?= urlProject("news/1") ?>">Noticía</a>
+            <a href="<?= urlProject("news/1") ?>">Notícias</a>
           </li>
           <li>
-            <a href="<?= urlProject("news/search/category/Política/1") ?>">Política</a>
+            <a href="<?= urlProject("news/search/category/Entretimento/1") ?>">Entretimento</a>
+          </li>
+
+          <li>
+            <a href="<?= urlProject("news/search/category/Desporto/1") ?>">Desporto</a>
           </li>
           <li>
-            <a href="<?= urlProject("news/search/category/Actualidade/1") ?>">Actualidade</a>
+            <a href="<?= urlProject("news/search/category/Globo/1") ?>">Globo</a>
           </li>
           <li>
-            <a href="<?= urlProject("news/search/category/Sociedade/1") ?>">Sociedade</a>
-          </li>
-          <li>
-            <a href="<?= urlProject("news/search/category/Cultura/1") ?>">Cultura</a>
-          </li>
-          <li>
-            <a href="<?= urlProject("news/search/category/Especialidade/1") ?>">Especialidade</a>
-          </li>
-          <li>
-            <a href="<?= urlProject("news/search/category/Economia/1") ?>">Economia</a>
+            <a href="<?= urlProject("contacts") ?>">Contacto</a>
           </li>
         </ul>
       </div>

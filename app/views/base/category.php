@@ -21,6 +21,18 @@ $allNews->execute(array($categoryId));
 
 $publiciteis_12_15 = $pdo->prepare("SELECT * FROM publicity ORDER BY id DESC limit 12, 4 ");
 $publiciteis_12_15->execute();
+
+// Publicidades
+$publiciteis_1_3 = $pdo->prepare("SELECT * FROM publicity ORDER BY id DESC limit 0, 3 ");
+$publiciteis_1_3->execute();
+$publiciteis_4_6 = $pdo->prepare("SELECT * FROM publicity ORDER BY id DESC limit 3, 4 ");
+$publiciteis_4_6->execute();
+
+// Mais noticias sessão 1
+$rightNews1 = $pdo->prepare("SELECT * FROM news WHERE category_id = ? ORDER BY id DESC limit 0, 1 ");
+$rightNews1->execute(array(rand(1, 13)));
+$rightNewsList1 = $pdo->prepare("SELECT * FROM news WHERE category_id = ? ORDER BY id DESC limit 1, 4 ");
+$rightNewsList1->execute(array(rand(1, 13)));
 ?>
 
 <link rel="stylesheet" href="<?= urlProject(FOLDER_BASE . BASE_STYLES . "/categoryStyle.css") ?>">
@@ -151,92 +163,100 @@ $publiciteis_12_15->execute();
 
       <div class="rightContainer">
         <div class="otherNotices">
-          <div class="imageContainer">
-            <img
-              src="https://smartmag.theme-sphere.com/good-news/wp-content/uploads/sites/6/2021/01/pexels-nilay-ramoliya-3964833-1-1024x683.jpg"
-              alt="">
-          </div>
+          <section class="mySwiper swiper">
+            <!-- Additional required wrapper -->
+            <div class="swiper-wrapper">
+              <!-- Slides -->
+              <?php foreach ($publiciteis_4_6 as $data) : ?>
+              <div class="swiper-slide">
+                <section class="slide" id="slide">
+                  <section class="publicity">
+                    <div class='containerImage'>
+                      <img src=" <?= $data['image_publicity'] ?>" alt="">
+                    </div>
+                  </section>
+                </section>
+              </div>
+              <?php endforeach ?>
+            </div>
+
+          </section>
+
+          <br>
+          <br>
 
           <div class="categoryTItleSectionContainer">
             <h1>Não perca</h1>
           </div>
 
           <div class="noticeInEmphasis">
+            <?php
+            foreach ($rightNews1 as $data) :
+              $author_id = $data['author_id'];
+              $author_name;
+
+              $get_author = $pdo->prepare("SELECT * FROM author where id=$author_id");
+              $get_author->execute();
+
+              foreach ($get_author as $author) :
+                $author_name = $author['name_author'];
+              endforeach;
+
+            ?>
             <div class="notice">
               <div class="imageContainer">
-                <img
-                  src="https://smartmag.theme-sphere.com/good-news/wp-content/uploads/sites/6/2021/01/pexels-nilay-ramoliya-3964833-1-1024x683.jpg"
-                  alt="">
+                <img src="<?= $data['image_news'] ?>" alt="">
               </div>
 
               <div class="noticeContent">
-                <h1>Linha de produtos Bose na feira: showroom aberto agora em Dubai</h1>
+                <h1><?= $data['title_news'] ?></h1>
 
                 <div class="noticeInfo">
-                  <p>Por <strong>Rafael Pilartes</strong> - <span>14 de Janeiro de 2022</span></p>
-                  <p><i class="fa-regular fa-comment-dots"></i> 3</p>
+                  <p><i class="fa-solid fa-user"></i> <strong><?= $author_name ?></strong> -
+                    <span><?= $data['date_create'] ?></span>
+                  </p>
+
                 </div>
 
-                <p>Para entender o novo smartwatch e outros dispositivos profissionais de foco recente, devemos
-                  olhar
-                  para
-                  o Vale do Silício e o…</p>
+                <p><?= $data['resume_news'] ?></p>
               </div>
             </div>
+            <?php endforeach ?>
           </div>
+
           <br>
           <br>
+
           <div class="noticeResume">
+            <?php
+            foreach ($rightNewsList1 as $data) :
+              $author_id = $data['author_id'];
+              $author_name;
+
+              $get_author = $pdo->prepare("SELECT * FROM author where id=$author_id");
+              $get_author->execute();
+
+              foreach ($get_author as $author) :
+                $author_name = $author['name_author'];
+              endforeach;
+
+            ?>
             <div class="notice">
               <div class="imageContainer">
-                <img
-                  src="https://smartmag.theme-sphere.com/good-news/wp-content/uploads/sites/6/2021/01/pexels-nilay-ramoliya-3964833-1-1024x683.jpg"
-                  alt="">
+                <img src="<?= $data['image_news'] ?>" alt="">
               </div>
 
               <div class="noticeContent">
-                <h1>Linha de produtos Bose na feira: showroom aberto agora em Dubai</h1>
+                <h1><?= $data['title_news'] ?></h1>
 
                 <div class="noticeInfo">
-                  <p>14 de Janeiro de 2022</p>
+                  <p><?= $data['date_create'] ?></p>
                 </div>
 
               </div>
             </div>
-            <br>
-            <div class="notice">
-              <div class="imageContainer">
-                <img
-                  src="https://smartmag.theme-sphere.com/good-news/wp-content/uploads/sites/6/2021/01/pexels-nilay-ramoliya-3964833-1-1024x683.jpg"
-                  alt="">
-              </div>
+            <?php endforeach ?>
 
-              <div class="noticeContent">
-                <h1>Linha de produtos Bose na feira: showroom aberto agora em Dubai</h1>
-
-                <div class="noticeInfo">
-                  <p>14 de Janeiro de 2022</p>
-                </div>
-
-              </div>
-            </div>
-            <br>
-            <div class="notice">
-              <div class="imageContainer">
-                <img
-                  src="https://smartmag.theme-sphere.com/good-news/wp-content/uploads/sites/6/2021/01/pexels-nilay-ramoliya-3964833-1-1024x683.jpg"
-                  alt="">
-              </div>
-
-              <div class="noticeContent">
-                <h1>Linha de produtos Bose na feira: showroom aberto agora em Dubai</h1>
-
-                <div class="noticeInfo">
-                  <p>14 de Janeiro de 2022</p>
-                </div>
-
-              </div>
-            </div>
           </div>
 
         </div>

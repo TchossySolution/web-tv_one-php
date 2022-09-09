@@ -1,6 +1,22 @@
-<?php $this->layout('_theme') ?>
+<head>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+  <!-- JavaScript Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous">
+  </script>
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 
-<div class="removeHeader"></div>
+
+  <!-- Custom fonts for this template-->
+  <link href="<?= urlProject(FOLDER_DASHBOARD . "/src/bootstrap/vendor/fontawesome-free/css/all.min.css") ?> "
+    rel="stylesheet" type="text/css">
+  <link
+    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+    rel="stylesheet">
+</head>
+
 
 <main>
   <div class="container">
@@ -11,7 +27,8 @@
           <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
 
             <div class="d-flex justify-content-center py-4">
-              <h2 class="d-none d-lg-block text-danger" style="text-decoration: none;">Pungo a Ndongo admin</h2>
+              <h2 class="d-none d-lg-block text-primary" style="text-decoration: none; text-align: center;">Painel de
+                controlo Tv One</h2>
               <a href="index.html" class="logo d-flex align-items-center w-auto">
                 <img src="assets/img/logo.png" alt="">
               </a>
@@ -34,14 +51,14 @@
                     <div class="input-group has-validation">
                       <span class="input-group-text" id="inputGroupPrepend">@</span>
                       <input type="text" name="username" class="form-control" id="yourUsername" required>
-                      <div class="invalid-feedback">Please enter your username.</div>
+                      <div class="invalid-feedback">Coloque o seu nome de usuário.</div>
                     </div>
                   </div>
 
                   <div class="col-12">
                     <label for="yourPassword" class="form-label">Senha</label>
                     <input type="password" name="password" class="form-control" id="yourPassword" required>
-                    <div class="invalid-feedback">Please enter your password!</div>
+                    <div class="invalid-feedback">Coloque a sua palavra passe!</div>
                   </div>
 
                   <div class="col-12">
@@ -51,7 +68,7 @@
                     </div>
                   </div>
                   <div class="col-12">
-                    <button class="btn btn-danger w-100" type="submit">Conectar-se</button>
+                    <button class="btn btn-primary w-100" type="submit">Conectar-se</button>
                   </div>
 
                 </form>

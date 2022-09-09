@@ -1,3 +1,17 @@
+<?php
+
+//conexao da base de dados//
+require 'src/db/config.php';
+
+// Mais noticias sessão 1
+$footerNewsList1 = $pdo->prepare("SELECT * FROM news WHERE category_id = ? ORDER BY id DESC limit 0, 4 ");
+$footerNewsList1->execute(array(rand(1, 12)));
+// Mais noticias sessão 2
+$footerNewsList2 = $pdo->prepare("SELECT * FROM news WHERE category_id = ? ORDER BY id DESC limit 4, 4 ");
+$footerNewsList2->execute(array(rand(1, 12)));
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -30,6 +44,8 @@
   <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
 
   <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
   <title> <?= SITE ?> </title>
 </head>
@@ -78,7 +94,7 @@
     centeredSlides: true,
     loop: true,
     autoplay: {
-      delay: 3000,
+      delay: 4000,
       disableOnInteraction: false
     },
     // If we need pagination
@@ -91,11 +107,11 @@
   const publicitySwiper = new Swiper('.publicitySwiper', {
     // Optional parameters
     direction: 'horizontal',
-    spaceBetween: 30,
+    spaceBetween: 100,
     centeredSlides: true,
     loop: true,
     autoplay: {
-      delay: 3000,
+      delay: 4000,
       disableOnInteraction: false
     },
     // If we need pagination
