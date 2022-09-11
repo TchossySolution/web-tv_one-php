@@ -47,7 +47,7 @@ if (isset($_POST['create_publicity'])) {
 
   if ($_FILES['image_publicity']['size'] >= $size_max) {
     echo "Arquivo excedeu o tamanho máximo de 2MB <br>";
-    echo "<a href='http://jornalpungoandongo.ao/dashboard/news'> Voltar </a>";
+    echo "<a href='https://tvone.ao/dashboard/news'> Voltar </a>";
 
     exit();
   } else {
@@ -68,13 +68,13 @@ if (isset($_POST['create_publicity'])) {
         echo "Upload realizado com sucesso!";
       } else {
         echo "Erro: ao realizar Upload... <br>";
-        echo "<a href='http://jornalpungoandongo.ao/dashboard/news'> Voltar </a>";
+        echo "<a href='https://tvone.ao/dashboard/news'> Voltar </a>";
 
         exit();
       }
     } else {
       echo "Erro: Extensão ($extension) não permitido <br>";
-      echo "<a href='http://jornalpungoandongo.ao/dashboard/news'> Voltar </a>";
+      echo "<a href='https://tvone.ao/dashboard/news'> Voltar </a>";
 
       exit();
     }
@@ -95,9 +95,9 @@ if (isset($_POST['create_publicity'])) {
     $date_create,
     $date_expire
   ))) {
-    header('Location: http://jornalpungoandongo.ao/publicity');
+    header('Location: https://tvone.ao/publicity');
   } else {
-    header('Location: http://jornalpungoandongo.ao/');
+    header('Location: https://tvone.ao/');
   };
 };
 
@@ -109,9 +109,9 @@ if (isset($_POST['delete_publicity'])) {
   $sql = $pdo->prepare("DELETE FROM publicity WHERE id=?");
 
   if ($sql->execute(array($id))) {
-    header('Location: http://jornalpungoandongo.ao/authors');
+    header('Location: https://tvone.ao/authors');
   } else {
-    header('Location: http://jornalpungoandongo.ao/authors');
+    header('Location: https://tvone.ao/authors');
   };
 };
 
@@ -159,7 +159,7 @@ if (isset($_POST['update_publicity'])) {
 
   if ($_FILES['image_publicity']['size'] >= $size_max) {
     echo "Arquivo excedeu o tamanho máximo de 2MB <br>";
-    echo "<a href='http://jornalpungoandongo.ao/dashboard/publicity'> Voltar </a>";
+    echo "<a href='https://tvone.ao/dashboard/publicity'> Voltar </a>";
 
     exit();
   } else {
@@ -180,13 +180,13 @@ if (isset($_POST['update_publicity'])) {
         echo "Upload realizado com sucesso!";
       } else {
         echo "Erro: ao realizar Upload... <br>";
-        echo "<a href='http://jornalpungoandongo.ao/dashboard/publicity'> Voltar </a>";
+        echo "<a href='https://tvone.ao/dashboard/publicity'> Voltar </a>";
 
         exit();
       }
     } else {
       echo "Erro: Extensão ($extension) não permitido <br>";
-      echo "<a href='http://jornalpungoandongo.ao/dashboard/publicity'> Voltar </a>";
+      echo "<a href='https://tvone.ao/dashboard/publicity'> Voltar </a>";
 
       exit();
     }
@@ -201,8 +201,8 @@ if (isset($_POST['update_publicity'])) {
   $sql = $pdo->prepare("UPDATE publicity SET image_publicity=?, description_publicity=?,  link_publicity=?, date_expire=? WHERE id=?");
 
   if ($sql->execute(array($image_publicity, $description_publicity, $link_publicity, $date_expire, $id))) {
-    header('Location: http://jornalpungoandongo.ao/dashboard/publicity');
+    header('Location: https://tvone.ao/dashboard/publicity');
   } else {
-    header('Location: http://jornalpungoandongo.ao/dashboard/ops/nn');
+    header('Location: https://tvone.ao/dashboard/ops/nn');
   };
 };

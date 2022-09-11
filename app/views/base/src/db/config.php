@@ -10,9 +10,9 @@ if ($mode == 'local') {
 }
 if ($mode == 'producao') {
   $dbHost = "localhost";
-  $dbUsername = "jornangr_adm_tchossy";
+  $dbUsername = "tvonerex_adm_tchossy";
   $dbPassword = "adm_tchossy123";
-  $dbName = "tvonegr_tv_one";
+  $dbName = "tvonerex_tv_one";
 }
 try {
   $pdo = new PDO(

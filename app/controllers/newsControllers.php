@@ -45,7 +45,7 @@ if (isset($_POST['create_news'])) {
 
   if ($_FILES['image_news']['size'] >= $size_max) {
     echo "Arquivo excedeu o tamanho máximo de 2MB<br>";
-    echo "<a href='http://jornalpungoandongo.ao/dashboard/news'> Voltar </a>";
+    echo "<a href='https://tvone.ao/dashboard/news'> Voltar </a>";
 
     exit();
   } else {
@@ -66,13 +66,13 @@ if (isset($_POST['create_news'])) {
         echo "Upload realizado com sucesso!";
       } else {
         echo "Erro: ao realizar Upload...<br>";
-        echo "<a href='http://jornalpungoandongo.ao/dashboard/news'> Voltar </a>";
+        echo "<a href='https://tvone.ao/dashboard/news'> Voltar </a>";
 
         exit();
       }
     } else {
       echo "Erro: Extensão ($extension) não permitido <br>";
-      echo "<a href='http://jornalpungoandongo.ao/dashboard/news'> Voltar </a>";
+      echo "<a href='https://tvone.ao/dashboard/news'> Voltar </a>";
 
       exit();
     }
@@ -86,7 +86,7 @@ if (isset($_POST['create_news'])) {
   $description_news = $_POST['description_news'];
   $epigraph_news = $_POST['epigraph_news'];
   $author_epigraph_news = $_POST['author_epigraph_news'];
-  $image_news =  'http://http://jornalpungoandongo.ao/app/_imagesDb/' . $newName;
+  $image_news =  'https://tvone.ao/app/_imagesDb/' . $newName;
   $description_image_news = $_POST['description_image_news'];
   $photography_news = $_POST['photography_news'];
   $reading_time_news = $_POST['reading_time_news'];
@@ -118,9 +118,9 @@ if (isset($_POST['create_news'])) {
     $date_create,
     $date_update
   ))) {
-    header('Location: http://jornalpungoandongo.ao/dashboard/news');
+    header('Location: https://tvone.ao/dashboard/news');
   } else {
-    header('Location: http://jornalpungoandongo.ao/dashboard/ops/nn');
+    header('Location: https://tvone.ao/dashboard/ops/nn');
   };
 };
 
@@ -133,9 +133,9 @@ if (isset($_POST['delete_news'])) {
   $sql = $pdo->prepare("DELETE FROM news WHERE id=?");
 
   if ($sql->execute(array($id))) {
-    header('Location: Location: http://jornalpungoandongo.ao/dashboard/news');
+    header('Location: Location: https://tvone.ao/dashboard/news');
   } else {
-    header('Location: Location: http://jornalpungoandongo.ao/dashboard/ops/nn');
+    header('Location: Location: https://tvone.ao/dashboard/ops/nn');
   };
 };
 
@@ -184,7 +184,7 @@ if (isset($_POST['update_news'])) {
 
   if ($_FILES['image_news']['size'] >= $size_max) {
     echo "Arquivo excedeu o tamanho máximo de 2MB <br>";
-    echo "<a href='http://jornalpungoandongo.ao/dashboard/news'> Voltar </a>";
+    echo "<a href='https://tvone.ao/dashboard/news'> Voltar </a>";
 
     exit();
   } else {
@@ -205,13 +205,13 @@ if (isset($_POST['update_news'])) {
         echo "Upload realizado com sucesso!";
       } else {
         echo "Erro: ao realizar Upload...<br>";
-        echo "<a href='http://jornalpungoandongo.ao/dashboard/news'> Voltar </a>";
+        echo "<a href='https://tvone.ao/dashboard/news'> Voltar </a>";
 
         exit();
       }
     } else {
       echo "Erro: Extensão ($extension) não permitido<br>";
-      echo "<a href='http://jornalpungoandongo.ao/dashboard/news'> Voltar </a>";
+      echo "<a href='https://tvone.ao/dashboard/news'> Voltar </a>";
 
       exit();
     }
@@ -224,7 +224,7 @@ if (isset($_POST['update_news'])) {
   $description_news = $_POST['description_news'];
   $epigraph_news = $_POST['epigraph_news'];
   $author_epigraph_news = $_POST['author_epigraph_news'];
-  $image_news =  'http://http://jornalpungoandongo.ao/app/_imagesDb/' . $newName;
+  $image_news =  'http://https://tvone.ao/app/_imagesDb/' . $newName;
   $description_image_news = $_POST['description_image_news'];
   $photography_news = $_POST['photography_news'];
   $reading_time_news = $_POST['reading_time_news'];
@@ -256,8 +256,8 @@ if (isset($_POST['update_news'])) {
     $date_update,
     $id
   ))) {
-    header('Location: Location: http://jornalpungoandongo.ao/dashboard/news');
+    header('Location: Location: https://tvone.ao/dashboard/news');
   } else {
-    header('Location: Location: http://jornalpungoandongo.ao/ops/nn');
+    header('Location: Location: https://tvone.ao/ops/nn');
   };
 };

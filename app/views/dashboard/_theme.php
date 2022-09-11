@@ -1,6 +1,31 @@
+<?php
+
+session_start();
+
+if ((isset($_SESSION['isAdm']) != "adm")) {
+  unset($_SESSION['isAdm']);
+  header('Location: https://tvone.ao/dashboard');
+
+  exit();
+}
+
+require 'src/db/config.php';
+
+$adm_name = "";
+$adm_email = $_SESSION['adm_email'];
+
+$get_user = $pdo->prepare("SELECT * FROM user_adm WHERE adm_email=?");
+$get_user->execute(array($adm_email));
+
+
+foreach ($get_user as $data) {
+  $adm_name = $data['adm_name'];
+};
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
-
 
 <head>
 
@@ -116,8 +141,6 @@
         <!-- Topbar -->
         <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
-
-
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
 
@@ -127,7 +150,7 @@
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Nome Do usuário</span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"> <?= $adm_name ?> </span>
                 <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
               </a>
               <!-- Dropdown - User Information -->
@@ -188,10 +211,15 @@
             <span aria-hidden="true">×</span>
           </button>
         </div>
-        <div class="modal-body">Selecione "Sair" abaixo se estiver pronto para encerrar sua sessão atual.</div>
+        <div class="modal-body">Selecionou "Sair" abaixo se estiver pronto para encerrar sua sessão atual.</div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-          <a class="btn btn-primary" href="login.html">Sair</a>
+          <form novalidate method="post" action="<?= urlProject(CONTROLLERS . "/loginControllers.php") ?>">
+            <button type="submit" name="logOut_Adm" class="btn btn-primary">
+              Sair
+            </button>
+          </form>
+
         </div>
       </div>
     </div>
