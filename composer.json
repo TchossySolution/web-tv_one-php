@@ -1,6 +1,6 @@
 {
-  "name": "hp/web-tv_one-php",
-  "description": "Site da Tv-one",
+  "name": "hp/Tv-One",
+  "description": "Web site para a Tv-One",
   "minimum-stability": "stable",
   "license": "MIT ",
   "authors": [
