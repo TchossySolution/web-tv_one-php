@@ -85,6 +85,7 @@ $allCategories2->execute();
         </td>
       </tr>
       <input value="<?= $data['id']; ?>" name="id" hidden>
+      <input value="<?= $data['image_news']; ?>" name="suplente_img" hidden>
 
       <!-- START MODAL EDITE NEWS -->
       <div class="modal fade" id="exampleModal<?= $data['id']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -254,7 +255,7 @@ $allCategories2->execute();
 
             <label for="author_id">Autores:</label>
             <select class="form-select" name="author_id" id="author_id">
-              <option value="" selected>--- Selecione a categoria ---</option>
+              <option value="3" selected>--- Selecione a categoria ---</option>
               <?php foreach ($allAuthor2 as $data) :
                 $author_id = $data['id'];
                 $author_name = $data['name_author'];
@@ -266,7 +267,7 @@ $allCategories2->execute();
 
             <label for="category_id">Categorias:</label>
             <select class="form-select" name="category_id" id="category_id">
-              <option value="" selected>--- Selecione a categoria ---</option>
+              <option value="3" selected>--- Selecione a categoria ---</option>
               <?php foreach ($allCategories2 as $data) :
                 $category_id = $data['id'];
                 $category_name = $data['name_category'];
@@ -307,7 +308,7 @@ $allCategories2->execute();
 
             <label for="publicity_news">É uma publicidade? </label>
             <select class="form-select" name="publicity_news" id="publicity_news">
-              <option value="">--- Escolha a opção ---</option>
+              <option value="não">--- Escolha a opção ---</option>
               <option value="sim">Sim é</option>
               <option value="não">Não é!</option>
             </select>
@@ -315,7 +316,7 @@ $allCategories2->execute();
 
             <label for="choose_editors_news">Está noticia é uma escolha dos editores? </label>
             <select class="form-select" name="choose_editors_news" id="choose_editors_news">
-              <option value="">--- Escolha a opção ---</option>
+              <option value="não">--- Escolha a opção ---</option>
               <option value="sim">Sim é</option>
               <option value="não">Não é!</option>
             </select>
@@ -323,7 +324,7 @@ $allCategories2->execute();
 
             <label for="emphasis_news">Está noticia está em destaque? </label>
             <select class="form-select" name="emphasis_news" id="emphasis_news">
-              <option value="">--- Escolha a opção ---</option>
+              <option value="não">--- Escolha a opção ---</option>
               <option value="sim">Sim é</option>
               <option value="não">Não é!</option>
             </select>
@@ -331,7 +332,7 @@ $allCategories2->execute();
 
             <label for="relevant_news">Está noticia é relevante? </label>
             <select class="form-select" name="relevant_news" id="relevant_news">
-              <option value="">--- Escolha a opção ---</option>
+              <option value="não">--- Escolha a opção ---</option>
               <option value="sim">Sim é</option>
               <option value="não">Não é!</option>
             </select>

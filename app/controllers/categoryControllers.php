@@ -4,7 +4,8 @@ include_once('../db/config.php');
 
 if (isset($_POST['create_category'])) {
 
-  echo 'add_category';
+  // echo "Alguma coisa <br>";
+  echo "<a href='https://tvone.ao/dashboard/news'> Voltar </a>";
 
   $data = date('D');
   $mes = date('M');
@@ -42,6 +43,15 @@ if (isset($_POST['create_category'])) {
   $date_create = $completeDate;
   $date_update =  $completeDate;
 
+  if (empty(trim($name_category))) {
+    $password_err = "O nome da categoria é obrigatório.";
+    echo "<script>
+              alert('O nome da categoria é obrigatório!');
+              window.location.href='https://tvone.ao/dashboard/categories';
+            </script>";
+    exit();
+  }
+
   $sql = $pdo->prepare("INSERT INTO categories values(null,?,?,?)");
 
   if ($sql->execute(array($name_category, $date_create, $date_update))) {
@@ -52,7 +62,9 @@ if (isset($_POST['create_category'])) {
 };
 
 if (isset($_POST['delete_category'])) {
-  echo 'delete_category';
+
+  // echo "Alguma coisa <br>";
+  echo "<a href='https://tvone.ao/dashboard/news'> Voltar </a>";
 
   $id = $_POST['id'];
 
@@ -66,7 +78,9 @@ if (isset($_POST['delete_category'])) {
 };
 
 if (isset($_POST['update_category'])) {
-  echo 'update_category';
+
+  // echo "Alguma coisa <br>";
+  echo "<a href='https://tvone.ao/dashboard/news'> Voltar </a>";
 
   $data = date('D');
   $mes = date('M');
@@ -103,6 +117,15 @@ if (isset($_POST['update_category'])) {
   $name_category = $_POST['name_category'];
   $date_update = $completeDate;
   $id = $_POST['id'];
+
+  if (empty(trim($name_category))) {
+    $password_err = "O nome da categoria é obrigatório.";
+    echo "<script>
+              alert('O nome da categoria é obrigatório!');
+              window.location.href='https://tvone.ao/dashboard/categories';
+            </script>";
+    exit();
+  }
 
   $sql = $pdo->prepare("UPDATE categories SET name_category=?, date_update=? WHERE id=?");
 

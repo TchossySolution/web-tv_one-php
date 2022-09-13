@@ -23,6 +23,7 @@ endforeach;
 
 $title;
 $categoria;
+$image;
 
 $news1 = $pdo->prepare("SELECT * FROM news where id=$id ");
 $news1->execute();
@@ -30,6 +31,7 @@ $news1->execute();
 foreach ($news1 as $data) :
   $category_id = $data['category_id'];
   $title = $data['title_news'];
+  $image = $data['image_news'];
 
   $get_category = $pdo->prepare("SELECT * FROM categories where id=$category_id");
   $get_category->execute();
@@ -45,8 +47,16 @@ $news->execute();
 
 ?>
 
-<link rel="stylesheet" href="<?= urlProject(FOLDER_BASE . BASE_STYLES . "/detailsNewsStyle
-.css") ?>">
+<head>
+  <meta property="og:title" content="<?= $title ?>">
+  <meta property="og:site_name" content="<?= SITE ?>">
+  <meta property="article:tag" content="<?= $categoria ?>">
+  <meta property="og:image" content="<?= $image ?>">
+  <meta property="og:image:secure_url" content="<?= $image ?>">
+  <link rel="image_src" type="image/jpeg" href="<?= $image ?>" />
+</head>
+
+<link rel="stylesheet" href="<?= urlProject(FOLDER_BASE . BASE_STYLES . "/detailsNewsStyle.css") ?>">
 
 <main class="detailsNewsContainer">
   <div class="container">

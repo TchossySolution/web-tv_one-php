@@ -35,7 +35,7 @@ foreach ($allAuthor as $author) :
   $descriptionAuthor = $author['description_author'];
 endforeach;
 
-$allNews = $pdo->prepare("SELECT * FROM news WHERE author_id = ?");
+$allNews = $pdo->prepare("SELECT * FROM news WHERE author_id = ? ORDER BY id DESC");
 $allNews->execute(array($authorId));
 
 ?>

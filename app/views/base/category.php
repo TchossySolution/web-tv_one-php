@@ -16,7 +16,7 @@ foreach ($allCategory as $category) :
   $categoryId = $category['id'];
 endforeach;
 
-$allNews = $pdo->prepare("SELECT * FROM news WHERE category_id = ?");
+$allNews = $pdo->prepare("SELECT * FROM news WHERE category_id = ? ORDER BY id DESC");
 $allNews->execute(array($categoryId));
 
 $publiciteis_12_15 = $pdo->prepare("SELECT * FROM publicity ORDER BY id DESC limit 12, 4 ");

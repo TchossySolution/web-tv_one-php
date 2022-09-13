@@ -4,7 +4,8 @@ include_once('../db/config.php');
 
 if (isset($_POST['create_author'])) {
 
-  echo 'add_authors';
+  // echo "Alguma coisa <br>";
+  echo "<a href='https://tvone.ao/dashboard/news'> Voltar </a>";
 
   $data = date('D');
   $mes = date('M');
@@ -44,6 +45,15 @@ if (isset($_POST['create_author'])) {
   $date_create = $completeDate;
   $date_update =  $completeDate;
 
+  if (empty(trim($name_author))) {
+    $password_err = "O nome da autor é obrigatório.";
+    echo "<script>
+              alert('O nome da autor é obrigatório!');
+              window.location.href='https://tvone.ao/dashboard/authors';
+            </script>";
+    exit();
+  }
+
   $sql = $pdo->prepare("INSERT INTO author values(null,?,?,?,?,?)");
 
   if ($sql->execute(array($name_author, $title_author, $description_author, $date_create, $date_update))) {
@@ -54,7 +64,9 @@ if (isset($_POST['create_author'])) {
 };
 
 if (isset($_POST['delete_author'])) {
-  echo 'delete_author';
+
+  // echo "Alguma coisa <br>";
+  echo "<a href='https://tvone.ao/dashboard/news'> Voltar </a>";
 
   $id = $_POST['id'];
 
@@ -68,7 +80,9 @@ if (isset($_POST['delete_author'])) {
 };
 
 if (isset($_POST['update_author'])) {
-  echo 'update_author';
+
+  // echo "Alguma coisa <br>";
+  echo "<a href='https://tvone.ao/dashboard/news'> Voltar </a>";
 
   $data = date('D');
   $mes = date('M');
@@ -107,6 +121,15 @@ if (isset($_POST['update_author'])) {
   $description_author = $_POST['description_author'];
   $date_update = $completeDate;
   $id = $_POST['id'];
+
+  if (empty(trim($name_author))) {
+    $password_err = "O nome da autor é obrigatório.";
+    echo "<script>
+              alert('O nome da autor é obrigatório!');
+              window.location.href='https://tvone.ao/dashboard/authors';
+            </script>";
+    exit();
+  }
 
   $sql = $pdo->prepare("UPDATE author SET name_author=?, title_author=?,  description_author=?, date_update=? WHERE id=?");
 

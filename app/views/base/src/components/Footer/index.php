@@ -7,14 +7,15 @@
         <div>
           <h3 class="footerTitle">Sobre a TvOne</h3>
 
-          <img width="220px" height="70px" src="<?= urlProject(FOLDER_BASE . BASE_IMG . "/tvone1.png") ?>" alt="">
+          <img width="220px" height="70px" src="<?= urlProject(FOLDER_BASE . BASE_IMG . "/tvone1.png") ?>">
 
         </div>
 
-        <p>Sua fonte para as notícias de estilo de vida. Esta demonstração foi criada especificamente para exibir o uso
-          do tema como um site de estilo de vida. Visite nossa página principal para mais informação.</p>
+        <p>A nossa missão é levar as pessoas todas novidades relacionadas ao entretenimento e informações verídicas de
+          factos reais e a originalidade dos nossos conteúdos.
+        </p>
 
-        <p>Estamos aceitando novas parcerias <b> agora.</b></p>
+        <p>A nossa TV é um lugar onde tudo acontece, liga-te nesta<b> onda.</b></p>
 
         <div>
           <p>Envie-nos um e-mail: <span>geral@tvone.com</span></p>
@@ -120,7 +121,7 @@
             <a href="<?= urlProject("news/1") ?>">Notícias</a>
           </li>
           <li>
-            <a href="<?= urlProject("news/search/category/Entretimento/1") ?>">Entretimento</a>
+            <a href="<?= urlProject("news/search/category/Entretenimento/1") ?>">Entretenimento</a>
           </li>
 
           <li>

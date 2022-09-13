@@ -20,6 +20,7 @@ $footerNewsList2->execute(array(rand(1, 12)));
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+
   <!-- Favicons -->
   <link href="<?= urlProject(FOLDER_BASE . "/src/assets/icons/TVONE_favicon.jpg") ?>" rel="icon" />
   <link href="<?= urlProject(FOLDER_BASE . "/src/assets/icons/TVONE_favicon.jpg") ?>" rel="apple-touch-icon" />
@@ -94,7 +95,7 @@ $footerNewsList2->execute(array(rand(1, 12)));
     centeredSlides: true,
     loop: true,
     autoplay: {
-      delay: 4000,
+      delay: 5000,
       disableOnInteraction: false
     },
     // If we need pagination
@@ -111,7 +112,7 @@ $footerNewsList2->execute(array(rand(1, 12)));
     centeredSlides: true,
     loop: true,
     autoplay: {
-      delay: 4000,
+      delay: 5000,
       disableOnInteraction: false
     },
     // If we need pagination

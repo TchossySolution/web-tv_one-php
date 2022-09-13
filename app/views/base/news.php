@@ -7,7 +7,7 @@
   //conexao da base de dados//
   require 'src/db/config.php';
 
-  $allNews = $pdo->prepare("SELECT * FROM news ");
+  $allNews = $pdo->prepare("SELECT * FROM news ORDER BY id DESC ");
   $allNews->execute();
 
   $publiciteis_8_11 = $pdo->prepare("SELECT * FROM publicity ORDER BY RAND() DESC limit 8, 4 ");

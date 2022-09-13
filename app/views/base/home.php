@@ -20,20 +20,20 @@ $publiciteis_3_6->execute();
 $choose_editors = $pdo->prepare("SELECT * FROM news where choose_editors_news='sim' ORDER BY id DESC limit 0, 4 ");
 $choose_editors->execute();
 
-// Ultimas Noticias
-$lastNews = $pdo->prepare("SELECT * FROM news ORDER BY id DESC limit 0, 4 ");
-$lastNews->execute();
-
 // Noticias em destaque
-$emphasis_news1 = $pdo->prepare("SELECT * FROM news where emphasis_news='sim' ORDER BY id DESC limit 1, 1 ");
+$emphasis_news1 = $pdo->prepare("SELECT * FROM news where emphasis_news='sim' ORDER BY id DESC limit 0, 1 ");
 $emphasis_news1->execute();
 $emphasis_newsList = $pdo->prepare("SELECT * FROM news where emphasis_news='sim' ORDER BY id DESC limit 1, 2 ");
 $emphasis_newsList->execute();
 
+// Ultimas Noticias
+$lastNews = $pdo->prepare("SELECT * FROM news ORDER BY id DESC limit 0, 4 ");
+$lastNews->execute();
+
 // Mais noticias sessão 1
 $moreNews1 = $pdo->prepare("SELECT * FROM news ORDER BY id DESC limit 6, 1 ");
 $moreNews1->execute();
-$moreNewsList1 = $pdo->prepare("SELECT * FROM news ORDER BY id DESC limit 6, 4 ");
+$moreNewsList1 = $pdo->prepare("SELECT * FROM news ORDER BY id DESC limit 7, 4 ");
 $moreNewsList1->execute();
 
 // Mais noticias sessão 2
@@ -49,7 +49,7 @@ $relevant_news->execute();
 // Mais noticias sessão 1
 $rightNews1 = $pdo->prepare("SELECT * FROM news WHERE category_id = '4' ORDER BY id DESC limit 0, 1 ");
 $rightNews1->execute();
-$rightNewsList1 = $pdo->prepare("SELECT * FROM news WHERE category_id = '4' ORDER BY id DESC limit 1, 4 ");
+$rightNewsList1 = $pdo->prepare("SELECT * FROM news ORDER BY RAND() DESC limit 1, 4 ");
 $rightNewsList1->execute();
 
 // Mais noticias sessão 2
@@ -91,7 +91,7 @@ $publiciteis_7_10->execute();
 .homeContainer .swiper {
   /* margin-top: 10rem; */
   width: 100vw;
-  height: calc(100vh - 10rem);
+  height: calc(100vh - 20rem);
 }
 
 .homeContainer .swiper .slide .imgBackground {
@@ -1538,6 +1538,17 @@ $publiciteis_7_10->execute();
     <!-- Additional required wrapper -->
     <div class="swiper-wrapper">
       <!-- Slides -->
+      <div class="swiper-slide">
+        <section class="slide" id="slide">
+          <section class="publicity">
+            <div class="container">
+              <div class='containerImage'>
+                <img src=" <?= urlProject(FOLDER_BASE . BASE_IMG . "/primaryPublicity.jpg") ?>" alt="">
+              </div>
+            </div>
+          </section>
+        </section>
+      </div>
       <?php foreach ($publiciteis_1_3 as $data) : ?>
       <div class="swiper-slide">
         <section class="slide" id="slide">

@@ -84,7 +84,7 @@
                  <i class="fa-regular fa-map"></i>
                </div>
                <p>
-                 Rua 21 de Janeiro, junto a AngoMart.
+                 Benfica, Por do sol, junto a Sonagalp.
                </p>
              </div>
 
@@ -93,7 +93,7 @@
                  <i class="fa-regular fa-envelope"></i>
                </div>
                <p>
-                 elmirophotograph@gmail.com
+                 geral@tvone.com
                </p>
              </div>
            </div>
@@ -105,7 +105,7 @@
                </div>
 
                <p>
-                 +244 941 236 262
+                 +244 934 292 121
                </p>
              </div>
 
@@ -124,7 +124,7 @@
        <div class="rightContainer">
          <form method="post" action="<?= urlProject(CONTROLLERS . "/messagesControllers.php") ?>" class="formContact">
            <h1>
-             Deixe uma mensagem
+             Publicidade & parceria
            </h1>
 
            <input type="text" placeholder="Nome*" name="name_ms" class="inputForm">

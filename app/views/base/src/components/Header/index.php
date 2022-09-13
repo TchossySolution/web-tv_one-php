@@ -67,7 +67,7 @@
             <a href="<?= urlProject("news/1") ?>">Notícias</a>
           </li>
           <li>
-            <a href="<?= urlProject("news/search/category/Entretimento/1") ?>">Entretimento</a>
+            <a href="<?= urlProject("news/search/category/Entretenimento/1") ?>">Entretenimento</a>
           </li>
           <li>
             <a href="<?= urlProject("news/search/category/Lifestyle/1") ?>">Lifestyle</a>
@@ -86,20 +86,21 @@
 
       <div class="searchAndDarkContainer">
         <div class="socialMediaContainer">
+        <div class="socialMediaContainer">
           <button class="buttonSocialMedia">
-            <a href="https://www.instagram.com/jornalpungoandongo/">
+            <a href="https://www.facebook.com/TV.One.canal.de.TV/">
               <i class="fa-brands fa-facebook-f"></i>
             </a>
           </button>
 
           <button class="buttonSocialMedia">
-            <a href="https://twitter.com/TVoneao/">
+            <a href="https://www.instagram.com/tvone.ao/">
               <i class="fa-brands fa-instagram"></i>
             </a>
           </button>
 
           <button class="buttonSocialMedia">
-            <a href="https://www.instagram.com/tvone.ao/">
+            <a href="https://twitter.com/TVoneao/">
               <i class="fa-brands fa-twitter"></i>
             </a>
           </button>
