@@ -9,11 +9,25 @@
         </a>
       </div>
 
-      <div class="loginContainer" style="opacity: 0;">
-        <button class="buttonRegister">
-          <i class="fa-regular fa-circle-user"></i>
-          Conectar-se
-        </button>
+      <div class="loginContainer">
+        <?php if ((isset($_SESSION['isUser']) == "isUser")) { ?>
+        <form class="row g-3 needs-validation" novalidate method="post"
+          action="<?= urlProject(CONTROLLERS . "/loginUserControllers.php") ?>">
+          <button type="submit" name="logOut_user" class="log_out_user">
+            Sair <i class="fa-solid fa-arrow-right-from-arc"></i>
+          </button>
+        </form>
+        <?php } else { ?>
+        <div class="loginContainer">
+          <a href="<?= urlProject("login") ?>">
+            <button class="buttonRegister">
+              <i class="fa-regular fa-circle-user"></i>
+              Conectar-se
+            </button>
+          </a>
+        </div>
+        <?php } ?>
+
       </div>
     </div>
 
@@ -61,7 +75,7 @@
       <nav class="navContainer">
         <ul>
           <li>
-            <a href="<?= urlProject() ?>">TV ONE</a>
+            <a href="<?= urlProject() ?>">TV ONE </a>
           </li>
           <li>
             <a href="<?= urlProject("news/1") ?>">Notícias</a>
@@ -86,38 +100,38 @@
 
       <div class="searchAndDarkContainer">
         <div class="socialMediaContainer">
-        <div class="socialMediaContainer">
-          <button class="buttonSocialMedia">
-            <a href="https://www.facebook.com/TV.One.canal.de.TV/">
-              <i class="fa-brands fa-facebook-f"></i>
-            </a>
-          </button>
+          <div class="socialMediaContainer">
+            <button class="buttonSocialMedia">
+              <a href="https://www.facebook.com/TV.One.canal.de.TV/">
+                <i class="fa-brands fa-facebook-f"></i>
+              </a>
+            </button>
 
-          <button class="buttonSocialMedia">
-            <a href="https://www.instagram.com/tvone.ao/">
-              <i class="fa-brands fa-instagram"></i>
-            </a>
-          </button>
+            <button class="buttonSocialMedia">
+              <a href="https://www.instagram.com/tvone.ao/">
+                <i class="fa-brands fa-instagram"></i>
+              </a>
+            </button>
 
-          <button class="buttonSocialMedia">
-            <a href="https://twitter.com/TVoneao/">
-              <i class="fa-brands fa-twitter"></i>
-            </a>
-          </button>
+            <button class="buttonSocialMedia">
+              <a href="https://twitter.com/TVoneao/">
+                <i class="fa-brands fa-twitter"></i>
+              </a>
+            </button>
 
-          <button class="buttonSocialMedia">
-            <a href="https://www.youtube.com/channel/UCzx544Egz4y_jQ7ggtdbDKw/">
-              <i class="fa-brands fa-youtube"></i>
-            </a>
+            <button class="buttonSocialMedia">
+              <a href="https://www.youtube.com/channel/UCzx544Egz4y_jQ7ggtdbDKw/">
+                <i class="fa-brands fa-youtube"></i>
+              </a>
+            </button>
+          </div>
+
+          <button style="opacity: 0;">
+            <i class="fa-solid fa-sun"></i>
+          </button>
+          <button class="iconMenu" id="menu-btn">
+            <i class="fa-solid fa-bars"></i>
           </button>
         </div>
-
-        <button style="opacity: 0;">
-          <i class="fa-solid fa-sun"></i>
-        </button>
-        <button class="iconMenu" id="menu-btn">
-          <i class="fa-solid fa-bars"></i>
-        </button>
       </div>
-    </div>
   </header>

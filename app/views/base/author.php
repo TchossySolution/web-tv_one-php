@@ -4,6 +4,7 @@
 
 //conexao da base de dados//
 require 'src/db/config.php';
+session_start();
 
 $authorName = $authorData['author_name'];
 $authorId = '0';

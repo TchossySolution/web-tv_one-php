@@ -1,5 +1,10 @@
  <?php $this->layout('_theme') ?>
 
+ <?php
+  session_start();
+
+  ?>
+
  <link rel="stylesheet" href="<?= urlProject(FOLDER_BASE . BASE_STYLES . "/searchStyled.css") ?>">
 
  <main class="searchContainer">

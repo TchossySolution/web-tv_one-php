@@ -2,8 +2,23 @@
 
 <?php
 require 'src/db/config.php';
+session_start();
 
 $id;
+$user_id = '';
+$user_email = '';
+
+if (!empty($_SESSION['user_email'])) {
+  $user_email = $_SESSION['user_email'];
+}
+
+$user = $pdo->prepare("SELECT * FROM users where user_email=? ");
+$user->execute(array($user_email));
+
+foreach ($user as $data) :
+  $user_id = $data['id'];
+endforeach;
+
 
 // Publicidades
 $publiciteis_1_3 = $pdo->prepare("SELECT * FROM publicity ORDER BY id DESC limit 0, 3 ");
@@ -45,6 +60,9 @@ endforeach;
 $news = $pdo->prepare("SELECT * FROM news where id=$id ");
 $news->execute();
 
+$allComments = $pdo->prepare("SELECT * FROM comments where news_id=? and is_approved='Aprovado' ORDER BY id DESC ");
+$allComments->execute(array($id));
+
 ?>
 
 <head>
@@ -56,7 +74,7 @@ $news->execute();
   <link rel="image_src" type="image/jpeg" href="<?= $image ?>" />
 </head>
 
-<link rel="stylesheet" href="<?= urlProject(FOLDER_BASE . BASE_STYLES . "/detailsNewsStyle.css") ?>">
+<link rel="stylesheet" href="<?= urlProject(FOLDER_BASE . BASE_STYLES . "/detailsNewsStyles.css") ?>">
 
 <main class="detailsNewsContainer">
   <div class="container">
@@ -205,6 +223,86 @@ $news->execute();
 
         </section>
 
+
+        <div class="comments-container">
+          <form class="row g-3 needs-validation" novalidate method="post"
+            action="<?= urlProject(CONTROLLERS . "/commentaryControllers.php") ?>">
+            <h3><i class="fa-solid fa-comment-dots" style="color: blue; font-size: 1.4rem; "></i>
+              <?= $allComments->rowCount() ?> Comentários</h3>
+
+            <?php if ((isset($_SESSION['isUser']) == "isUser")) { ?>
+            <br>
+            <br>
+            <textarea name="comment">Deixe o seu comentário...</textarea>
+            <br>
+
+            <input style="display: none;" type="txt" name="user_id" value="<?= $user_id ?>">
+            <input style="display: none;" type="txt" name="news_id" value="<?= $id ?>">
+            <input style="display: none;" type="txt" name="is_approved" value="Pendente">
+            <button type="submit" name="send_comments" class="button-send-comment">
+              Envia comentário
+            </button>
+            <br>
+            <br>
+            <?php } else { ?>
+            <br>
+            <div class="loginContainer">
+              <p>Faça login para introduzir o seu comentário.</p>
+              <button type="button" class="buttonLogin" onclick="document.getElementById('id02').style.display='flex'">
+                Conectar-se
+              </button>
+            </div>
+            <?php } ?>
+          </form>
+
+
+          <ul id="comments-list" class="comments-list">
+
+            <?php
+              foreach ($allComments as $data) :
+
+                $data_comment = $data['date_create'];
+                $text_comment = $data['comment'];
+
+                $user_comment_id = $data['user_id'];
+                $user_name = '';
+                $user_avatar = '';
+
+                $get_user_comment = $pdo->prepare("SELECT * FROM users where id=$user_comment_id");
+                $get_user_comment->execute();
+
+                foreach ($get_user_comment as $author) :
+                  $user_name = $author['user_name'];
+                  $user_avatar = $author['user_photo_profile'];
+                endforeach;
+              ?>
+            <li>
+              <div class="comment-main-level">
+                <!-- Avatar -->
+                <div class="comment-avatar">
+                  <img src="<?= $user_avatar ?>" alt="" />
+                </div>
+                <!-- Contenedor del Comentario -->
+                <div class="comment-box">
+                  <div class="comment-head">
+                    <h6 class="comment-name by-author">
+                      <a href="#"> <?= $user_name ?> </a>
+                    </h6>
+                    <span class="posted-time"> <?= $data_comment ?> </span>
+                  </div>
+                  <div class="comment-content">
+                    <?= $text_comment ?>
+
+                  </div>
+
+                </div>
+              </div>
+            </li> <?php endforeach ?>
+
+          </ul>
+
+
+        </div>
       </div>
       <?php endforeach ?>
 

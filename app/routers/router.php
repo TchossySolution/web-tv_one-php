@@ -14,6 +14,7 @@ function router()
   // 1º parâmetro: Rota | 2º parâmetro: controller (o que será executado)
   // No controller: 1º parâmetro: o arquivo (onde tem a função) (ex.: Base) |  2º parâmetro: função (ex.: home)
   $router->get("/", "Base:home");
+  $router->get("/login", "Base:login");
   $router->get("/about", "Base:about");
   $router->get("/contacts", "Base:contacts");
 
@@ -36,6 +37,7 @@ function router()
   $router->get("/authors", "Dash:authors");
   $router->get("/messages", "Dash:messages");
   $router->get("/newsLetters", "Dash:newsLetters");
+  $router->get("/comments", "Dash:comments");
 
   // ROTA DE ERROS
   $router->group("/ops");

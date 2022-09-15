@@ -1,5 +1,4 @@
 <?php
-
 //conexao da base de dados//
 require 'src/db/config.php';
 

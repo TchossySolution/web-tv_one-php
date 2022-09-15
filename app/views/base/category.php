@@ -4,6 +4,7 @@
 
 //conexao da base de dados//
 require 'src/db/config.php';
+session_start();
 
 $categoryName = $categoryData['category_name'];
 $categoryId = '0';

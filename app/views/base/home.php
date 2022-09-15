@@ -6,6 +6,7 @@ $status = 1;
 
 //conexao da base de dados//
 require 'src/db/config.php';
+session_start();
 
 $allNews = $pdo->prepare("SELECT * FROM news ");
 $allNews->execute();

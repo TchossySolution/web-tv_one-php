@@ -49,6 +49,11 @@ class Dash
     $page_name = "newsLetters";
     echo $this->templates->render($page_name, $data);
   }
+  public function comments($data)
+  {
+    $page_name = "comments";
+    echo $this->templates->render($page_name, $data);
+  }
   public function login($data)
   {
     $page_name = "login";

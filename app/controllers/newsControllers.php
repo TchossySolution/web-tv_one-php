@@ -55,7 +55,7 @@ if (isset($_POST['create_news'])) {
   $description_news = $_POST['description_news'];
   $epigraph_news = $_POST['epigraph_news'];
   $author_epigraph_news = $_POST['author_epigraph_news'];
-  $image_news =  'https://tvone.ao/app/_imagesDb/' . $newName;
+  $image_news =  '';
   $description_image_news = $_POST['description_image_news'];
   $photography_news = $_POST['photography_news'];
   $reading_time_news = $_POST['reading_time_news'];
@@ -97,7 +97,8 @@ if (isset($_POST['create_news'])) {
       $newName = "img_news-" . date('d-m-Y') . '-' . date('H') . 'h-' . uniqid() . ".$extension";
 
       if (move_uploaded_file($tmp, $folder . $newName)) {
-        echo "Upload realizado com sucesso!";
+        $image_news = 'http://tvone.ao/app/_imagesDb/' . $newName;
+        // echo "Upload realizado com sucesso!";
       } else {
         echo "<br> Erro: ao realizar Upload...<br>";
         // echo "<a href='https://tvone.ao/dashboard/news'> Voltar </a>";

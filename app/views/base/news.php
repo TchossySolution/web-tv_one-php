@@ -6,6 +6,7 @@
 
   //conexao da base de dados//
   require 'src/db/config.php';
+  session_start();
 
   $allNews = $pdo->prepare("SELECT * FROM news ORDER BY id DESC ");
   $allNews->execute();

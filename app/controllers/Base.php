@@ -55,6 +55,12 @@ class Base
     $page_name = "contacts";
     echo $this->templates->render($page_name, []);
   }
+  // LOGIN
+  public function login(): void
+  {
+    $page_name = "login";
+    echo $this->templates->render($page_name, []);
+  }
 
   // ERROS
   public function error(array $data): void
