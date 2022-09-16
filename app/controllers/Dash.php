@@ -13,7 +13,11 @@ class Dash
     $viewsPath = __DIR__ . DASHBOARD_VIEWS;
     $this->templates = new Engine($viewsPath);
   }
-
+  public function global($data)
+  {
+    $page_name = "global";
+    echo $this->templates->render($page_name, $data);
+  }
   public function users($data)
   {
     $page_name = "users";

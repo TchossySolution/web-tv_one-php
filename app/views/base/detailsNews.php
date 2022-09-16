@@ -248,9 +248,11 @@ $allComments->execute(array($id));
             <br>
             <div class="loginContainer">
               <p>Faça login para introduzir o seu comentário.</p>
-              <button type="button" class="buttonLogin" onclick="document.getElementById('id02').style.display='flex'">
-                Conectar-se
-              </button>
+              <a href="<?= urlProject("login") ?>">
+                <button type="button" class="buttonLogin">
+                  Conectar-se
+                </button>
+              </a>
             </div>
             <?php } ?>
           </form>
@@ -348,24 +350,26 @@ $allComments->execute(array($id));
               endforeach;
 
             ?>
-            <div class="notice">
-              <div class="imageContainer">
-                <img src="<?= $data['image_news'] ?>" alt="">
-              </div>
-
-              <div class="noticeContent">
-                <h1><?= $data['title_news'] ?></h1>
-
-                <div class="noticeInfo">
-                  <p><i class="fa-solid fa-user"></i> <strong><?= $author_name ?></strong> -
-                    <span><?= $data['date_create'] ?></span>
-                  </p>
-
+            <a href="<?= urlProject(BASE_DETAILSNEWS . "/" . $data['id']) ?>">
+              <div class="notice">
+                <div class="imageContainer">
+                  <img src="<?= $data['image_news'] ?>" alt="">
                 </div>
 
-                <p><?= $data['resume_news'] ?></p>
+                <div class="noticeContent">
+                  <h1><?= $data['title_news'] ?></h1>
+
+                  <div class="noticeInfo">
+                    <p><i class="fa-solid fa-user"></i> <strong><?= $author_name ?></strong> -
+                      <span><?= $data['date_create'] ?></span>
+                    </p>
+
+                  </div>
+
+                  <p><?= $data['resume_news'] ?></p>
+                </div>
               </div>
-            </div>
+            </a>
             <?php endforeach ?>
           </div>
 
@@ -386,20 +390,22 @@ $allComments->execute(array($id));
               endforeach;
 
             ?>
-            <div class="notice">
-              <div class="imageContainer">
-                <img src="<?= $data['image_news'] ?>" alt="">
-              </div>
-
-              <div class="noticeContent">
-                <h1><?= $data['title_news'] ?></h1>
-
-                <div class="noticeInfo">
-                  <p><?= $data['date_create'] ?></p>
+            <a href="<?= urlProject(BASE_DETAILSNEWS . "/" . $data['id']) ?>">
+              <div class="notice">
+                <div class="imageContainer">
+                  <img src="<?= $data['image_news'] ?>" alt="">
                 </div>
 
+                <div class="noticeContent">
+                  <h1><?= $data['title_news'] ?></h1>
+
+                  <div class="noticeInfo">
+                    <p><?= $data['date_create'] ?></p>
+                  </div>
+
+                </div>
               </div>
-            </div>
+            </a>
             <?php endforeach ?>
 
           </div>

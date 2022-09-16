@@ -21,18 +21,18 @@ if (isset($_POST['login_user'])) {
       unset($_SESSION['user_password']);
       echo "<script>
               alert('Dados do usuario incorreto!');
-              window.location.href='http://tvone.ao';
+              window.location.href='https://tvone.ao';
             </script>";
     } else {
       $_SESSION['user_name'] = $user_name;
       $_SESSION['user_email'] = $user_email;
       $_SESSION['isUser'] = $isUser;
-      header('Location: http://tvone.ao');
+      header('Location: https://tvone.ao');
     }
   } else {
     echo "<script>
               alert('Preencha todos os dados!');
-              window.location.href='http://tvone.ao';
+              window.location.href='https://tvone.ao';
           </script>";
   }
 };
@@ -100,7 +100,7 @@ if (isset($_POST['create_user'])) {
     $password_err = "O nome e o e-mail do usuário são campos obrigatórios.";
     echo "<script>
     alert('O nome e o e-mail do usuário são campos obrigatórios.');
-    window.location.href='http://tvone.ao';
+    window.location.href='https://tvone.ao';
     </script>";
     exit();
   }
@@ -108,7 +108,7 @@ if (isset($_POST['create_user'])) {
     $password_err = "A palavra-passe é um campos obrigatórios.";
     echo "<script>
                 alert('O nome e o e-mail do usuário são campos obrigatórios.');
-                window.location.href='http://tvone.ao';
+                window.location.href='https://tvone.ao';
               </script>";
     exit();
   }
@@ -122,13 +122,13 @@ if (isset($_POST['create_user'])) {
       unset($_SESSION['user_email']);
       echo "<script>
               alert('Este email já está cadastrado!');
-              window.location.href='http://tvone.ao';
+              window.location.href='https://tvone.ao';
             </script>";
     } else {
       if ($_FILES['user_photo_profile']['size'] >= $size_max) {
         echo "<script>
                 alert('Arquivo excedeu o tamanho máximo de 2MB!');
-                window.location.href='http://tvone.ao';
+                window.location.href='https://tvone.ao';
               </script>";
         exit();
       } else {
@@ -146,12 +146,12 @@ if (isset($_POST['create_user'])) {
           $newName = "img_user-" . date('d-m-Y') . '-' . date('H') . 'h-' . uniqid() . ".$extension";
 
           if (move_uploaded_file($tmp, $folder . $newName)) {
-            $user_photo_profile = 'http://tvone.ao/app/_imagesDb/users/' . $newName;
+            $user_photo_profile = 'https://tvone.ao/app/_imagesDb/users/' . $newName;
             // echo "Upload realizado com sucesso!";
           } else {
             echo "<script>
                     alert('Erro: ao realizar Upload...');
-                    window.location.href='http://tvone.ao/login';
+                    window.location.href='https://tvone.ao/login';
                   </script>";
 
             exit();
@@ -159,7 +159,7 @@ if (isset($_POST['create_user'])) {
         } else {
           echo "<script>
                   alert('Erro: Extensão ($extension) não permitido');
-                  window.location.href='http://tvone.ao/login';
+                  window.location.href='https://tvone.ao/login';
                 </script>";
           exit();
         }
@@ -179,9 +179,9 @@ if (isset($_POST['create_user'])) {
         $_SESSION['user_email'] = $user_email;
         $_SESSION['isUser'] = $isUser;
 
-        header('Location: http://tvone.ao');
+        header('Location: https://tvone.ao');
       } else {
-        header('Location: http://tvone.ao/ops/nn');
+        header('Location: https://tvone.ao/ops/nn');
       };
     };
   };
@@ -191,12 +191,12 @@ if (isset($_POST['delete_user'])) {
 
   $id = $_POST['id'];
 
-  $sql = $pdo->prepare("DELETE FROM user_user WHERE id=?");
+  $sql = $pdo->prepare("DELETE FROM users WHERE id=?");
 
   if ($sql->execute(array($id))) {
-    header('Location: http://tvone.ao');
+    header('Location: https://tvone.ao/dashboard/users');
   } else {
-    header('Location: http://tvone.ao/ops/nn');
+    header('Location: https://tvone.ao/ops/nn');
   };
 };
 
@@ -204,5 +204,5 @@ if (isset($_POST['logOut_user'])) {
   unset($_SESSION['user_name']);
   unset($_SESSION['user_email']);
   unset($_SESSION['isUser']);
-  header('Location: http://tvone.ao');
+  header('Location: https://tvone.ao');
 };

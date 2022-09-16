@@ -42,10 +42,6 @@ if ((isset($_SESSION['isAdm']) == "adm")) {
   <title> <?= SITE ?> adm </title>
 </head>
 
-
-
-<div class="removeHeader"></div>
-
 <body>
   <main>
     <div class="container">
@@ -193,7 +189,3 @@ if ((isset($_SESSION['isAdm']) == "adm")) {
 </body>
 
 </html>
-
-<?php $this->start('removeHeader'); ?>
-
-<?php $this->end(); ?>

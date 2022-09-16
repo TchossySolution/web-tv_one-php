@@ -58,14 +58,14 @@ if (isset($_POST['send_comments'])) {
   if (empty(trim($news_id))) {
     echo "<script>
               alert('Não foi possível identificar está noticia!');
-              window.location.href='http://jornalpungoandongo.ao/news/1';
+              window.location.href='http://tvone.ao/news/1';
             </script>";
     exit();
   }
   if (empty(trim($comment))) {
     echo "<script>
               alert('Por favor preencha o campo da mensagem!');
-              window.location.href='http://jornalpungoandongo.ao/news/detailsNews/$news_id';
+              window.location.href='http://tvone.ao/news/detailsNews/$news_id';
             </script>";
     exit();
   }
@@ -74,17 +74,17 @@ if (isset($_POST['send_comments'])) {
 
   if ($sql->execute(array($user_id, $news_id, $comment, $is_approved, $date_create, $date_update))) {
     echo "<script>
-              window.location.href='http://jornalpungoandongo.ao/news/detailsNews/$news_id';
+              window.location.href='http://tvone.ao/news/detailsNews/$news_id';
             </script>";
   } else {
-    header('Location: http://jornalpungoandongo.ao/ops/nn');
+    header('Location: http://tvone.ao/ops/nn');
   };
 };
 
 if (isset($_POST['update_comments'])) {
 
   // echo "Alguma coisa <br>";
-  echo "<a href='https://jornalpungoandongo.ao/dashboard/comments'> Voltar </a>";
+  echo "<a href='https://tvone.ao/dashboard/comments'> Voltar </a>";
 
   $data = date('D');
   $mes = date('M');
@@ -134,10 +134,10 @@ if (isset($_POST['update_comments'])) {
   if ($sql->execute(array($status, $date_update, $id))) {
     echo "<script>
             alert('O comentário foi colocado no estado $status');
-            window.location.href='http://jornalpungoandongo.ao/dashboard/comments';
+            window.location.href='http://tvone.ao/dashboard/comments';
           </script>";
   } else {
-    header('Location: http://jornalpungoandongo.ao/ops/nn');
+    header('Location: http://tvone.ao/ops/nn');
   };
 };
 
@@ -148,11 +148,11 @@ if (isset($_POST['delete_comments'])) {
 
   if ($sql->execute(array($id))) {
     echo "<script>
-              window.location.href='http://jornalpungoandongo.ao/dashboard/comments';
+              window.location.href='http://tvone.ao/dashboard/comments';
             </script>";
   } else {
     echo "<script>
-              window.location.href='http://jornalpungoandongo.ao/dashboard/ops/nn';
+              window.location.href='http://tvone.ao/dashboard/ops/nn';
             </script>";
   };
 };

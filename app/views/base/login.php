@@ -20,7 +20,7 @@ if ((isset($_SESSION['isUser']) == "isUser")) {
 
   <link rel="stylesheet" href="<?= urlProject(FOLDER_BASE . BASE_STYLES . "/loginStyles.css") ?>">
 
-  <title>Document</title>
+  <title>TvOne Login</title>
 </head>
 
 <body>
@@ -28,15 +28,15 @@ if ((isset($_SESSION['isUser']) == "isUser")) {
     <div class="form-container sign-up-container">
       <form method="post" enctype="multipart/form-data"
         action="<?= urlProject(CONTROLLERS . "/loginUserControllers.php") ?>">
-        <h1>Create Account</h1>
+        <h1>Criar uma conta</h1>
         <br>
         <br>
-        <span>use your email for registration</span>
+        <span>Use seu e-mail para cadastro</span>
         <input type="file" class="form-control" name="user_photo_profile" placeholder="Selecione a sua foto de perfil"
           require>
-        <input type="text" placeholder="Name" name="user_name" />
-        <input type="email" placeholder="Email" name="user_email" />
-        <input type="password" placeholder="Password" name="user_password" />
+        <input type="text" placeholder="Nome" name="user_name" />
+        <input type="email" placeholder="E-mail" name="user_email" />
+        <input type="password" placeholder="Senha" name="user_password" />
 
         <input style="display: none;" type="txt" name="isUser" value="isUser">
         <button type="submit" name="create_user">Sign Up</button>
@@ -45,31 +45,31 @@ if ((isset($_SESSION['isUser']) == "isUser")) {
 
     <div class="form-container sign-in-container">
       <form method="post" action="<?= urlProject(CONTROLLERS . "/loginUserControllers.php") ?>">
-        <h1>Sign in</h1>
+        <h1>Entrar</h1>
         <br>
         <br>
-        <span>use your account</span>
-        <input type="email" placeholder="Email" name="user_email" />
-        <input type="password" placeholder="Password" name="user_password" />
+        <span>Use sua conta</span>
+        <input type="email" placeholder="E-mail" name="user_email" />
+        <input type="password" placeholder="Senha" name="user_password" />
 
         <input style="display: none;" type="txt" name="isUser" value="isUser">
-        <button type="submit" name="login_user">Sign In</button>
+        <button type="submit" name="login_user">Entrar</button>
       </form>
     </div>
 
     <div class="overlay-container">
       <div class="overlay">
         <div class="overlay-panel overlay-left">
-          <h1>Welcome Back!</h1>
+          <h1>Bem vindo de volta!</h1>
           <p>
-            To keep connected with us please login with your personal info
+            Para se manter conectado conosco, faça login com suas informações pessoais!
           </p>
-          <button class="ghost" id="signIn">Sign In</button>
+          <button class="ghost" id="signIn">Entrar</button>
         </div>
         <div class="overlay-panel overlay-right">
-          <h1>Hello, Friend!</h1>
-          <p>Enter your personal details and start journey with us</p>
-          <button class="ghost" id="signUp">Sign Up</button>
+          <h1>Olá amigo!</h1>
+          <p>Insira seus dados pessoais e comece a e mantenha-se atualizado!</p>
+          <button class="ghost" id="signUp">Increver-se</button>
         </div>
       </div>
     </div>

@@ -29,6 +29,7 @@ function router()
   // ROTA DA DASHBOARD
   $router->group("/dashboard");
   $router->get("/", "Dash:login");
+  $router->get("/global", "Dash:global");
   $router->get("/users", "Dash:users");
   $router->get("/news", "Dash:news");
   $router->get("/publicity", "Dash:publicity");

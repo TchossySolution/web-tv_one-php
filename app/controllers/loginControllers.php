@@ -157,7 +157,7 @@ if (isset($_POST['delete_Adm'])) {
   $sql = $pdo->prepare("DELETE FROM user_adm WHERE id=?");
 
   if ($sql->execute(array($id))) {
-    header('Location: https://tvone.ao/dashboard/dashboard/news');
+    header('Location: https://tvone.ao/dashboard/dashboard/users');
   } else {
     header('Location: https://tvone.ao/dashboard/ops/nn');
   };

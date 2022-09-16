@@ -183,24 +183,26 @@
                 endforeach;
 
               ?>
-             <div class="notice">
-               <div class="imageContainer">
-                 <img src="<?= $data['image_news'] ?>" alt="">
-               </div>
-
-               <div class="noticeContent">
-                 <h1><?= $data['title_news'] ?></h1>
-
-                 <div class="noticeInfo">
-                   <p><i class="fa-solid fa-user"></i> <strong><?= $author_name ?></strong> -
-                     <span><?= $data['date_create'] ?></span>
-                   </p>
-
+             <a href="<?= urlProject(BASE_DETAILSNEWS . "/" . $data['id']) ?>">
+               <div class="notice">
+                 <div class="imageContainer">
+                   <img src="<?= $data['image_news'] ?>" alt="">
                  </div>
 
-                 <p><?= $data['resume_news'] ?></p>
+                 <div class="noticeContent">
+                   <h1><?= $data['title_news'] ?></h1>
+
+                   <div class="noticeInfo">
+                     <p><i class="fa-solid fa-user"></i> <strong><?= $author_name ?></strong> -
+                       <span><?= $data['date_create'] ?></span>
+                     </p>
+
+                   </div>
+
+                   <p><?= $data['resume_news'] ?></p>
+                 </div>
                </div>
-             </div>
+             </a>
              <?php endforeach ?>
            </div>
 
@@ -221,20 +223,22 @@
                 endforeach;
 
               ?>
-             <div class="notice">
-               <div class="imageContainer">
-                 <img src="<?= $data['image_news'] ?>" alt="">
-               </div>
-
-               <div class="noticeContent">
-                 <h1><?= $data['title_news'] ?></h1>
-
-                 <div class="noticeInfo">
-                   <p><?= $data['date_create'] ?></p>
+             <a href="<?= urlProject(BASE_DETAILSNEWS . "/" . $data['id']) ?>">
+               <div class="notice">
+                 <div class="imageContainer">
+                   <img src="<?= $data['image_news'] ?>" alt="">
                  </div>
 
+                 <div class="noticeContent">
+                   <h1><?= $data['title_news'] ?></h1>
+
+                   <div class="noticeInfo">
+                     <p><?= $data['date_create'] ?></p>
+                   </div>
+
+                 </div>
                </div>
-             </div>
+             </a>
              <?php endforeach ?>
 
            </div>

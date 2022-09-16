@@ -1,175 +1,273 @@
- <?php $this->layout('_theme') ?>
+<?php $this->layout('_theme') ?>
 
- <?php
-  session_start();
+<?php
 
-  ?>
+//conexao da base de dados//
+require 'src/db/config.php';
+session_start();
 
- <link rel="stylesheet" href="<?= urlProject(FOLDER_BASE . BASE_STYLES . "/searchStyled.css") ?>">
+$categoryName = $categoryData['category_name'];
+$categoryId = '0';
 
- <main class="searchContainer">
-   <div class="container">
 
-     <div class="indicateContainer">
-       <a href=""> Home </a>
-       <span> » </span>
-       <a href=""> Notícias </a>
-       <span> » </span>
-       <a href=""> Alguma coisa </a>
-       <span> » </span>
-       <a href=""> página <span>1</span> </a>
-     </div>
+$allCategory = $pdo->prepare("SELECT * FROM categories WHERE name_category = ?");
+$allCategory->execute(array($categoryName));
 
-     <div class="searchForContainer">
-       <p>
-         Pesquisou por:
-       </p>
-       <strong>
-         Alguma coisa
-       </strong>
-     </div>
+foreach ($allCategory as $category) :
+  $categoryId = $category['id'];
+endforeach;
 
-     <div class="containerAllContent">
-       <div class="containerLeft">
-         <div class="allNotices">
-           <div class="notice">
+$allNews = $pdo->prepare("SELECT * FROM news WHERE category_id = ? ORDER BY id DESC");
+$allNews->execute(array($categoryId));
 
-             <div class="imageContainer">
-               <img
-                 src="https://smartmag.theme-sphere.com/good-news/wp-content/uploads/sites/6/2021/01/Depositphotos_138978856_xl-2015-1024x684.jpg"
-                 alt="">
-             </div>
+$publiciteis_12_15 = $pdo->prepare("SELECT * FROM publicity ORDER BY id DESC limit 12, 4 ");
+$publiciteis_12_15->execute();
 
-             <div class="noticeContent">
-               <div>
-                 <button class="categoryNews">
-                   Categoria
-                 </button>
-               </div>
+// Publicidades
+$publiciteis_1_3 = $pdo->prepare("SELECT * FROM publicity ORDER BY id DESC limit 0, 3 ");
+$publiciteis_1_3->execute();
+$publiciteis_4_6 = $pdo->prepare("SELECT * FROM publicity ORDER BY id DESC limit 3, 4 ");
+$publiciteis_4_6->execute();
 
-               <h1>
-                 Linha de produtos Bose na feira: showroom aberto agora em Dubai
-               </h1>
+// Mais noticias sessão 1
+$rightNews1 = $pdo->prepare("SELECT * FROM news WHERE category_id = ? ORDER BY id DESC limit 0, 1 ");
+$rightNews1->execute(array(rand(1, 13)));
+$rightNewsList1 = $pdo->prepare("SELECT * FROM news WHERE category_id = ? ORDER BY id DESC limit 1, 4 ");
+$rightNewsList1->execute(array(rand(1, 13)));
+?>
 
-               <p>
-                 Para entender o novo smartwatch e outros dispositivos profissionais de foco recente, devemos olhar
-                 para
-                 o Vale do Silício e o…
-               </p>
+<link rel="stylesheet" href="<?= urlProject(FOLDER_BASE . BASE_STYLES . "/categoryStyle.css") ?>">
 
-               <div class="noticeInfo">
-                 <p>Por <strong>Rafael Pilartes</strong> - <span><i class="fa-solid fa-calendar-days"></i></i> 14 de
-                     Janeiro de 2022</span></p>
-                 <p><i class="fa-regular fa-comment-dots"></i> 3</p>
-               </div>
+<main class="categoryContainer">
+  <div class="container">
 
-               <div>
-                 <button class="readMore">
-                   Leia mais sobre a noticia
-                   <i class="fa-solid fa-right-long"></i>
-                 </button>
-               </div>
-             </div>
-           </div>
 
-         </div>
+    <section class="publicitySwiper">
+      <!-- Additional required wrapper -->
+      <div class="swiper-wrapper">
+        <!-- Slides -->
+        <?php foreach ($publiciteis_12_15 as $data) : ?>
+        <div class="swiper-slide">
+          <section class="slide" id="slide">
+            <section class="publicity">
+              <div class="container">
+                <div class='containerImage'>
+                  <img src=" <?= $data['image_publicity'] ?>" alt="">
+                </div>
+              </div>
+            </section>
+          </section>
+        </div>
+        <?php endforeach ?>
+      </div>
+      <!-- If we need pagination -->
+      <div class="swiper-pagination-publicitySwiper"></div>
 
-       </div>
+      <!-- If we need navigation buttons -->
+      <!-- <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"></div> -->
 
-       <div class="rightContainer">
-         <div class="otherNotices">
-           <div class="imageContainer">
-             <img
-               src="https://smartmag.theme-sphere.com/good-news/wp-content/uploads/sites/6/2021/01/pexels-nilay-ramoliya-3964833-1-1024x683.jpg"
-               alt="">
-           </div>
+      <!-- If we need scrollbar -->
+      <!--<div class="swiper-scrollbar"></div>-->
+    </section>
 
-           <div class="categoryTItleSectionContainer">
-             <h1>Não perca</h1>
-           </div>
+    <div class="indicateContainer">
+      <a href=""> Home </a>
+      <span> » </span>
+      <a href=""> Notícias </a>
+      <span> » </span>
+      <a href=""> Categoria </a>
+      <span> » </span>
+      <a href=""> <?= $categoryName ?> </a>
+      <span> » </span>
+      <a href=""> página <span>1</span> </a>
+    </div>
 
-           <div class="noticeInEmphasis">
-             <div class="notice">
-               <div class="imageContainer">
-                 <img
-                   src="https://smartmag.theme-sphere.com/good-news/wp-content/uploads/sites/6/2021/01/pexels-nilay-ramoliya-3964833-1-1024x683.jpg"
-                   alt="">
-               </div>
+    <div class="searchForContainer">
+      <p>
+        Pesquisou por:
+      </p>
+      <strong>
+        <?= $categoryName ?>
+      </strong>
+    </div>
 
-               <div class="noticeContent">
-                 <h1>Linha de produtos Bose na feira: showroom aberto agora em Dubai</h1>
+    <div class="containerAllContent">
+      <div class="containerLeft">
+        <div class="allNotices">
 
-                 <div class="noticeInfo">
-                   <p>Por <strong>Rafael Pilartes</strong> - <span>14 de Janeiro de 2022</span></p>
-                   <p><i class="fa-regular fa-comment-dots"></i> 3</p>
-                 </div>
+          <?php foreach ($allNews as $data) :
+            $author_id = $data['author_id'];
+            $author_name;
 
-                 <p>Para entender o novo smartwatch e outros dispositivos profissionais de foco recente, devemos
-                   olhar
-                   para
-                   o Vale do Silício e o…</p>
-               </div>
-             </div>
-           </div>
-           <br>
-           <br>
-           <div class="noticeResume">
-             <div class="notice">
-               <div class="imageContainer">
-                 <img
-                   src="https://smartmag.theme-sphere.com/good-news/wp-content/uploads/sites/6/2021/01/pexels-nilay-ramoliya-3964833-1-1024x683.jpg"
-                   alt="">
-               </div>
+            $get_author = $pdo->prepare("SELECT * FROM author where id=$author_id");
+            $get_author->execute();
 
-               <div class="noticeContent">
-                 <h1>Linha de produtos Bose na feira: showroom aberto agora em Dubai</h1>
+            foreach ($get_author as $author) :
+              $author_name = $author['name_author'];
+            endforeach;
 
-                 <div class="noticeInfo">
-                   <p>14 de Janeiro de 2022</p>
-                 </div>
+            $categoryName = '';
+            $categoryId = $data['category_id'];
 
-               </div>
-             </div>
-             <br>
-             <div class="notice">
-               <div class="imageContainer">
-                 <img
-                   src="https://smartmag.theme-sphere.com/good-news/wp-content/uploads/sites/6/2021/01/pexels-nilay-ramoliya-3964833-1-1024x683.jpg"
-                   alt="">
-               </div>
+            $allCategory = $pdo->prepare("SELECT * FROM categories WHERE id = ?");
+            $allCategory->execute(array($categoryId));
 
-               <div class="noticeContent">
-                 <h1>Linha de produtos Bose na feira: showroom aberto agora em Dubai</h1>
+            foreach ($allCategory as $category) :
+              $categoryName = $category['name_category'];
+            endforeach;
 
-                 <div class="noticeInfo">
-                   <p>14 de Janeiro de 2022</p>
-                 </div>
+          ?>
+          <a href="<?= urlProject(BASE_DETAILSNEWS . "/" . $data['id']) ?>">
+            <div class="notice">
 
-               </div>
-             </div>
-             <br>
-             <div class="notice">
-               <div class="imageContainer">
-                 <img
-                   src="https://smartmag.theme-sphere.com/good-news/wp-content/uploads/sites/6/2021/01/pexels-nilay-ramoliya-3964833-1-1024x683.jpg"
-                   alt="">
-               </div>
+              <div class="imageContainer">
+                <img src="<?= $data['image_news'] ?>" alt="">
+              </div>
 
-               <div class="noticeContent">
-                 <h1>Linha de produtos Bose na feira: showroom aberto agora em Dubai</h1>
+              <div class="noticeContent">
+                <div>
+                  <button class="categoryNews">
+                    <?= $categoryName ?>
+                  </button>
+                </div>
 
-                 <div class="noticeInfo">
-                   <p>14 de Janeiro de 2022</p>
-                 </div>
+                <h1>
+                  <?= $data['title_news'] ?>
+                </h1>
 
-               </div>
-             </div>
-           </div>
+                <p>
+                  <?= $data['resume_news'] ?>
+                </p>
 
-         </div>
-       </div>
+                <div class="noticeInfo">
+                  <p>Por <strong> <?= $author_name ?></strong> - <span><i class="fa-solid fa-calendar-days"></i>
+                      <?= $data['date_create'] ?></span></p>
+                  <p><i class="fa-regular fa-comment-dots"></i> 3</p>
+                </div>
 
-     </div>
+                <div>
+                  <button class="readMore">
+                    Leia mais sobre a noticia
+                    <i class="fa-solid fa-right-long"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </a>
 
-   </div>
- </main>
+          <?php endforeach ?>
+
+        </div>
+
+      </div>
+
+      <div class="rightContainer">
+        <div class="otherNotices">
+          <section class="mySwiper swiper">
+            <!-- Additional required wrapper -->
+            <div class="swiper-wrapper">
+              <!-- Slides -->
+              <?php foreach ($publiciteis_4_6 as $data) : ?>
+              <div class="swiper-slide">
+                <section class="slide" id="slide">
+                  <section class="publicity">
+                    <div class='containerImage'>
+                      <img src=" <?= $data['image_publicity'] ?>" alt="">
+                    </div>
+                  </section>
+                </section>
+              </div>
+              <?php endforeach ?>
+            </div>
+
+          </section>
+
+          <br>
+          <br>
+
+          <div class="categoryTItleSectionContainer">
+            <h1>Não perca</h1>
+          </div>
+
+          <div class="noticeInEmphasis">
+            <?php
+            foreach ($rightNews1 as $data) :
+              $author_id = $data['author_id'];
+              $author_name;
+
+              $get_author = $pdo->prepare("SELECT * FROM author where id=$author_id");
+              $get_author->execute();
+
+              foreach ($get_author as $author) :
+                $author_name = $author['name_author'];
+              endforeach;
+
+            ?>
+            <a href="<?= urlProject(BASE_DETAILSNEWS . "/" . $data['id']) ?>">
+              <div class="notice">
+                <div class="imageContainer">
+                  <img src="<?= $data['image_news'] ?>" alt="">
+                </div>
+
+                <div class="noticeContent">
+                  <h1><?= $data['title_news'] ?></h1>
+
+                  <div class="noticeInfo">
+                    <p><i class="fa-solid fa-user"></i> <strong><?= $author_name ?></strong> -
+                      <span><?= $data['date_create'] ?></span>
+                    </p>
+
+                  </div>
+
+                  <p><?= $data['resume_news'] ?></p>
+                </div>
+              </div>
+            </a>
+            <?php endforeach ?>
+          </div>
+
+          <br>
+          <br>
+
+          <div class="noticeResume">
+            <?php
+            foreach ($rightNewsList1 as $data) :
+              $author_id = $data['author_id'];
+              $author_name;
+
+              $get_author = $pdo->prepare("SELECT * FROM author where id=$author_id");
+              $get_author->execute();
+
+              foreach ($get_author as $author) :
+                $author_name = $author['name_author'];
+              endforeach;
+
+            ?>
+            <a href="<?= urlProject(BASE_DETAILSNEWS . "/" . $data['id']) ?>">
+              <div class="notice">
+                <div class="imageContainer">
+                  <img src="<?= $data['image_news'] ?>" alt="">
+                </div>
+
+                <div class="noticeContent">
+                  <h1><?= $data['title_news'] ?></h1>
+
+                  <div class="noticeInfo">
+                    <p><?= $data['date_create'] ?></p>
+                  </div>
+
+                </div>
+              </div>
+            </a>
+            <?php endforeach ?>
+
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</main>

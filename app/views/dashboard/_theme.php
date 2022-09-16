@@ -75,7 +75,7 @@ foreach ($get_user as $data) {
     echo
     " <header class='page-header'>
         <nav>
-          <a href='http://localhost/web-tv_one-php/dashboard/global' aria-label='forecastr logo' class='logo'>
+          <a href='https://tvone.ao/dashboard/global' aria-label='forecastr logo' class='logo'>
             <h4>
               Painel
             </h4>
@@ -93,7 +93,7 @@ foreach ($get_user as $data) {
               <h3>Admin</h3>
             </li>
             <li>
-              <a href='http://localhost/web-tv_one-php/dashboard/global'>
+              <a href='https://tvone.ao/dashboard/global'>
                 <svg>
                   <use xlink:href='#pages'></use>
                 </svg>
@@ -101,7 +101,7 @@ foreach ($get_user as $data) {
               </a>
             </li>
             <li>
-              <a href='http://localhost/web-tv_one-php/dashboard/users'>
+              <a href='https://tvone.ao/dashboard/users'>
                 <svg>
                   <use xlink:href='#users'></use>
                 </svg>
@@ -109,7 +109,7 @@ foreach ($get_user as $data) {
               </a>
             </li>
             <li>
-              <a href='http://localhost/web-tv_one-php/dashboard/news'>
+              <a href='https://tvone.ao/dashboard/news'>
                 <svg>
                   <use xlink:href='#news'></use>
                 </svg>
@@ -117,7 +117,7 @@ foreach ($get_user as $data) {
               </a>
             </li>
             <li>
-              <a href='http://localhost/web-tv_one-php/dashboard/categories'>
+              <a href='https://tvone.ao/dashboard/categories'>
                 <svg>
                   <use xlink:href='#categories'></use>
                 </svg>
@@ -125,7 +125,7 @@ foreach ($get_user as $data) {
               </a>
             </li>
             <li>
-              <a href='http://localhost/web-tv_one-php/dashboard/authors'>
+              <a href='https://tvone.ao/dashboard/authors'>
                 <svg>
                   <use xlink:href='#charts'></use>
                 </svg>
@@ -133,7 +133,7 @@ foreach ($get_user as $data) {
               </a>
             </li>
             <li>
-              <a href='http://localhost/web-tv_one-php/dashboard/publicity'>
+              <a href='https://tvone.ao/dashboard/publicity'>
                 <svg>
                   <use xlink:href='#appearance'></use>
                 </svg>
@@ -144,7 +144,7 @@ foreach ($get_user as $data) {
               <h3>Outros</h3>
             </li>
             <li>
-              <a href='http://localhost/web-tv_one-php/dashboard/messages'>
+              <a href='https://tvone.ao/dashboard/messages'>
                 <svg>
                   <use xlink:href='#comments'></use>
                 </svg>
@@ -152,7 +152,7 @@ foreach ($get_user as $data) {
               </a>
             </li>
             <li>
-              <a href='http://localhost/web-tv_one-php/dashboard/newsLetters'>
+              <a href='https://tvone.ao/dashboard/newsLetters'>
                 <svg>
                   <use xlink:href='#charts'></use>
                 </svg>
@@ -160,7 +160,7 @@ foreach ($get_user as $data) {
               </a>
             </li>
             <li>
-              <a href='http://localhost/web-tv_one-php/dashboard/comments'>
+              <a href='https://tvone.ao/dashboard/comments'>
                 <svg>
                   <use xlink:href='#comments'></use>
                 </svg>

@@ -288,7 +288,7 @@ $publiciteis_7_10->execute();
 
 .publicity .containerImage {
   width: 100%;
-  height: 14rem;
+  height: 18rem;
   position: relative;
   overflow: hidden;
 }

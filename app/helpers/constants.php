@@ -1,6 +1,6 @@
 <?php
 
-define('URL_BASE', "http://localhost/web-tv_one-php");
+define('URL_BASE', "https://tvone.ao");
 define('SITE', "Tv-One");
 
 define('CONTROLLERS', 'app/controllers');

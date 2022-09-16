@@ -1,6 +1,6 @@
 <?php
 
-$mode = 'local';
+$mode = 'producao';
 
 if ($mode == 'local') {
   $dbHost = "localhost";

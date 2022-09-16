@@ -212,7 +212,10 @@ $allNews->execute(array($authorId));
               endforeach;
 
             ?>
-            <div class="notice">
+            <div <a href="<?= urlProject(BASE_DETAILSNEWS . "/" . $data['id']) ?>">
+              <a href="<?= urlProject(BASE_DETAILSNEWS . "/" . $data['id']) ?>">
+              </a>
+              class="notice">
               <div class="imageContainer">
                 <img src="<?= $data['image_news'] ?>" alt="">
               </div>
@@ -230,6 +233,10 @@ $allNews->execute(array($authorId));
                 <p><?= $data['resume_news'] ?></p>
               </div>
             </div>
+            </a>
+            <a href="<?= urlProject(BASE_DETAILSNEWS . "/" . $data['id']) ?>">
+            </a>
+
             <?php endforeach ?>
           </div>
 
@@ -250,6 +257,9 @@ $allNews->execute(array($authorId));
               endforeach;
 
             ?>
+            <a href="<?= urlProject(BASE_DETAILSNEWS . "/" . $data['id']) ?>">
+            </a>
+
             <div class="notice">
               <div class="imageContainer">
                 <img src="<?= $data['image_news'] ?>" alt="">
@@ -264,6 +274,9 @@ $allNews->execute(array($authorId));
 
               </div>
             </div>
+            <a href="<?= urlProject(BASE_DETAILSNEWS . "/" . $data['id']) ?>">
+            </a>
+
             <?php endforeach ?>
 
           </div>
