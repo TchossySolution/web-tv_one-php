@@ -88,19 +88,19 @@
     <div class="container">
       <div class="socialMediaContainer">
         <button class="buttonSocialMedia">
-          <a href="https://www.instagram.com/jornalpungoandongo/">
+          <a href="https://www.facebook.com/TV.One.canal.de.TV/">
             <i class="fa-brands fa-facebook-f"></i>
           </a>
         </button>
 
         <button class="buttonSocialMedia">
-          <a href="https://twitter.com/TVoneao/">
+          <a href="https://www.instagram.com/tvone.ao/">
             <i class="fa-brands fa-instagram"></i>
           </a>
         </button>
 
         <button class="buttonSocialMedia">
-          <a href="https://www.instagram.com/tvone.ao/">
+          <a href="https://twitter.com/TVoneao/">
             <i class="fa-brands fa-twitter"></i>
           </a>
         </button>
