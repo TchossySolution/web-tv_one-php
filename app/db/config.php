@@ -1,12 +1,12 @@
 <?php
 
-$mode = 'producao';
+$mode = 'local';
 
 if ($mode == 'local') {
   $dbHost = "localhost";
   $dbUsername = "root";
   $dbPassword = "";
-  $dbName = "tv_one";
+  $dbName = "tvonerex_tv_one";
 }
 if ($mode == 'producao') {
   $dbHost = "localhost";

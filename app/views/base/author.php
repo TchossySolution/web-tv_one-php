@@ -16,13 +16,11 @@ $allAuthor = $pdo->prepare("SELECT * FROM author WHERE name_author = ?");
 $allAuthor->execute(array($authorName));
 
 // Publicidades
-$publiciteis_1_3 = $pdo->prepare("SELECT * FROM publicity ORDER BY id DESC limit 0, 3 ");
-$publiciteis_1_3->execute();
-$publiciteis_4_6 = $pdo->prepare("SELECT * FROM publicity ORDER BY id DESC limit 3, 4 ");
-$publiciteis_4_6->execute();
+$publiciteis_0_4 = $pdo->prepare("SELECT * FROM publicity ORDER BY id DESC limit 0, 4 ");
+$publiciteis_0_4->execute();
 
 // Mais noticias sessão 1
-$rightNews1 = $pdo->prepare("SELECT * FROM news WHERE category_id = ? ORDER BY id DESC limit 0, 1 ");
+$rightNews1 = $pdo->prepare("SELECT * FROM news WHERE category_id = ? ORDER BY id DESC limit 0, 4 ");
 $rightNews1->execute(array(rand(1, 13)));
 $rightNewsList1 = $pdo->prepare("SELECT * FROM news WHERE category_id = ? ORDER BY id DESC limit 1, 4 ");
 $rightNewsList1->execute(array(rand(1, 13)));
@@ -41,7 +39,7 @@ $allNews->execute(array($authorId));
 
 ?>
 
-<link rel="stylesheet" href="<?= urlProject(FOLDER_BASE . BASE_STYLES . "/authorStyles.css") ?>">
+<link rel="stylesheet" href="<?= urlProject(FOLDER_BASE . BASE_STYLES . "/authorStyled.css") ?>">
 
 <main class="authorContainer">
   <div class="container">
@@ -176,7 +174,7 @@ $allNews->execute(array($authorId));
             <!-- Additional required wrapper -->
             <div class="swiper-wrapper">
               <!-- Slides -->
-              <?php foreach ($publiciteis_4_6 as $data) : ?>
+              <?php foreach ($publiciteis_0_4 as $data) : ?>
               <div class="swiper-slide">
                 <section class="slide" id="slide">
                   <section class="publicity">
@@ -212,31 +210,29 @@ $allNews->execute(array($authorId));
               endforeach;
 
             ?>
-            <div <a href="<?= urlProject(BASE_DETAILSNEWS . "/" . $data['id']) ?>">
-              <a href="<?= urlProject(BASE_DETAILSNEWS . "/" . $data['id']) ?>">
-              </a>
-              class="notice">
-              <div class="imageContainer">
-                <img src="<?= $data['image_news'] ?>" alt="">
-              </div>
+            <a href="<?= urlProject(BASE_DETAILSNEWS . "/" . $data['id']) ?>">
+              <div class="notice">
 
-              <div class="noticeContent">
-                <h1><?= $data['title_news'] ?></h1>
-
-                <div class="noticeInfo">
-                  <p><i class="fa-solid fa-user"></i> <strong><?= $author_name ?></strong> -
-                    <span><?= $data['date_create'] ?></span>
-                  </p>
-
+                <div class="imageContainer">
+                  <img src="<?= $data['image_news'] ?>" alt="">
                 </div>
 
-                <p><?= $data['resume_news'] ?></p>
-              </div>
-            </div>
-            </a>
-            <a href="<?= urlProject(BASE_DETAILSNEWS . "/" . $data['id']) ?>">
-            </a>
+                <div class="noticeContent">
+                  <h1><?= $data['title_news'] ?></h1>
 
+                  <div class="noticeInfo">
+                    <p><i class="fa-solid fa-user"></i> <strong><?= $author_name ?></strong> -
+                      <span><?= $data['date_create'] ?></span>
+                    </p>
+
+                  </div>
+
+                  <p><?= $data['resume_news'] ?></p>
+                </div>
+              </div>
+            </a>
+            <br>
+            <br>
             <?php endforeach ?>
           </div>
 

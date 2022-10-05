@@ -77,7 +77,9 @@ if (isset($_POST['send_comments'])) {
               window.location.href='http://tvone.ao/news/detailsNews/$news_id';
             </script>";
   } else {
-    header('Location: http://tvone.ao/ops/nn');
+    echo "<script>
+            window.location.href='http://tvone.ao/news/detailsNews/$news_id';
+          </script>";
   };
 };
 

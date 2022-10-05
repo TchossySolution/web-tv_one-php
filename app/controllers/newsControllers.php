@@ -63,6 +63,7 @@ if (isset($_POST['create_news'])) {
   $choose_editors_news   = $_POST['choose_editors_news'];
   $emphasis_news   = $_POST['emphasis_news'];
   $relevant_news = $_POST['relevant_news'];
+  $views_news =  0;
   $date_create = $completeDate;
   $date_update =  $completeDate;
 
@@ -78,9 +79,10 @@ if (isset($_POST['create_news'])) {
 
 
   if ($_FILES['image_news']['size'] >= $size_max) {
-    echo "<br> Arquivo excedeu o tamanho máximo de 2MB<br>";
-    // echo "<a href='https://tvone.ao/dashboard/news'> Voltar </a>";
-
+    echo "<script>
+            alert('Arquivo excedeu o tamanho máximo de 2MB');
+            window.location.href='https://tvone.ao/dashboard/news';
+          </script>";
     exit();
   } else {
     if (in_array($extension, $accept)) {
@@ -100,20 +102,24 @@ if (isset($_POST['create_news'])) {
         $image_news = 'http://tvone.ao/app/_imagesDb/' . $newName;
         // echo "Upload realizado com sucesso!";
       } else {
-        echo "<br> Erro: ao realizar Upload...<br>";
-        // echo "<a href='https://tvone.ao/dashboard/news'> Voltar </a>";
+        echo "<script>
+                alert('Erro: ao realizar Upload...');
+                window.location.href='https://tvone.ao/dashboard/news';
+              </script>";
 
         exit();
       }
     } else {
-      echo "<br> Erro: Extensão ($extension) não permitido <br>";
-      // echo "<a href='https://tvone.ao/dashboard/news'> Voltar </a>";
+      echo "<script>
+              alert('Erro: Extensão ($extension) não permitido');
+              window.location.href='https://tvone.ao/dashboard/news';
+            </script>";
 
       exit();
     }
   }
 
-  $sql = $pdo->prepare("INSERT INTO news values(null,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+  $sql = $pdo->prepare("INSERT INTO news values(null,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
   if ($sql->execute(array(
     $title_news,
@@ -131,12 +137,19 @@ if (isset($_POST['create_news'])) {
     $choose_editors_news,
     $emphasis_news,
     $relevant_news,
+    $views_news,
     $date_create,
     $date_update
   ))) {
-    header('Location: https://tvone.ao/dashboard/news');
+    echo "<script>
+            alert('Noticia publicada com sucesso');
+            window.location.href='https://tvone.ao/dashboard/news';
+          </script>";
   } else {
-    header('Location: https://tvone.ao/dashboard/ops/nn');
+    echo "<script>
+            alert('Erro ao publicar a noticia, por favor tente novamente');
+            window.location.href='https://tvone.ao/dashboard/news';
+          </script>";
   };
 };
 
@@ -150,9 +163,15 @@ if (isset($_POST['delete_news'])) {
   $sql = $pdo->prepare("DELETE FROM news WHERE id=?");
 
   if ($sql->execute(array($id))) {
-    header('Location: Location: https://tvone.ao/dashboard/news');
+    echo "<script>
+            alert('Noticia apagada com sucesso');
+            window.location.href='https://tvone.ao/dashboard/news';
+          </script>";
   } else {
-    header('Location: Location: https://tvone.ao/dashboard/ops/nn');
+    echo "<script>
+            alert('Não foi possível apagar sucesso');
+            window.location.href='https://tvone.ao/dashboard/news';
+          </script>";
   };
 };
 
@@ -299,6 +318,9 @@ if (isset($_POST['update_news'])) {
       window.location.href='https://tvone.ao/dashboard/news';
     </script>";
   } else {
-    header('Location: Location: https://tvone.ao/ops/nn');
+    echo "<script>
+            alert('Houve um erro ao atualizar a noticia, por favor tente novamente');
+            window.location.href='https://tvone.ao/dashboard/news';
+          </script>";
   };
 };

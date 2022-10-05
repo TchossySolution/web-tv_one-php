@@ -46,9 +46,10 @@ if (isset($_POST['create_publicity'])) {
   // $dateNewComplete = "../_imageDB/date-$dateNew/";
 
   if ($_FILES['image_publicity']['size'] >= $size_max) {
-    echo "Arquivo excedeu o tamanho máximo de 2MB <br>";
-    echo "<a href='https://tvone.ao/dashboard/news'> Voltar </a>";
-
+    echo "<script>
+            alert('Arquivo excedeu o tamanho máximo de 2MB');
+            window.location.href='https://tvone.ao/dashboard/publicity';
+          </script>";
     exit();
   } else {
     if (in_array($extension, $accept)) {
@@ -68,13 +69,18 @@ if (isset($_POST['create_publicity'])) {
         echo "Upload realizado com sucesso!";
       } else {
         echo "Erro: ao realizar Upload... <br>";
-        echo "<a href='https://tvone.ao/dashboard/news'> Voltar </a>";
+        echo "<script>
+        alert('Erro: ao realizar Upload...');
+                window.location.href='https://tvone.ao/dashboard/publicity';
+              </script>";
 
         exit();
       }
     } else {
-      echo "Erro: Extensão ($extension) não permitido <br>";
-      echo "<a href='https://tvone.ao/dashboard/news'> Voltar </a>";
+      echo "<script>
+      alert('Erro: Extensão ($extension) não permitido');
+              window.location.href='https://tvone.ao/dashboard/publicity';
+            </script>";
 
       exit();
     }
@@ -95,9 +101,13 @@ if (isset($_POST['create_publicity'])) {
     $date_create,
     $date_expire
   ))) {
-    header('Location: https://tvone.ao/publicity');
+    echo "<script>
+            window.location.href='https://tvone.ao/dashboard/publicity';
+          </script>";
   } else {
-    header('Location: https://tvone.ao/');
+    echo "<script>
+            window.location.href='https://tvone.ao/dashboard/publicity';
+          </script>";
   };
 };
 
@@ -109,9 +119,13 @@ if (isset($_POST['delete_publicity'])) {
   $sql = $pdo->prepare("DELETE FROM publicity WHERE id=?");
 
   if ($sql->execute(array($id))) {
-    header('Location: https://tvone.ao/authors');
+    echo "<script>
+              window.location.href='https://tvone.ao/dashboard/publicity';
+            </script>";
   } else {
-    header('Location: https://tvone.ao/authors');
+    echo "<script>
+              window.location.href='https://tvone.ao/dashboard/publicity';
+            </script>";
   };
 };
 
@@ -158,8 +172,10 @@ if (isset($_POST['update_publicity'])) {
   // $dateNewComplete = "../_imageDB/date-$dateNew/";
 
   if ($_FILES['image_publicity']['size'] >= $size_max) {
-    echo "Arquivo excedeu o tamanho máximo de 2MB <br>";
-    echo "<a href='https://tvone.ao/dashboard/publicity'> Voltar </a>";
+    echo "<script>
+            alert('Arquivo excedeu o tamanho máximo de 2MB');
+            window.location.href='https://tvone.ao/dashboard/publicity';
+          </script>";
 
     exit();
   } else {
@@ -179,14 +195,18 @@ if (isset($_POST['update_publicity'])) {
       if (move_uploaded_file($tmp, $folder . $newName)) {
         echo "Upload realizado com sucesso!";
       } else {
-        echo "Erro: ao realizar Upload... <br>";
-        echo "<a href='https://tvone.ao/dashboard/publicity'> Voltar </a>";
+        echo "<script>
+                alert('Erro: ao realizar Upload...');
+                window.location.href='https://tvone.ao/dashboard/publicity';
+              </script>";
 
         exit();
       }
     } else {
-      echo "Erro: Extensão ($extension) não permitido <br>";
-      echo "<a href='https://tvone.ao/dashboard/publicity'> Voltar </a>";
+      echo "<script>
+              alert('Erro: Extensão ($extension) não permitido');
+              window.location.href='https://tvone.ao/dashboard/publicity';
+            </script>";
 
       exit();
     }
@@ -201,8 +221,12 @@ if (isset($_POST['update_publicity'])) {
   $sql = $pdo->prepare("UPDATE publicity SET image_publicity=?, description_publicity=?,  link_publicity=?, date_expire=? WHERE id=?");
 
   if ($sql->execute(array($image_publicity, $description_publicity, $link_publicity, $date_expire, $id))) {
-    header('Location: https://tvone.ao/dashboard/publicity');
+    echo "<script>
+              window.location.href='https://tvone.ao/dashboard/publicity';
+            </script>";
   } else {
-    header('Location: https://tvone.ao/dashboard/ops/nn');
+    echo "<script>
+              window.location.href='https://tvone.ao/dashboard/publicity';
+            </script>";
   };
 };

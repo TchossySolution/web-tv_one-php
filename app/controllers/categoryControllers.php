@@ -55,9 +55,13 @@ if (isset($_POST['create_category'])) {
   $sql = $pdo->prepare("INSERT INTO categories values(null,?,?,?)");
 
   if ($sql->execute(array($name_category, $date_create, $date_update))) {
-    header('Location: https://tvone.ao/dashboard/categories');
+    echo "<script>
+            window.location.href='http://tvone.ao/dashboard/categories';
+          </script>";
   } else {
-    header('Location: https://tvone.ao/ops/nn');
+    echo "<script>
+            window.location.href='http://tvone.ao/dashboard/categories';
+          </script>";
   };
 };
 
@@ -71,9 +75,13 @@ if (isset($_POST['delete_category'])) {
   $sql = $pdo->prepare("DELETE FROM categories WHERE id=?");
 
   if ($sql->execute(array($id))) {
-    header('Location: https://tvone.ao/dashboard/categories');
+    echo "<script>
+            window.location.href='http://tvone.ao/dashboard/categories';
+          </script>";
   } else {
-    header('Location: https://tvone.ao/ops/nn');
+    echo "<script>
+            window.location.href='http://tvone.ao/dashboard/categories';
+          </script>";
   };
 };
 
@@ -121,17 +129,21 @@ if (isset($_POST['update_category'])) {
   if (empty(trim($name_category))) {
     $password_err = "O nome da categoria é obrigatório.";
     echo "<script>
-              alert('O nome da categoria é obrigatório!');
-              window.location.href='https://tvone.ao/dashboard/categories';
-            </script>";
+            alert('O nome da categoria é obrigatório!');
+            window.location.href='https://tvone.ao/dashboard/categories';
+          </script>";
     exit();
   }
 
   $sql = $pdo->prepare("UPDATE categories SET name_category=?, date_update=? WHERE id=?");
 
   if ($sql->execute(array($name_category, $date_update, $id))) {
-    header('Location: https://tvone.ao/dashboard/categories');
+    echo "<script>
+              window.location.href='http://tvone.ao/dashboard/categories';
+            </script>";
   } else {
-    header('Location: https://tvone.ao/ops/nn');
+    echo "<script>
+              window.location.href='http://tvone.ao/dashboard/categories';
+            </script>";
   };
 };

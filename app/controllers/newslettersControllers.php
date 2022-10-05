@@ -44,9 +44,13 @@ if (isset($_POST['send_email'])) {
   $sql = $pdo->prepare("INSERT INTO newsletters values(null,?,?)");
 
   if ($sql->execute(array($email, $date_create))) {
-    header('Location: https://tvone.ao/dashboard/newsletters');
+    echo "<script>
+            window.location.href='https://tvone.ao';
+          </script>";
   } else {
-    header('Location: https://tvone.ao/ops/nn');
+    echo "<script>
+            window.location.href='https://tvone.ao';
+          </script>";
   };
 };
 
@@ -59,7 +63,12 @@ if (isset($_POST['delete_newsletters'])) {
 
   if ($sql->execute(array($id))) {
     header('Location: https://tvone.ao/dashboard/newsletters');
+    echo "<script>
+            window.location.href='https://tvone.ao/dashboard/newsletters';
+          </script>";
   } else {
-    header('Location: https://tvone.ao/ops/nn');
+    echo "<script>
+            window.location.href='https://tvone.ao/dashboard/newsletters';
+          </script>";
   };
 };

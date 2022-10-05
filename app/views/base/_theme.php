@@ -2,6 +2,9 @@
 //conexao da base de dados//
 require 'src/db/config.php';
 
+// Publicidades
+$publiciteis_1_3 = $pdo->prepare("SELECT * FROM publicity ORDER BY id DESC limit 0, 3 ");
+$publiciteis_1_3->execute();
 // Mais noticias sessão 1
 $footerNewsList1 = $pdo->prepare("SELECT * FROM news WHERE category_id = ? ORDER BY id DESC limit 0, 4 ");
 $footerNewsList1->execute(array(rand(1, 12)));
@@ -26,6 +29,7 @@ $footerNewsList2->execute(array(rand(1, 12)));
 
   <!-- STYLES -->
   <link rel="stylesheet" href="<?= urlProject(FOLDER_BASE . "/src/public/styles/globalStyle.css") ?>">
+  <link rel="stylesheet" href="<?= urlProject(FOLDER_BASE . BASE_STYLES . "/_themeStyles.css") ?>">
 
   <!-- FONTES -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -51,11 +55,38 @@ $footerNewsList2->execute(array(rand(1, 12)));
 </head>
 
 <body>
-  <?php
-  if ($this->section('publicity')) :
-    echo $this->section('publicity');
-  endif;
-  ?>
+
+  <section class="swiper">
+    <!-- Additional required wrapper -->
+    <div class="swiper-wrapper">
+      <!-- Slides -->
+      <div class="swiper-slide">
+        <section class="slide" id="slide">
+          <section class="publicity">
+            <div class="container">
+              <div class='containerImage'>
+                <img src=" <?= urlProject(FOLDER_BASE . BASE_IMG . "/primaryPublicity.jpg") ?>" alt="">
+              </div>
+            </div>
+          </section>
+        </section>
+      </div>
+      <?php foreach ($publiciteis_1_3 as $data) : ?>
+      <div class="swiper-slide">
+        <section class="slide" id="slide">
+          <section class="publicity">
+            <div class="container">
+              <div class='containerImage'>
+                <img src=" <?= $data['image_publicity'] ?>" alt="">
+              </div>
+            </div>
+          </section>
+        </section>
+      </div>
+      <?php endforeach ?>
+    </div>
+
+  </section>
 
 
   <?php
@@ -94,7 +125,7 @@ $footerNewsList2->execute(array(rand(1, 12)));
     centeredSlides: true,
     loop: true,
     autoplay: {
-      delay: 5000,
+      delay: 7000,
       disableOnInteraction: false
     },
     // If we need pagination
@@ -107,11 +138,11 @@ $footerNewsList2->execute(array(rand(1, 12)));
   const publicitySwiper = new Swiper('.publicitySwiper', {
     // Optional parameters
     direction: 'horizontal',
-    spaceBetween: 100,
+    spaceBetween: 10000,
     centeredSlides: true,
     loop: true,
     autoplay: {
-      delay: 5000,
+      delay: 7000,
       disableOnInteraction: false
     },
     // If we need pagination

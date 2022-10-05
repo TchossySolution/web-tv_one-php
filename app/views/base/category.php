@@ -20,7 +20,7 @@ endforeach;
 $allNews = $pdo->prepare("SELECT * FROM news WHERE category_id = ? ORDER BY id DESC");
 $allNews->execute(array($categoryId));
 
-$publiciteis_12_15 = $pdo->prepare("SELECT * FROM publicity ORDER BY id DESC limit 12, 4 ");
+$publiciteis_12_15 = $pdo->prepare("SELECT * FROM publicity ORDER BY id DESC limit 1, 4 ");
 $publiciteis_12_15->execute();
 
 // Publicidades
@@ -36,16 +36,27 @@ $rightNewsList1 = $pdo->prepare("SELECT * FROM news WHERE category_id = ? ORDER 
 $rightNewsList1->execute(array(rand(1, 13)));
 ?>
 
-<link rel="stylesheet" href="<?= urlProject(FOLDER_BASE . BASE_STYLES . "/categoryStyle.css") ?>">
+<link rel="stylesheet" href="<?= urlProject(FOLDER_BASE . BASE_STYLES . "/categoryStyless.css") ?>">
 
 <main class="categoryContainer">
   <div class="container">
-
 
     <section class="publicitySwiper">
       <!-- Additional required wrapper -->
       <div class="swiper-wrapper">
         <!-- Slides -->
+        <div class="swiper-slide">
+          <section class="slide" id="slide">
+            <section class="publicity">
+              <div class="container">
+                <div class='containerImage'>
+                  <img src=" <?= urlProject(FOLDER_BASE . BASE_IMG . "/COMENTARIOS.jpg") ?>" alt="">
+                </div>
+              </div>
+            </section>
+          </section>
+        </div>
+
         <?php foreach ($publiciteis_12_15 as $data) : ?>
         <div class="swiper-slide">
           <section class="slide" id="slide">
@@ -60,15 +71,6 @@ $rightNewsList1->execute(array(rand(1, 13)));
         </div>
         <?php endforeach ?>
       </div>
-      <!-- If we need pagination -->
-      <div class="swiper-pagination-publicitySwiper"></div>
-
-      <!-- If we need navigation buttons -->
-      <!-- <div class="swiper-button-prev"></div>
-          <div class="swiper-button-next"></div> -->
-
-      <!-- If we need scrollbar -->
-      <!--<div class="swiper-scrollbar"></div>-->
     </section>
 
     <div class="indicateContainer">

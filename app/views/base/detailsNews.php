@@ -21,9 +21,9 @@ endforeach;
 
 
 // Publicidades
-$publiciteis_1_3 = $pdo->prepare("SELECT * FROM publicity ORDER BY id DESC limit 0, 3 ");
-$publiciteis_1_3->execute();
-$publiciteis_4_6 = $pdo->prepare("SELECT * FROM publicity ORDER BY id DESC limit 3, 4 ");
+$publiciteis_7_10 = $pdo->prepare("SELECT * FROM publicity ORDER BY id DESC limit 3, 3 ");
+$publiciteis_7_10->execute();
+$publiciteis_4_6 = $pdo->prepare("SELECT * FROM publicity ORDER BY id DESC limit 6, 4 ");
 $publiciteis_4_6->execute();
 
 // Mais noticias sessão 1
@@ -39,6 +39,7 @@ endforeach;
 $title;
 $categoria;
 $image;
+$total_views = 0;
 
 $news1 = $pdo->prepare("SELECT * FROM news where id=$id ");
 $news1->execute();
@@ -47,6 +48,7 @@ foreach ($news1 as $data) :
   $category_id = $data['category_id'];
   $title = $data['title_news'];
   $image = $data['image_news'];
+  $total_views = $data['views_news'] + 1;
 
   $get_category = $pdo->prepare("SELECT * FROM categories where id=$category_id");
   $get_category->execute();
@@ -63,6 +65,8 @@ $news->execute();
 $allComments = $pdo->prepare("SELECT * FROM comments where news_id=? and is_approved='Aprovado' ORDER BY id DESC ");
 $allComments->execute(array($id));
 
+$see_views_news = $pdo->prepare("UPDATE news SET views_news=? WHERE id=?");
+$see_views_news->execute(array($total_views, $id))
 ?>
 
 <head>
@@ -74,7 +78,7 @@ $allComments->execute(array($id));
   <link rel="image_src" type="image/jpeg" href="<?= $image ?>" />
 </head>
 
-<link rel="stylesheet" href="<?= urlProject(FOLDER_BASE . BASE_STYLES . "/detailsNewsStyles.css") ?>">
+<link rel="stylesheet" href="<?= urlProject(FOLDER_BASE . BASE_STYLES . "/detailsNewsStyled.css") ?>">
 
 <main class="detailsNewsContainer">
   <div class="container">
@@ -157,7 +161,6 @@ $allComments->execute(array($id));
               <?= $data['photography_news'] ?></span></p>
         </div>
 
-
         <div class="shareContainer">
           <a href="http://www.facebook.com/sharer.php?u=<?= urlProject(BASE_DETAILSNEWS . "/" . $data['id']) ?>"
             target="_blank">
@@ -193,6 +196,36 @@ $allComments->execute(array($id));
           </p>
         </div>
 
+        <section class="swiper mySwiper">
+          <!-- Additional required wrapper -->
+          <div class="swiper-wrapper">
+            <!-- Slides -->
+            <div class="swiper-slide">
+              <section class="slide" id="slide">
+                <section class="publicity" style="width: 100%;">
+                  <div class="container">
+                    <div class='containerImage' style="width: 100%; height: 130px;">
+                      <img src=" <?= urlProject(FOLDER_BASE . BASE_IMG . "/COMENTARIOS2.jpg") ?>" alt="">
+                    </div>
+                  </div>
+                </section>
+              </section>
+            </div>
+            <?php foreach ($publiciteis_7_10 as $data_publiciteis) { ?>
+            <div class="swiper-slide">
+              <section class="slide" id="slide">
+                <section class="publicity" style="width: 100%;">
+                  <div class='containerImage' style="width: 100%; height: 130px;">
+                    <img src=" <?= $data_publiciteis['image_publicity'] ?>" alt="">
+                  </div>
+                </section>
+              </section>
+            </div>
+            <?php } ?>
+          </div>
+        </section>
+
+
         <div class="epigraph">
           <i class="fa-solid fa-quote-left"></i>
 
@@ -208,21 +241,30 @@ $allComments->execute(array($id));
           <!-- Additional required wrapper -->
           <div class="swiper-wrapper">
             <!-- Slides -->
-            <?php foreach ($publiciteis_1_3 as $data) : ?>
             <div class="swiper-slide">
               <section class="slide" id="slide">
-                <section class="publicity">
-                  <div class='containerImage'>
-                    <img src=" <?= $data['image_publicity'] ?>" alt="">
+                <section class="publicity" style="width: 100%;">
+                  <div class="container">
+                    <div class='containerImage' style="width: 100%; height: 130px;">
+                      <img src=" <?= urlProject(FOLDER_BASE . BASE_IMG . "/COMENTARIOS.jpg") ?>" alt="">
+                    </div>
+                  </div>
+                </section>
+              </section>
+            </div>
+            <?php foreach ($publiciteis_7_10 as $data) : ?>
+            <div class="swiper-slide">
+              <section class="slide" id="slide">
+                <section class="publicity" style="width: 100%;">
+                  <div class='containerImage' style="width: 100%; height: 130px;">
+                    <img width="100%" height="100%" src=" <?= $data['image_publicity'] ?>" alt="">
                   </div>
                 </section>
               </section>
             </div>
             <?php endforeach ?>
           </div>
-
         </section>
-
 
         <div class="comments-container">
           <form class="row g-3 needs-validation" novalidate method="post"
@@ -314,6 +356,26 @@ $allComments->execute(array($id));
             <!-- Additional required wrapper -->
             <div class="swiper-wrapper">
               <!-- Slides -->
+              <div class="swiper-slide">
+                <section class="slide" id="slide">
+                  <section class="publicity" style="width: 100%; height: 100%;">
+                    <div class='containerImage'>
+                      <img src=" <?= urlProject(FOLDER_BASE . BASE_IMG . "/publicidade_quadrado1.jpg") ?>" alt="">
+                    </div>
+                  </section>
+                </section>
+              </div>
+
+              <div class="swiper-slide">
+                <section class="slide" id="slide">
+                  <section class="publicity" style="width: 100%; height: 100%;">
+                    <div class='containerImage'>
+                      <img src=" <?= urlProject(FOLDER_BASE . BASE_IMG . "/publicidade_quadrado2.jpg") ?>" alt="">
+                    </div>
+                  </section>
+                </section>
+              </div>
+
               <?php foreach ($publiciteis_4_6 as $data) : ?>
               <div class="swiper-slide">
                 <section class="slide" id="slide">

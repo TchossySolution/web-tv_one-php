@@ -33,6 +33,7 @@ $allCategories2->execute();
     <thead>
       <tr>
         <th>Id</th>
+        <th>Visualizações</th>
         <th>Titulo</th>
         <th>Resumo</th>
         <th>Autor</th>
@@ -73,6 +74,7 @@ $allCategories2->execute();
     <form method="post" enctype="multipart/form-data" action="<?= urlProject(CONTROLLERS . "/newsControllers.php") ?>">
       <tr>
         <td><?= $data['id']; ?></td>
+        <td><?= $data['views_news']; ?></td>
         <td><?= $data['title_news']; ?></td>
         <td><?= $data['resume_news']; ?></td>
         <td><?= $author_name; ?></td>
@@ -115,8 +117,10 @@ $allCategories2->execute();
               <br>
 
 
-              <input type="text" value="<?= $data['description_news']; ?>" class="form-control" name="description_news"
+              <textarea type="text" class="form-control" name="description_news"
                 placeholder="Digite a descrição  da Noticia" require>
+                <?= $data['description_news']; ?>
+              </textarea>
               <br>
 
               <input type="text" value="<?= $data['epigraph_news']; ?>" class="form-control" name="epigraph_news"
@@ -277,8 +281,11 @@ $allCategories2->execute();
             </select>
             <br>
 
-            <input type="text" class="form-control" name="description_news" placeholder="Digite a descrição  da Noticia"
-              require>
+            <textarea type="text" class="form-control" name="description_news"
+              placeholder="Digite a descrição  da Noticia" require>
+                <?= $data['description_news']; ?>
+              </textarea>
+            <br>
             <br>
 
             <input type="text" class="form-control" name="epigraph_news" placeholder="Digite epigrafe da Noticia"

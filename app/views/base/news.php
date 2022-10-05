@@ -1,252 +1,250 @@
- <?php $this->layout('_theme') ?>
+<?php $this->layout('_theme') ?>
 
- <?php
+<?php
 
-  $status = 1;
+//conexao da base de dados//
+require 'src/db/config.php';
+session_start();
 
-  //conexao da base de dados//
-  require 'src/db/config.php';
-  session_start();
+$allNews = $pdo->prepare("SELECT * FROM news ORDER BY id DESC ");
+$allNews->execute();
 
-  $allNews = $pdo->prepare("SELECT * FROM news ORDER BY id DESC ");
-  $allNews->execute();
-
-  $publiciteis_8_11 = $pdo->prepare("SELECT * FROM publicity ORDER BY RAND() DESC limit 8, 4 ");
-  $publiciteis_8_11->execute();
+$publiciteis_8_11 = $pdo->prepare("SELECT * FROM publicity ORDER BY id DESC limit 0, 4 ");
+$publiciteis_8_11->execute();
 
 
-  // Publicidades
-  $publiciteis_1_3 = $pdo->prepare("SELECT * FROM publicity ORDER BY id DESC limit 0, 3 ");
-  $publiciteis_1_3->execute();
-  $publiciteis_4_6 = $pdo->prepare("SELECT * FROM publicity ORDER BY id DESC limit 3, 4 ");
-  $publiciteis_4_6->execute();
+// Publicidades
+$publiciteis_4_6 = $pdo->prepare("SELECT * FROM publicity ORDER BY id DESC limit 3, 4 ");
+$publiciteis_4_6->execute();
 
-  // Mais noticias sessão 1
-  $rightNews1 = $pdo->prepare("SELECT * FROM news WHERE category_id = ? ORDER BY id DESC limit 0, 1 ");
-  $rightNews1->execute(array(rand(1, 13)));
-  $rightNewsList1 = $pdo->prepare("SELECT * FROM news WHERE category_id = ? ORDER BY id DESC limit 1, 4 ");
-  $rightNewsList1->execute(array(rand(1, 13)));
+// Mais noticias sessão 1
+$rightNews1 = $pdo->prepare("SELECT * FROM news WHERE category_id = ? ORDER BY id DESC limit 0, 1 ");
+$rightNews1->execute(array(rand(1, 13)));
+$rightNewsList1 = $pdo->prepare("SELECT * FROM news WHERE category_id = ? ORDER BY id DESC limit 1, 4 ");
+$rightNewsList1->execute(array(rand(1, 13)));
+?>
 
-  ?>
+<link rel="stylesheet" href="<?= urlProject(FOLDER_BASE . BASE_STYLES . "/newsStyled.css") ?>">
 
- <link rel="stylesheet" href="<?= urlProject(FOLDER_BASE . BASE_STYLES . "/newsStyles.css") ?>">
+<main class="newsContainer">
+  <div class="container">
+    <section class="publicitySwiper">
+      <!-- Additional required wrapper -->
+      <div class="swiper-wrapper">
+        <!-- Slides -->
+        <div class="swiper-slide">
+          <section class="slide" id="slide">
+            <section class="publicity">
+              <div class="container">
+                <div class='containerImage'>
+                  <img src=" <?= urlProject(FOLDER_BASE . BASE_IMG . "/COMENTARIOS2.jpg") ?>" alt="">
+                </div>
+              </div>
+            </section>
+          </section>
+        </div>
 
- <main class="newsContainer">
-   <div class="container">
-     <section class="publicitySwiper">
-       <!-- Additional required wrapper -->
-       <div class="swiper-wrapper">
-         <!-- Slides -->
-         <?php foreach ($publiciteis_8_11 as $data) : ?>
-         <div class="swiper-slide">
-           <section class="slide" id="slide">
-             <section class="publicity">
-               <div class="container">
-                 <div class='containerImage'>
-                   <img src=" <?= $data['image_publicity'] ?>" alt="">
-                 </div>
-               </div>
-             </section>
-           </section>
-         </div>
-         <?php endforeach ?>
-       </div>
-       <!-- If we need pagination -->
-       <div class="swiper-pagination-publicitySwiper"></div>
+        <?php foreach ($publiciteis_8_11 as $data) : ?>
+        <div class="swiper-slide">
+          <section class="slide" id="slide">
+            <section class="publicity">
+              <div class="container">
+                <div class='containerImage'>
+                  <img src=" <?= $data['image_publicity'] ?>" alt="">
+                </div>
+              </div>
+            </section>
+          </section>
+        </div>
+        <?php endforeach ?>
+      </div>
+    </section>
 
-       <!-- If we need navigation buttons -->
-       <!-- <div class="swiper-button-prev"></div>
-          <div class="swiper-button-next"></div> -->
+    <div class="indicateContainer">
+      <a href=""> Home </a>
+      <span> » </span>
+      <a href=""> Notícias </a>
+      <span> » </span>
+      <a href=""> página <span>1</span> </a>
+    </div>
 
-       <!-- If we need scrollbar -->
+    <div class="containerAllContent">
+      <div class="containerLeft">
+        <div class="allNotices">
 
-     </section>
+          <?php foreach ($allNews as $data) :
+            $author_id = $data['author_id'];
+            $author_name;
 
-     <div class="indicateContainer">
-       <a href=""> Home </a>
-       <span> » </span>
-       <a href=""> Notícias </a>
-       <span> » </span>
-       <a href=""> página <span>1</span> </a>
-     </div>
+            $get_author = $pdo->prepare("SELECT * FROM author where id=?");
+            $get_author->execute(array($author_id));
 
-     <div class="containerAllContent">
-       <div class="containerLeft">
-         <div class="allNotices">
+            foreach ($get_author as $author) :
+              $author_name = $author['name_author'];
+            endforeach;
 
-           <?php foreach ($allNews as $data) :
+            $categoryName = '';
+            $categoryId = $data['category_id'];
+
+            $allCategory = $pdo->prepare("SELECT * FROM categories WHERE id = ?");
+            $allCategory->execute(array($categoryId));
+
+            foreach ($allCategory as $category) :
+              $categoryName = $category['name_category'];
+            endforeach;
+
+          ?>
+          <a href="<?= urlProject(BASE_DETAILSNEWS . "/" . $data['id']) ?>">
+            <div class="notice">
+
+              <div class="imageContainer">
+                <img src="<?= $data['image_news'] ?>" alt="">
+              </div>
+
+              <div class="noticeContent">
+                <div>
+                  <button class="categoryNews">
+                    <?= $categoryName ?>
+                  </button>
+                </div>
+
+                <h1>
+                  <?= $data['title_news'] ?>
+                </h1>
+
+                <p>
+                  <?= $data['resume_news'] ?>
+                </p>
+
+                <div class="noticeInfo">
+                  <p>Por <strong> <?= $author_name ?></strong> - <span><i class="fa-solid fa-calendar-days"></i>
+                      <?= $data['date_create'] ?></span></p>
+                  <p><i class="fa-regular fa-comment-dots"></i> 3</p>
+                </div>
+
+                <div>
+                  <button class="readMore">
+                    Leia mais sobre a noticia
+                    <i class="fa-solid fa-right-long"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </a>
+
+          <?php endforeach ?>
+
+
+        </div>
+
+      </div>
+
+      <div class="rightContainer">
+        <div class="otherNotices">
+          <section class="mySwiper swiper">
+            <!-- Additional required wrapper -->
+            <div class="swiper-wrapper">
+              <!-- Slides -->
+              <?php foreach ($publiciteis_4_6 as $data) : ?>
+              <div class="swiper-slide">
+                <section class="slide" id="slide">
+                  <section class="publicity">
+                    <div class='containerImage'>
+                      <img src=" <?= $data['image_publicity'] ?>" alt="">
+                    </div>
+                  </section>
+                </section>
+              </div>
+              <?php endforeach ?>
+            </div>
+
+          </section>
+
+          <br>
+          <br>
+
+          <div class="categoryTItleSectionContainer">
+            <h1>Não perca</h1>
+          </div>
+
+          <div class="noticeInEmphasis">
+            <?php
+            foreach ($rightNews1 as $data) :
               $author_id = $data['author_id'];
               $author_name;
 
-              $get_author = $pdo->prepare("SELECT * FROM author where id=?");
-              $get_author->execute(array($author_id));
+              $get_author = $pdo->prepare("SELECT * FROM author where id=$author_id");
+              $get_author->execute();
 
               foreach ($get_author as $author) :
                 $author_name = $author['name_author'];
               endforeach;
 
-              $categoryName = '';
-              $categoryId = $data['category_id'];
+            ?>
+            <a href="<?= urlProject(BASE_DETAILSNEWS . "/" . $data['id']) ?>">
+              <div class="notice">
+                <div class="imageContainer">
+                  <img src="<?= $data['image_news'] ?>" alt="">
+                </div>
 
-              $allCategory = $pdo->prepare("SELECT * FROM categories WHERE id = ?");
-              $allCategory->execute(array($categoryId));
+                <div class="noticeContent">
+                  <h1><?= $data['title_news'] ?></h1>
 
-              foreach ($allCategory as $category) :
-                $categoryName = $category['name_category'];
+                  <div class="noticeInfo">
+                    <p><i class="fa-solid fa-user"></i> <strong><?= $author_name ?></strong> -
+                      <span><?= $data['date_create'] ?></span>
+                    </p>
+
+                  </div>
+
+                  <p><?= $data['resume_news'] ?></p>
+                </div>
+              </div>
+            </a>
+            <?php endforeach ?>
+          </div>
+
+          <br>
+          <br>
+
+          <div class="noticeResume">
+            <?php
+            foreach ($rightNewsList1 as $data) :
+              $author_id = $data['author_id'];
+              $author_name;
+
+              $get_author = $pdo->prepare("SELECT * FROM author where id=$author_id");
+              $get_author->execute();
+
+              foreach ($get_author as $author) :
+                $author_name = $author['name_author'];
               endforeach;
 
             ?>
-           <a href="<?= urlProject(BASE_DETAILSNEWS . "/" . $data['id']) ?>">
-             <div class="notice">
+            <a href="<?= urlProject(BASE_DETAILSNEWS . "/" . $data['id']) ?>">
+              <div class="notice">
+                <div class="imageContainer">
+                  <img src="<?= $data['image_news'] ?>" alt="">
+                </div>
 
-               <div class="imageContainer">
-                 <img src="<?= $data['image_news'] ?>" alt="">
-               </div>
+                <div class="noticeContent">
+                  <h1><?= $data['title_news'] ?></h1>
 
-               <div class="noticeContent">
-                 <div>
-                   <button class="categoryNews">
-                     <?= $categoryName ?>
-                   </button>
-                 </div>
+                  <div class="noticeInfo">
+                    <p><?= $data['date_create'] ?></p>
+                  </div>
 
-                 <h1>
-                   <?= $data['title_news'] ?>
-                 </h1>
+                </div>
+              </div>
+            </a>
+            <?php endforeach ?>
 
-                 <p>
-                   <?= $data['resume_news'] ?>
-                 </p>
+          </div>
 
-                 <div class="noticeInfo">
-                   <p>Por <strong> <?= $author_name ?></strong> - <span><i class="fa-solid fa-calendar-days"></i>
-                       <?= $data['date_create'] ?></span></p>
-                   <p><i class="fa-regular fa-comment-dots"></i> 3</p>
-                 </div>
+        </div>
+      </div>
 
-                 <div>
-                   <button class="readMore">
-                     Leia mais sobre a noticia
-                     <i class="fa-solid fa-right-long"></i>
-                   </button>
-                 </div>
-               </div>
-             </div>
-           </a>
+    </div>
 
-           <?php endforeach ?>
-
-
-         </div>
-
-       </div>
-
-       <div class="rightContainer">
-         <div class="otherNotices">
-           <section class="mySwiper swiper">
-             <!-- Additional required wrapper -->
-             <div class="swiper-wrapper">
-               <!-- Slides -->
-               <?php foreach ($publiciteis_4_6 as $data) : ?>
-               <div class="swiper-slide">
-                 <section class="slide" id="slide">
-                   <section class="publicity">
-                     <div class='containerImage'>
-                       <img src=" <?= $data['image_publicity'] ?>" alt="">
-                     </div>
-                   </section>
-                 </section>
-               </div>
-               <?php endforeach ?>
-             </div>
-
-           </section>
-
-           <br>
-           <br>
-
-           <div class="categoryTItleSectionContainer">
-             <h1>Não perca</h1>
-           </div>
-
-           <div class="noticeInEmphasis">
-             <?php
-              foreach ($rightNews1 as $data) :
-                $author_id = $data['author_id'];
-                $author_name;
-
-                $get_author = $pdo->prepare("SELECT * FROM author where id=$author_id");
-                $get_author->execute();
-
-                foreach ($get_author as $author) :
-                  $author_name = $author['name_author'];
-                endforeach;
-
-              ?>
-             <a href="<?= urlProject(BASE_DETAILSNEWS . "/" . $data['id']) ?>">
-               <div class="notice">
-                 <div class="imageContainer">
-                   <img src="<?= $data['image_news'] ?>" alt="">
-                 </div>
-
-                 <div class="noticeContent">
-                   <h1><?= $data['title_news'] ?></h1>
-
-                   <div class="noticeInfo">
-                     <p><i class="fa-solid fa-user"></i> <strong><?= $author_name ?></strong> -
-                       <span><?= $data['date_create'] ?></span>
-                     </p>
-
-                   </div>
-
-                   <p><?= $data['resume_news'] ?></p>
-                 </div>
-               </div>
-             </a>
-             <?php endforeach ?>
-           </div>
-
-           <br>
-           <br>
-
-           <div class="noticeResume">
-             <?php
-              foreach ($rightNewsList1 as $data) :
-                $author_id = $data['author_id'];
-                $author_name;
-
-                $get_author = $pdo->prepare("SELECT * FROM author where id=$author_id");
-                $get_author->execute();
-
-                foreach ($get_author as $author) :
-                  $author_name = $author['name_author'];
-                endforeach;
-
-              ?>
-             <a href="<?= urlProject(BASE_DETAILSNEWS . "/" . $data['id']) ?>">
-               <div class="notice">
-                 <div class="imageContainer">
-                   <img src="<?= $data['image_news'] ?>" alt="">
-                 </div>
-
-                 <div class="noticeContent">
-                   <h1><?= $data['title_news'] ?></h1>
-
-                   <div class="noticeInfo">
-                     <p><?= $data['date_create'] ?></p>
-                   </div>
-
-                 </div>
-               </div>
-             </a>
-             <?php endforeach ?>
-
-           </div>
-
-         </div>
-       </div>
-
-     </div>
-
-   </div>
- </main>
+  </div>
+</main>
