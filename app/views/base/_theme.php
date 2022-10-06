@@ -3,8 +3,8 @@
 require 'src/db/config.php';
 
 // Publicidades
-$publiciteis_1_3 = $pdo->prepare("SELECT * FROM publicity ORDER BY id DESC limit 0, 3 ");
-$publiciteis_1_3->execute();
+$publiciteis_1_3 = $pdo->prepare("SELECT * FROM publicity WHERE publicity_local = ? ORDER BY id DESC limit 0, 3 ");
+$publiciteis_1_3->execute(array('Pag. Inicial -> Header'));
 // Mais noticias sessão 1
 $footerNewsList1 = $pdo->prepare("SELECT * FROM news WHERE category_id = ? ORDER BY id DESC limit 0, 4 ");
 $footerNewsList1->execute(array(rand(1, 12)));

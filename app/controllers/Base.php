@@ -23,10 +23,10 @@ class Base
   }
 
   // NEWS
-  public function news(): void
+  public function news($newsPage): void
   {
     $page_name = "news";
-    echo $this->templates->render($page_name, []);
+    echo $this->templates->render($page_name, ["newsPage" => $newsPage]);
   }
   public function details($newsId): void
   {

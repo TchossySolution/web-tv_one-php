@@ -29,6 +29,7 @@ $allPublicity->execute();
         <th>Id</th>
         <th>Descrição</th>
         <th>Link</th>
+        <th>Local</th>
         <th>Data</th>
         <th>Ação</th>
       </tr>
@@ -42,6 +43,7 @@ $allPublicity->execute();
         <td><?= $data['id']; ?></td>
         <td><?= $data['description_publicity']; ?></td>
         <td><?= $data['link_publicity']; ?></td>
+        <td><?= $data['publicity_local']; ?></td>
         <td style="min-width: 200px ;"><?= $data['date_create']; ?></td>
         <td style="min-width: 200px ;">
           <button type="button" class="btn btn-secondary" class="btn btn-primary" data-bs-toggle="modal"
@@ -72,13 +74,31 @@ $allPublicity->execute();
               <textarea type="text" value="<?= $data['description_publicity']; ?>" class="form-control"
                 name="description_publicity" placeholder="Descrição da publicidade " require>
                 <?= $data['description_publicity']; ?>
-                
-                </textarea>
+              </textarea>
               <br>
 
               <input type="text" value="<?= $data['link_publicity']; ?>" class="form-control" name="link_publicity"
                 placeholder="Coloque o link da publicidade / ou um # " require>
               <br>
+
+              <label for="publicity_local">Local onde aparecerá a publicidade </label>
+              <select class="form-select" name="publicity_local" id="publicity_local">
+                <option value="Pag. Inicial -> 1ª Pub fina">--- Escolha a opção ---</option>
+                <option value="Pag. Inicial -> Header"> Pag. Inicial -> Header </option>
+                <option value="Pag. Inicial -> 1ª Pub fina"> Pag. Inicial -> 1ª Pub fina </option>
+                <option value="Pag. Inicial -> 2ª Pub fina"> Pag. Inicial -> 2ª Pub fina </option>
+                <option value="Pag. detalhes da noticia -> 1ª Pub fina"> Pag. detalhes da noticia -> 1ª Pub fina
+                </option>
+                <option value="Pag. detalhes da noticia -> 2ª Pub fina"> Pag. detalhes da noticia -> 2ª Pub fina
+                </option>
+                <option value="Pag. detalhes da noticia -> Pub quadrada"> Pag. detalhes da noticia -> Pub quadrada
+                </option>
+                <option value="Pag. noticias -> 1ª Pub grossa"> Pag. noticias -> 1ª Pub grossa </option>
+                <option value="Pag. noticias -> Pub quadrada"> Pag. noticias -> Pub quadrada </option>
+                <option value="Pag. categorias -> 1ª Pub grossa"> Pag. categorias -> 1ª Pub grossa </option>
+                <option value="Pag. categorias -> Pub quadrada"> Pag. categorias -> Pub quadrada </option>
+                <option value="Pag. autor -> Pub quadrada"> Pag. autor -> Pub quadrada </option>
+              </select>
 
               <input type="date" value="<?= $data['date_expire']; ?>" class="form-control" name="date_expire"
                 placeholder="Data de expiração da publicidade" require>
@@ -113,18 +133,39 @@ $allPublicity->execute();
           <form method="post" enctype="multipart/form-data"
             action="<?= urlProject(CONTROLLERS . "/publicityController.php") ?>">
 
+            <label for="date_expire">Publicidade </label>
             <input type="file" class="form-control" name="image_publicity"
               placeholder="Selecione a imagem da publicidade" require>
             <br>
 
-            <input type="text" class="form-control" name="description_publicity" placeholder="Descrição da publicidade "
-              require>
+            <label for="publicity_local">Descrição da publicidade </label>
+            <textarea type="text" class="form-contrccol" name="description_publicity"
+              placeholder="Descrição da publicidade" require>Descrição da publicidade</textarea>
             <br>
 
+            <label for="publicity_local">Link da publicidade </label>
             <input type="text" class="form-control" name="link_publicity"
               placeholder="Coloque o link da publicidade / ou um # " require>
             <br>
 
+            <label for="publicity_local">Local onde aparecerá a publicidade </label>
+            <select class="form-select" name="publicity_local" id="publicity_local">
+              <option value="Pag. Inicial -> Header"> Pag. Inicial -> Header </option>
+              <option value="Pag. Inicial -> 1ª Pub fina"> Pag. Inicial -> 1ª Pub fina </option>
+              <option value="Pag. Inicial -> 2ª Pub fina"> Pag. Inicial -> 2ª Pub fina </option>
+              <option value="Pag. detalhes da noticia -> 1ª Pub fina"> Pag. detalhes da noticia -> 1ª Pub fina </option>
+              <option value="Pag. detalhes da noticia -> 2ª Pub fina"> Pag. detalhes da noticia -> 2ª Pub fina </option>
+              <option value="Pag. detalhes da noticia -> Pub quadrada"> Pag. detalhes da noticia -> Pub quadrada
+              </option>
+              <option value="Pag. noticias -> 1ª Pub grossa"> Pag. noticias -> 1ª Pub grossa </option>
+              <option value="Pag. noticias -> Pub quadrada"> Pag. noticias -> Pub quadrada </option>
+              <option value="Pag. categorias -> 1ª Pub grossa"> Pag. categorias -> 1ª Pub grossa </option>
+              <option value="Pag. categorias -> Pub quadrada"> Pag. categorias -> Pub quadrada </option>
+              <option value="Pag. autor -> Pub quadrada"> Pag. autor -> Pub quadrada </option>
+            </select>
+            <br>
+
+            <label for="date_expire">Data de expiração da publicidade </label>
             <input type="date" class="form-control" name="date_expire" placeholder="Data de expiração da publicidade"
               require>
             <br>

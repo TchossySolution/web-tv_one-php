@@ -20,6 +20,7 @@ function router()
 
   // ROTA DE NEWS
   $router->group("/news");
+  // $router->get("/", "Base:news");
   $router->get("/{page}", "Base:news");
   $router->get("/detailsNews/{news_id}", "Base:details");
   $router->get("/search/for/{search}/{page}", "Base:search");

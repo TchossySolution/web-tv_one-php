@@ -21,10 +21,14 @@ endforeach;
 
 
 // Publicidades
-$publiciteis_7_10 = $pdo->prepare("SELECT * FROM publicity ORDER BY id DESC limit 3, 3 ");
-$publiciteis_7_10->execute();
-$publiciteis_4_6 = $pdo->prepare("SELECT * FROM publicity ORDER BY id DESC limit 6, 4 ");
-$publiciteis_4_6->execute();
+$publiciteis_1 = $pdo->prepare("SELECT * FROM publicity WHERE publicity_local = ? ORDER BY id DESC limit 0, 6 ");
+$publiciteis_1->execute(array('Pag. detalhes da noticia -> 1ª Pub fina'));
+
+$publiciteis_2 = $pdo->prepare("SELECT * FROM publicity WHERE publicity_local = ? ORDER BY id DESC limit 0, 6 ");
+$publiciteis_2->execute(array('Pag. detalhes da noticia -> 2ª Pub fina'));
+
+$publiciteis_square = $pdo->prepare("SELECT * FROM publicity WHERE publicity_local = ? ORDER BY id DESC limit 0, 6 ");
+$publiciteis_square->execute(array('Pag. detalhes da noticia -> Pub quadrada'));
 
 // Mais noticias sessão 1
 $rightNews1 = $pdo->prepare("SELECT * FROM news WHERE category_id = ? ORDER BY id DESC limit 0, 1 ");
@@ -211,7 +215,7 @@ $see_views_news->execute(array($total_views, $id))
                 </section>
               </section>
             </div>
-            <?php foreach ($publiciteis_7_10 as $data_publiciteis) { ?>
+            <?php foreach ($publiciteis_1 as $data_publiciteis) { ?>
             <div class="swiper-slide">
               <section class="slide" id="slide">
                 <section class="publicity" style="width: 100%;">
@@ -252,7 +256,7 @@ $see_views_news->execute(array($total_views, $id))
                 </section>
               </section>
             </div>
-            <?php foreach ($publiciteis_7_10 as $data) : ?>
+            <?php foreach ($publiciteis_2 as $data) : ?>
             <div class="swiper-slide">
               <section class="slide" id="slide">
                 <section class="publicity" style="width: 100%;">
@@ -356,37 +360,17 @@ $see_views_news->execute(array($total_views, $id))
             <!-- Additional required wrapper -->
             <div class="swiper-wrapper">
               <!-- Slides -->
+              <?php foreach ($publiciteis_square as $data) { ?>
               <div class="swiper-slide">
                 <section class="slide" id="slide">
                   <section class="publicity" style="width: 100%; height: 100%;">
-                    <div class='containerImage'>
-                      <img src=" <?= urlProject(FOLDER_BASE . BASE_IMG . "/publicidade_quadrado1.jpg") ?>" alt="">
-                    </div>
-                  </section>
-                </section>
-              </div>
-
-              <div class="swiper-slide">
-                <section class="slide" id="slide">
-                  <section class="publicity" style="width: 100%; height: 100%;">
-                    <div class='containerImage'>
-                      <img src=" <?= urlProject(FOLDER_BASE . BASE_IMG . "/publicidade_quadrado2.jpg") ?>" alt="">
-                    </div>
-                  </section>
-                </section>
-              </div>
-
-              <?php foreach ($publiciteis_4_6 as $data) : ?>
-              <div class="swiper-slide">
-                <section class="slide" id="slide">
-                  <section class="publicity">
                     <div class='containerImage'>
                       <img src=" <?= $data['image_publicity'] ?>" alt="">
                     </div>
                   </section>
                 </section>
               </div>
-              <?php endforeach ?>
+              <?php } ?>
             </div>
 
           </section>

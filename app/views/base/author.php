@@ -6,6 +6,16 @@
 require 'src/db/config.php';
 session_start();
 
+$actual_pag = $authorData['page'];
+
+$pag = (!empty($actual_pag)) ? $actual_pag : 1;
+
+// Setar quantidade de items por pagina
+$qnt_result_page = 10;
+
+// Calcular inicio da visualização
+$start = ($qnt_result_page * $pag) - $qnt_result_page;
+
 $authorName = $authorData['author_name'];
 $authorId = '0';
 $titleAuthor = ' ';
@@ -16,8 +26,8 @@ $allAuthor = $pdo->prepare("SELECT * FROM author WHERE name_author = ?");
 $allAuthor->execute(array($authorName));
 
 // Publicidades
-$publiciteis_0_4 = $pdo->prepare("SELECT * FROM publicity ORDER BY id DESC limit 0, 4 ");
-$publiciteis_0_4->execute();
+$publiciteis_square = $pdo->prepare("SELECT * FROM publicity WHERE publicity_local = ? ORDER BY id DESC limit 0, 6 ");
+$publiciteis_square->execute(array('Pag. autor -> Pub quadrada'));
 
 // Mais noticias sessão 1
 $rightNews1 = $pdo->prepare("SELECT * FROM news WHERE category_id = ? ORDER BY id DESC limit 0, 4 ");
@@ -34,7 +44,7 @@ foreach ($allAuthor as $author) :
   $descriptionAuthor = $author['description_author'];
 endforeach;
 
-$allNews = $pdo->prepare("SELECT * FROM news WHERE author_id = ? ORDER BY id DESC");
+$allNews = $pdo->prepare("SELECT * FROM news WHERE author_id = ? ORDER BY id DESC LIMIT $start, $qnt_result_page");
 $allNews->execute(array($authorId));
 
 ?>
@@ -164,6 +174,57 @@ $allNews->execute(array($authorId));
             </div>
           </a>
           <?php endforeach ?>
+
+          <?php
+
+          // Numero de items
+          $result_pg = $pdo->prepare("SELECT COUNT(*) as num_result FROM news WHERE author_id = ? ");
+
+          $result_pg->execute(array($authorId));
+          $row_pag = $result_pg->fetchColumn();
+
+          // Quantidade paginas
+          $qnt_pag = ceil($row_pag / $qnt_result_page);
+
+          // Limitar links antes e depois
+          $max_link = 3;
+
+          // echo $qnt_pag;
+          ?>
+
+          <div style="padding-top: 2rem;">
+            <a href='<?= urlProject('news/search/author/' . $authorName . "/1") ?>'
+              style="color: #000; padding: 8px 10px; border: solid 1px #ddd;  ">
+              Primeira </a>
+
+            <?php
+            for ($pag_after = $pag - $max_link; $pag_after <= $pag - 1; $pag_after++) {
+
+              if ($pag_after >= 1) {
+            ?>
+            <a href='<?= urlProject('news/search/author/' . $authorName . '/' . $pag_after) ?>'
+              style='color: #000; padding: 8px 10px; border: solid 1px #ddd; '> <?= $pag_after ?> </a>
+            <?php }
+            } ?>
+
+            <a style="color: #fff; padding: 8px 10px; background-color: #017dc7; "> <?= $pag ?>
+            </a>
+
+            <?php
+            for ($pag_before = $pag + 1; $pag_before <= $pag + $max_link; $pag_before++) {
+
+              if ($pag_before <= $qnt_pag) {
+            ?>
+            <a href='<?= urlProject('news/search/author/' . $authorName . '/' . $pag_before) ?>'
+              style='color: #000; padding: 8px 10px; border: solid 1px #ddd; '> <?= $pag_before ?> </a>
+            <?php }
+            } ?>
+
+            <a href='<?= urlProject('news/search/author/' . $authorName . "/" . $qnt_pag) ?>'
+              style="color: #000; padding: 8px 10px; border: solid 1px #ddd;  "> Ultima </a>
+
+          </div>
+
         </div>
 
       </div>
@@ -174,7 +235,7 @@ $allNews->execute(array($authorId));
             <!-- Additional required wrapper -->
             <div class="swiper-wrapper">
               <!-- Slides -->
-              <?php foreach ($publiciteis_0_4 as $data) : ?>
+              <?php foreach ($publiciteis_square as $data) : ?>
               <div class="swiper-slide">
                 <section class="slide" id="slide">
                   <section class="publicity">
