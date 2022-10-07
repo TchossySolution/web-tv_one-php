@@ -412,7 +412,8 @@ $see_views_news->execute(array($total_views, $id))
 
                   </div>
 
-                  <p><?= $data['resume_news'] ?></p>
+                  <?php echo $data['resume_news'] ?>
+
                 </div>
               </div>
             </a>

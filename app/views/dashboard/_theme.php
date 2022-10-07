@@ -59,6 +59,11 @@ foreach ($get_user as $data) {
   <!-- font awesome cdn link  -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
 
+  <!-- trumbowyg -->
+  <link rel="stylesheet" href="<?= urlProject(FOLDER_DASHBOARD . "/src/dist/ui/trumbowyg.min.css") ?>">
+  <link rel="stylesheet"
+    href="<?= urlProject(FOLDER_DASHBOARD . "/src/dist/plugins/emoji/ui/trumbowyg.emoji.min.css") ?>">
+
   <!-- Swiper Js -->
   <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
 
@@ -310,8 +315,54 @@ foreach ($get_user as $data) {
     </footer>
   </section>
 
+  <!-- trumbowyg -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-  <script type="text/javascript" src="<?= urlProject(FOLDER_DASHBOARD  . "/src/public/js/script.js") ?>">
+  <script type="text/javascript" src="<?= urlProject(FOLDER_DASHBOARD . "/src/dist/trumbowyg.min.js") ?>"></script>
+  <script type="text/javascript" src="<?= urlProject(FOLDER_DASHBOARD . "/src/dist/langs/pt_br.min.js") ?>"></script>
+  <script type="text/javascript"
+    src="<?= urlProject(FOLDER_DASHBOARD . "/src/dist/plugins/emoji/trumbowyg.emoji.min.js") ?>"></script>
+
+  <script>
+  $('#trumbowyg-create').trumbowyg({
+    lang: 'pt_br',
+    btns: [
+      ['viewHTML'],
+      ['undo', 'redo'], // Only supported in Blink browsers
+      ['formatting'],
+      ['strong', 'em', 'del'],
+      ['superscript', 'subscript'],
+      ['link'],
+      ['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull'],
+      ['unorderedList', 'orderedList'],
+      ['horizontalRule'],
+      ['removeformat'],
+      ['fullscreen'],
+      ['emoji']
+    ],
+    autogrow: true
+  });
+  </script>
+
+  <script>
+  $('#trumbowyg-editor').trumbowyg({
+    lang: 'pt_br',
+    btns: [
+      ['viewHTML'],
+      ['undo', 'redo'], // Only supported in Blink browsers
+      ['formatting'],
+      ['strong', 'em', 'del'],
+      ['superscript', 'subscript'],
+      ['link'],
+      ['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull'],
+      ['unorderedList', 'orderedList'],
+      ['horizontalRule'],
+      ['removeformat'],
+      ['fullscreen'],
+      ['emoji']
+    ],
+    autogrow: true
+  });
   </script>
 
 </body>

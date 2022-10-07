@@ -110,16 +110,12 @@ $allCategories2->execute();
                 placeholder="Digite o titulo da Noticia" require>
               <br>
 
-              <textarea type="text" class="form-control" name="resume_news" placeholder="Digite o resumo da Noticia"
-                require>
-                <?= $data['resume_news']; ?>
-              </textarea>
+              <input type="text" value="<?= $data['resume_news']; ?>" class="form-control" name="resume_news"
+                placeholder="Digite o resumo da Noticia" require>
               <br>
 
-
-              <textarea type="text" class="form-control" name="description_news"
-                placeholder="Digite a descrição  da Noticia" require>
-                <?= $data['description_news']; ?>
+              <textarea id="trumbowyg-editor" type="text" placeholder="<?= $data['description_news']; ?>"
+                class="form-control" name="description_news" require><?= $data['description_news']; ?>
               </textarea>
               <br>
 
@@ -281,10 +277,8 @@ $allCategories2->execute();
             </select>
             <br>
 
-            <textarea type="text" class="form-control" name="description_news"
-              placeholder="Digite a descrição  da Noticia" require>
-                <?= $data['description_news']; ?>
-              </textarea>
+            <textarea id="trumbowyg-create" rows="5" type="text" class="form-control" name="description_news"
+              placeholder="Digite a descrição  da Noticia" require></textarea>
             <br>
             <br>
 
@@ -357,3 +351,14 @@ $allCategories2->execute();
   </div>
 
 </section>
+
+
+<script>
+$('#trumbowyg-demo').trumbowyg({
+  btns: [
+    ['strong', 'em', ],
+    ['insertImage']
+  ],
+  autogrow: true
+});
+</script>

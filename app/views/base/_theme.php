@@ -31,6 +31,9 @@ $footerNewsList2->execute(array(rand(1, 12)));
   <link rel="stylesheet" href="<?= urlProject(FOLDER_BASE . "/src/public/styles/globalStyle.css") ?>">
   <link rel="stylesheet" href="<?= urlProject(FOLDER_BASE . BASE_STYLES . "/_themeStyles.css") ?>">
 
+  <!-- trumbowyg -->
+  <link rel="stylesheet" href="<?= urlProject(FOLDER_BASE . "/src/dist/ui/trumbowyg.min.css") ?>">
+
   <!-- FONTES -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -109,9 +112,29 @@ $footerNewsList2->execute(array(rand(1, 12)));
   endif;
   ?>
 
+  <!-- JQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+  <!-- trumbowyg -->
+  <script type="text/javascript" src="<?= urlProject(FOLDER_BASE . "/src/dist/trumbowyg.min.js") ?>"></script>
+
+
+  <!-- Fontawesome -->
   <script src="https://kit.fontawesome.com/792a6b2573.js" crossorigin="anonymous"></script>
 
+  <!-- Header -->
   <script type="text/javascript" src="<?= urlProject(FOLDER_BASE . BASE_JS . "/HeaderScript.js") ?>">
+  </script>
+
+
+  <script>
+  $('#trumbowyg-demo').trumbowyg({
+    btns: [
+      ['strong', 'em', ],
+      ['insertImage']
+    ],
+    autogrow: true
+  });
   </script>
 
 
