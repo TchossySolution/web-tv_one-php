@@ -412,7 +412,12 @@ $see_views_news->execute(array($total_views, $id))
 
                   </div>
 
-                  <?php echo $data['resume_news'] ?>
+                  <div class="noticeInfo">
+                    <p>
+                      <?= $data['resume_news'] ?>
+                    </p>
+
+                  </div>
 
                 </div>
               </div>
@@ -453,6 +458,9 @@ $see_views_news->execute(array($total_views, $id))
                 </div>
               </div>
             </a>
+
+            <br>
+            <br>
             <?php endforeach ?>
 
           </div>

@@ -29,9 +29,9 @@ $lastNews = $pdo->prepare("SELECT * FROM news ORDER BY id DESC limit 0, 4 ");
 $lastNews->execute();
 
 // Mais noticias sessão 1
-$moreNews1 = $pdo->prepare("SELECT * FROM news ORDER BY id DESC limit 6, 1 ");
+$moreNews1 = $pdo->prepare("SELECT * FROM news ORDER BY id DESC limit 5, 1 ");
 $moreNews1->execute();
-$moreNewsList1 = $pdo->prepare("SELECT * FROM news ORDER BY id DESC limit 7, 4 ");
+$moreNewsList1 = $pdo->prepare("SELECT * FROM news ORDER BY id DESC limit 6, 5 ");
 $moreNewsList1->execute();
 
 // Mais noticias sessão 2
@@ -323,6 +323,13 @@ $publiciteis_7_10->execute(array('Pag. Inicial -> 2ª Pub fina'));
     </div>
   </section>
 
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+
   <section class="moreNotices">
     <div class="container">
       <div class="moreNoticesAllContainer">
@@ -345,6 +352,82 @@ $publiciteis_7_10->execute(array('Pag. Inicial -> 2ª Pub fina'));
             endforeach;
 
             foreach ($moreNews1 as $data) :
+            ?>
+            <a href="<?= urlProject(BASE_DETAILSNEWS . "/" . $data['id']) ?>">
+              <div class="notice">
+                <div class="imageContainer">
+                  <img src="<?= $data['image_news'] ?>" alt="">
+                </div>
+
+                <div class="noticeContent">
+                  <h1><?= $data['title_news'] ?></h1>
+
+                  <div class="noticeInfo">
+                    <p><i class="fa-solid fa-user"></i> <strong><?= $author_name ?></strong> - <span><i
+                          class="fa-solid fa-calendar-days"></i> <?= $data['date_create'] ?></span></p>
+
+                  </div>
+
+                  <p><?= $data['resume_news'] ?></p>
+                </div>
+              </div>
+            </a>
+            <?php endforeach ?>
+
+            <div class="noticeResume">
+              <?php
+              $author_id = $data['author_id'];
+              $author_name;
+
+              $get_author = $pdo->prepare("SELECT * FROM author where id=$author_id");
+              $get_author->execute();
+
+              foreach ($get_author as $author) :
+                $author_name = $author['name_author'];
+              endforeach;
+
+              foreach ($moreNewsList2 as $data) :
+              ?>
+              <a href="<?= urlProject(BASE_DETAILSNEWS . "/" . $data['id']) ?>">
+                <div class="notice">
+                  <div class="imageContainer">
+                    <img src="<?= $data['image_news'] ?>" alt="">
+                  </div>
+                  <div class="noticeContent">
+                    <h1><?= $data['title_news'] ?></h1>
+
+                    <div class="noticeInfo">
+                      <p><?= $data['resume_news'] ?></p>
+                    </div>
+                    <div class="noticeInfo">
+                      <p><i class="fa-solid fa-calendar-days"></i> <?= $data['date_create'] ?></p>
+                    </div>
+
+
+                  </div>
+                </div>
+              </a>
+              <?php endforeach ?>
+
+            </div>
+          </div>
+
+          <br>
+          <br>
+
+          <div class="contentMoreNotice">
+            <?php
+            $author_id = $data['author_id'];
+            $author_name;
+
+            $get_author = $pdo->prepare("SELECT * FROM author where id=$author_id");
+            $get_author->execute();
+
+            foreach ($get_author as $author) :
+              $author_name = $author['name_author'];
+            endforeach;
+
+            foreach ($moreNews2 as $data) :
             ?>
             <a href="<?= urlProject(BASE_DETAILSNEWS . "/" . $data['id']) ?>">
               <div class="notice">
@@ -404,7 +487,6 @@ $publiciteis_7_10->execute(array('Pag. Inicial -> 2ª Pub fina'));
 
             </div>
           </div>
-
         </div>
 
         <div class="otherNotices">

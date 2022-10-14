@@ -40,6 +40,7 @@ function router()
   $router->get("/messages", "Dash:messages");
   $router->get("/newsLetters", "Dash:newsLetters");
   $router->get("/comments", "Dash:comments");
+  $router->get("/videos", "Dash:videos");
 
   // ROTA DE ERROS
   $router->group("/ops");

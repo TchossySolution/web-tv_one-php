@@ -53,6 +53,11 @@ class Dash
     $page_name = "newsLetters";
     echo $this->templates->render($page_name, $data);
   }
+  public function videos($data)
+  {
+    $page_name = "videos";
+    echo $this->templates->render($page_name, $data);
+  }
   public function comments($data)
   {
     $page_name = "comments";

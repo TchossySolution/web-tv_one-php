@@ -214,7 +214,7 @@ if (isset($_POST['update_publicity'])) {
     }
   }
 
-  $image_publicity =  'http://localhost/web-pungo-andongo-php/app/_imagesDb/publicity/' . $newName;
+  $image_publicity =  'https://tvone.ao/app/_imagesDb/publicity/' . $newName;
   $description_publicity = $_POST['description_publicity'];
   $link_publicity = $_POST['link_publicity'];
   $publicity_local   = $_POST['publicity_local'];
