@@ -204,22 +204,11 @@ $see_views_news->execute(array($total_views, $id))
           <!-- Additional required wrapper -->
           <div class="swiper-wrapper">
             <!-- Slides -->
-            <div class="swiper-slide">
-              <section class="slide" id="slide">
-                <section class="publicity" style="width: 100%;">
-                  <div class="container">
-                    <div class='containerImage' style="width: 100%; height: 130px;">
-                      <img src=" <?= urlProject(FOLDER_BASE . BASE_IMG . "/COMENTARIOS2.jpg") ?>" alt="">
-                    </div>
-                  </div>
-                </section>
-              </section>
-            </div>
             <?php foreach ($publiciteis_1 as $data_publiciteis) { ?>
             <div class="swiper-slide">
               <section class="slide" id="slide">
                 <section class="publicity" style="width: 100%;">
-                  <div class='containerImage' style="width: 100%; height: 130px;">
+                  <div class='containerImage'>
                     <img src=" <?= $data_publiciteis['image_publicity'] ?>" alt="">
                   </div>
                 </section>
@@ -245,22 +234,11 @@ $see_views_news->execute(array($total_views, $id))
           <!-- Additional required wrapper -->
           <div class="swiper-wrapper">
             <!-- Slides -->
-            <div class="swiper-slide">
-              <section class="slide" id="slide">
-                <section class="publicity" style="width: 100%;">
-                  <div class="container">
-                    <div class='containerImage' style="width: 100%; height: 130px;">
-                      <img src=" <?= urlProject(FOLDER_BASE . BASE_IMG . "/COMENTARIOS.jpg") ?>" alt="">
-                    </div>
-                  </div>
-                </section>
-              </section>
-            </div>
             <?php foreach ($publiciteis_2 as $data) : ?>
             <div class="swiper-slide">
               <section class="slide" id="slide">
                 <section class="publicity" style="width: 100%;">
-                  <div class='containerImage' style="width: 100%; height: 130px;">
+                  <div class='containerImage'>
                     <img width="100%" height="100%" src=" <?= $data['image_publicity'] ?>" alt="">
                   </div>
                 </section>

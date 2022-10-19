@@ -11,8 +11,12 @@ session_start();
 $allNews = $pdo->prepare("SELECT * FROM news ");
 $allNews->execute();
 
+// Publicidades
 $publiciteis_3_6 = $pdo->prepare("SELECT * FROM publicity WHERE publicity_local = ? ORDER BY id DESC limit 0, 6 ");
 $publiciteis_3_6->execute(array('Pag. Inicial -> 1ª Pub fina'));
+
+$publiciteis_7_10 = $pdo->prepare("SELECT * FROM publicity WHERE publicity_local = ? ORDER BY id DESC limit 0, 6 ");
+$publiciteis_7_10->execute(array('Pag. Inicial -> 2ª Pub fina'));
 
 // Escolhas dos editores
 $choose_editors = $pdo->prepare("SELECT * FROM news where choose_editors_news='sim' ORDER BY id DESC limit 0, 4 ");
@@ -69,9 +73,6 @@ $video_list->execute();
 
 $bau = $pdo->prepare("SELECT * FROM news ORDER BY id DESC limit 17, 4 ");
 $bau->execute();
-
-$publiciteis_7_10 = $pdo->prepare("SELECT * FROM publicity WHERE publicity_local = ? ORDER BY id DESC limit 0, 6 ");
-$publiciteis_7_10->execute(array('Pag. Inicial -> 2ª Pub fina'));
 
 ?>
 

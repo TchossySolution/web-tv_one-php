@@ -17,6 +17,7 @@ $adm_email = $_SESSION['adm_email'];
 $get_user = $pdo->prepare("SELECT * FROM user_adm WHERE adm_email=?");
 $get_user->execute(array($adm_email));
 
+// $adm_name = $get_user->rowCount();
 
 foreach ($get_user as $data) {
   $adm_name = $data['adm_name'];

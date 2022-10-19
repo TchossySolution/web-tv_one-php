@@ -106,7 +106,6 @@ if (isset($_POST['create_news'])) {
                 alert('Erro: ao realizar Upload...');
                 window.location.href='https://tvone.ao/dashboard/news';
               </script>";
-
         exit();
       }
     } else {
